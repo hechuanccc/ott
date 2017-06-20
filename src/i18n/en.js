@@ -44,6 +44,7 @@ export default {
         nickname: 'Nickname',
         name: 'Name',
         save: 'Save',
+        send: 'Send',
         attention: 'Attention',
         member: 'Member',
         status_updated_at: 'Status updated at',
@@ -88,6 +89,7 @@ export default {
         game: 'Game',
         settledat: 'Settled at',
         betamount: 'Bet amount',
+        betdate: 'Bet date',
         settlementamount: 'Settlement amount',
         transferred_at: 'Transferred at',
         provider: 'Provider',
@@ -186,6 +188,7 @@ export default {
         remit_payee_add: 'Add Remit Payee',
         remit_payee_update: 'Update Remit Payee',
         bet_record: 'Bet Records',
+        bet_record_detail: 'Bet Record Detail',
         transfer_record: 'Transfer Records',
         staff: 'Staff',
         add_staff: 'Add Staff',
@@ -194,7 +197,8 @@ export default {
         agent_application_detail: 'Agent Application Detail',
         pcmanagement: 'PC Website Management',
         mobilemanagement: 'Mobile Website Management',
-        online_payee_detail_edit: 'Online Payee Detail Edit'
+        online_payee_detail_edit: 'Online Payee Detail Edit',
+        message: 'message'
     },
     member: {
         page_title: 'Search Members',
@@ -207,6 +211,7 @@ export default {
         status: 'Status',
         balance: 'Balance',
         agent: 'Agent',
+        update_agent: 'Update Agent',
         return_setting: 'Return setting',
         modify_basic_info: 'Modify infos',
         build_bank_info: 'Build bank info',
@@ -234,7 +239,9 @@ export default {
         transfer_status: 'Transfer successfully',
         more_options: 'More Options',
         collapse_options: 'Collapse Options',
-        balance_providers: 'Balance providers'
+        balance_providers: 'Balance providers',
+        loggedin_domain: 'Logged In Domain',
+        loggedin_ip: 'Logged In Ip'
     },
     bank: {
         bank_title: 'Bank infos',
@@ -278,6 +285,7 @@ export default {
         merchant_num: 'Merchat Number',
         certificate: 'Certificate',
         board_url: 'Board URL',
+        payment_domain: 'Payment Domain',
         create_online_payee: 'Create Online Payee',
         staff_info: 'Staff Info',
         display_name: 'Display name',
@@ -291,7 +299,8 @@ export default {
         code: 'Code',
         host: 'Host Name',
         detail: 'Provider Details',
-        update_provider: 'Update Provider'
+        update_provider: 'Update Provider',
+        maintenance_msg: 'Maintenance Message'
     },
     staff: {
         roles: 'Roles / Permission',
@@ -307,7 +316,9 @@ export default {
         update: 'Update Promotion',
         promotion_detail: 'Promotion Details',
         banner: 'Banner',
+        mobileBanner: 'Mobile Banner',
         desc: 'Description',
+        desc_mobile: 'Description Mobile',
         level: 'Level',
         rank: 'Rank',
         availability: 'Availability',
@@ -348,7 +359,11 @@ export default {
         name: 'Site name',
         second_name: 'Second name',
         logo: 'Logo',
-        description: 'Description'
+        description: 'Description',
+        link: 'Promotion address',
+        prev_password: 'Prev Password',
+        new_password: 'New Password',
+        repeat_password: 'Repeat Password'
     },
     title: {
         level_detail: 'Member level detail',
@@ -360,5 +375,59 @@ export default {
         setting_commission: 'Setting commission',
         setting_commission_add: 'Add setting commission',
         setting_commission_edit: 'Edit setting commission'
+    },
+    envelope: {
+        name: 'Name',
+        member_level: 'Member Level',
+        bet_amount: 'Bet Amount',
+        status: 'Status',
+        envelope_name: 'Envelope Name',
+        add_envelope: 'Add Envelope',
+        min_money: 'Min Money',
+        max_money: 'Max Money',
+        deposit_threshold: 'Deposit Threshold',
+        envelope_count: 'Envelope Count',
+        select_envelope: 'Select Envelope',
+        bet_threshold: 'Bet Threshold',
+        condition: 'Condition',
+        and: 'And',
+        or: 'Or',
+        envelope_setting: 'Envelope Setting',
+        envelope: 'envelope'
+    },
+    messages: {
+        title: 'Title',
+        receiver: 'Receiver',
+        members: 'To members',
+        transaction: 'Transaction',
+        text: 'Send text',
+        time: 'Create time'
+    },
+    betrecord: {
+        win: 'Win',
+        bet: 'Lose',
+        refund: 'Refund',
+        tie: 'Tie',
+        void: 'Void',
+        reject: 'Reject',
+        waiting: 'Waiting',
+        game: 'Game',
+        ongoing: 'Ongoing'
+    },
+    details: {
+        status: 'Status',
+        odds: 'Odds',
+        bet_type: 'Bet Type',
+        match: 'Match',
+        combo_type: 'Combo Type',
+        bet: 'Bet',
+        parlay_type: 'Parlay Type',
+        scores: 'Scores',
+        race_number: 'Race Number',
+        race_lane: 'Race Lane'
+    },
+    header: {
+        deposit: 'Deposit',
+        withdraw: 'Withdraw'
     }
 }

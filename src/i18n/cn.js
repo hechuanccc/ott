@@ -25,7 +25,7 @@ export default {
         depositor: '存款人',
         deposited_at: '存款时间',
         merchant_status: '商户状态',
-        manual_confirm: '手动入款',
+        manual_confirm: '补单',
         audit: '审核通过',
         audit_deny: '拒绝入款',
         audit_amount: '稽核金额',
@@ -45,6 +45,7 @@ export default {
         register: '注册',
         name: '名称',
         save: '提交',
+        send: '发送',
         attention: '注意',
         member: '会员',
         status_updated_at: '最近更新',
@@ -86,6 +87,7 @@ export default {
         game: '游戏',
         settledat: '结算时间',
         betamount: '投注金额',
+        betdate: '投注时间',
         settlementamount: '结算金额',
         transferred_at: '日期',
         provider: '娱乐城',
@@ -100,7 +102,7 @@ export default {
         gamecategory: '游戏类型',
         generate: '导出',
         onlinemember: '在线会员',
-        onlinemembers: '在线会员',
+        onlinemembers: '会员',
         search_member: '搜索会员',
         submit: '提交',
         profit: '损益',
@@ -108,7 +110,7 @@ export default {
         cancelreturn: '取消',
         confirmreturn: '确认',
         selectallreturn: '选择所有反水',
-        activeremit: 'This remit payee cannot be deleted because it has active transaction.',
+        activeremit: '该账户无法被删除，因为它有活动的交易。',
         errorPermission: '当前登录用户没有操作权限!',
         saved_successfully: '保存成功!'
     },
@@ -185,6 +187,7 @@ export default {
         remit_payee_add: '增加公司入款账户',
         remit_payee_update: '更新公司入款账号',
         bet_record: '投注记录',
+        bet_record_detail: '投注记录详情',
         transfer_record: '娱乐场转账记录',
         staff: '子账号管理',
         add_staff: '新增账号',
@@ -193,7 +196,8 @@ export default {
         agent_application_detail: '代理申请详情',
         pcmanagement: '电脑网页管理',
         mobilemanagement: '手机网页管理',
-        online_payee_detail_edit: '线上支付商户修改'
+        online_payee_detail_edit: '线上支付商户修改',
+        message: '站内信'
     },
     member: {
         page_title: '查询条件',
@@ -210,6 +214,7 @@ export default {
         gender: '性别',
         birthday: '生日',
         agent: '代理',
+        update_agent: '修改会员代理',
         wechat: '微信',
         return_setting: '反水设定',
         modify_basic_info: '编辑基本资料',
@@ -237,7 +242,9 @@ export default {
         transfer_status: '成功转化余额',
         more_options: '更多条件',
         collapse_options: '收起条件',
-        balance_providers: '娱乐城总余额'
+        balance_providers: '娱乐城总余额',
+        loggedin_domain: '登录网址',
+        loggedin_ip: '登录IP'
     },
     bank: {
         bank_title: '银行资讯',
@@ -281,10 +288,11 @@ export default {
         merchant_num: '商户号',
         certificate: '密钥',
         board_url: '跳板地址',
+        payment_domain: '支付域名',
         create_online_payee: '新增线上支付商户',
         staff_info: '子账号信息',
         display_name: '显示名称',
-        setting_paymenttype: '支付类型管理',
+        setting_paymenttype: '支付方式管理',
         payment_gateway: '支付网关'
     },
     provider: {
@@ -294,7 +302,8 @@ export default {
         rank: '显示排序',
         code: '代码',
         detail: '娱乐城详细资料',
-        update_provider: '更新娱乐城'
+        update_provider: '更新娱乐城',
+        maintenance_msg: '维护信息'
     },
     staff: {
         roles: '角色 / 权限',
@@ -310,7 +319,9 @@ export default {
         update: '更新优惠活动',
         promotion_detail: '优惠活动详情',
         banner: '题图',
-        desc: '优惠活动详情',
+        mobileBanner: '手机端题图',
+        desc: '电脑优惠活动详情',
+        desc_mobile: '手机优惠活动详情',
         level: '适用的会员等级',
         rank: '优惠活动排序',
         availability: '有效期',
@@ -356,7 +367,11 @@ export default {
         name: '网站名称',
         second_name: '网站别名',
         logo: 'logo',
-        description: '网站简介'
+        description: '网站简介',
+        link: '推广地址',
+        prev_password: '原密码',
+        new_password: '新密码',
+        repeat_password: '重复密码'
     },
     title: {
         level_detail: '会员等级详细资料',
@@ -368,5 +383,61 @@ export default {
         setting_commission: '佣金设定',
         setting_commission_add: '增加佣金设定',
         setting_commission_edit: '修改佣金设定'
+    },
+    envelope: {
+        name: '名称',
+        member_level: '会员等级',
+        bet_amount: '下注金额',
+        status: '状态',
+        envelope_name: '红包名称',
+        add_envelope: '新增红包',
+        min_money: '红包最小金额',
+        max_money: '红包最大金额',
+        envelope_config: '红包配置',
+        deposit_threshold: '存款金额大于等于',
+        envelope_count: '红包个数',
+        select_envelope: '选择红包',
+        bet_threshold: '投注金额大于等于',
+        condition: '达成条件',
+        and: '同时满足',
+        or: '存款或下注',
+        envelope_setting: '配置红包',
+        envelope: '红包'
+    },
+    messages: {
+        title: '标题',
+        receiver: '接收人',
+        members: '群发',
+        transaction: '相关交易',
+        text: '发送内容',
+        time: '创建时间'
+    },
+    betrecord: {
+        win: '赢',
+        bet: '输',
+        refund: '退款',
+        tie: '和局',
+        void: '退款',
+        reject: '未投注',
+        waiting: '待确认',
+        game: '游戏',
+        ongoing: '待确认'
+    },
+    details: {
+        status: '状态',
+        odds: '可能性',
+        bet_type: '投注类型',
+        match: '比赛',
+        combo_type: '组合类型',
+        bet: '赌注',
+        parlay_type: '投注类型',
+        scores: '分数',
+        race_number: '种族编号',
+        race_lane: '赛道'
+    },
+    header: {
+        deposit: '入款',
+        withdraw: '取款'
     }
+
 }
