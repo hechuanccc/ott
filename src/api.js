@@ -61,6 +61,14 @@ export default {
     permissions: prefix + 'permissions/',
     staffPermissions: prefix + 'staff/permissions/',
     website: prefix + 'website/home-page/',
-    paymenttype: prefix + 'paymenttype/'
+    paymenttype: prefix + 'paymenttype/',
+    envelope_settings: prefix + 'envelope/settings/',
+    envelope: prefix + 'envelope/',
+    messages: prefix + 'messages/',
+    checkMember: host + '/checkmember/',
+    changePassword: prefix + 'password/',
+    metrics_count: prefix + 'metrics/count/',
+    report_member: host + '/report/member/',
+    report_deposit: host + '/report/deposit/'
 
 }

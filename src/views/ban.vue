@@ -1,3 +1,3 @@
 <template>
-    <div class="alert alert-success">登录成功！</div>
+    <div class="alert alert-danger">无权限访问</div>
 </template>

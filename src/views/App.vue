@@ -85,7 +85,7 @@ export default {
                 // if the router require permission which is defined in routers.js,
                 // and the permission is not in the user's permission list
                 // have to redirect to a 'Fobidden' page
-                if (to.permission && !this.permissions.includes(to.permission)) {
+                if (to.meta.permission && !this.permissions.includes(to.meta.permission)) {
                     this.$router.push('/ban')
                 } else {
                     next()
@@ -126,6 +126,7 @@ export default {
                 if (this.userType === 'agent') {
                     this.agentPermission()
                 }
+                console.log(response.data)
             }, (response) => {
                 if (response.status === 404) {
                     this.$router.go('/login')

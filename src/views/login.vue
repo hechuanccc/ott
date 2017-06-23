@@ -60,6 +60,7 @@
             login () {
                 this.$http.post(api.login, this.user, {emulateJSON: true}).then(response => {
                     let data = response.data
+                    console.log(response.data)
                     $.storage.save({type: data.type})
                     let d = new Date(data.expires_in)
                     // Vue.http.headers.common['Authorization'] = 'Bearer ' + data.access_token
