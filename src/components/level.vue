@@ -1,5 +1,5 @@
 <template>
-    <select class="form-control w-sm c-select" v-model="level" @change="onChange" v-if="mode==='select'" :required="req" :disabled="!disabled">
+    <select class="form-control w-sm c-select" v-model="myLevel" @change="onChange" v-if="mode==='select'" :required="req" :disabled="!disabled">
         <option value="">{{$t('common.please_select')}}</option>
         <option class="form-control" :value="l.id" v-for="l in levels">{{l.name}}</option>
     </select>
@@ -26,6 +26,9 @@ export default {
         },
         disabled: {
             default: true
+        },
+        index: {
+            default: 0
         }
     },
     data () {
@@ -54,7 +57,8 @@ export default {
     },
     methods: {
         onChange: function () {
-            this.$emit('level-select', this.level)
+            console.log('jahha ' + this.index)
+            this.$emit('level-choose', this.myLevel, this.index)
         }
     }
 }
