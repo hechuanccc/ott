@@ -41,9 +41,6 @@
 // once the comopnent is ready, and might trigger 'rebase' everytime needed
 export default {
     props: {
-        limit: {
-            default: 20
-        },
         queryset: {
             required: true,
             type: Array
@@ -63,10 +60,10 @@ export default {
         optexpand: {
             default: 1
         },
-        total_amount: {
+        amount: {
             default: ''
         },
-        total_profit: {
+        profit: {
             default: ''
         },
         export_query: {
@@ -76,6 +73,7 @@ export default {
     data () {
         return {
             count: 0,
+            limit: 20,
             next: '',
             busy: false,
             loading: true,
@@ -131,6 +129,7 @@ export default {
             this.pageNum = pageNum
         },
         rebase () {
+            console.log('re base')
             this.next = this.buildUrl(this.api, this.extra + '&opt_expand=' + this.optexpand + '&offset=' + this.offset + '&limit=' + this.limit)
             // this.queryset = []
             this.myQueryset = []
@@ -138,16 +137,19 @@ export default {
         },
         // pull queryset form back-end
         pull () {
-            this.total_amount = ''
-            this.total_profit = ''
+            let amount = ''
+            let profit = ''
             this.busy = true
             this.loading = true
             this.$http.get(this.next).then(response => {
+                console.log('pull====')
                 if (response.data.total_amount) {
-                    this.total_amount = response.data.total_amount
+                    amount = response.data.total_amount
+                    this.$emit('amount', amount)
                 }
                 if (response.data.total_profit) {
-                    this.total_profit = response.data.total_profit
+                    profit = response.data.total_profit
+                    this.$emit('profit', profit)
                 }
                 this.busy = false
                 this.count = response.data.count
@@ -159,7 +161,7 @@ export default {
                 this.next = response.data.next
             }, response => {
                 if (response.status === 401) {
-                    this.$router.go('/login?next=' + this.$route.path)
+                    this.$router.push('/login?next=' + this.$route.path)
                 }
             })
         },
@@ -181,6 +183,8 @@ export default {
                     params.push(x + '=' + query[x])
                 }
             }
+            console.log(params)
+            console.log(params + '======111=')
             return url + (defaultQuery ? '&' : '?') + params.join('&')
         },
         getExportQuery () {
@@ -191,12 +195,14 @@ export default {
                 }
             }
             let params = []
+            let exportQuery = this.export_query
             for (let x in query) {
                 if (query[x]) {
                     params.push(x + '=' + query[x])
                 }
-                this.export_query = params.join('&')
             }
+            exportQuery = params.join('&')
+            this.$emit('export-query', exportQuery)
         },
         // change the route, and then parent component will know and trigger route.data
         // and broadcast 'rebase' event
@@ -209,10 +215,7 @@ export default {
                     delete query[x]
                 }
             }
-            this.$router.go({
-                name: this.$route.name,
-                query: query
-            })
+            this.$router.push({path: this.$route.path, query: query})
         }
     }
 }

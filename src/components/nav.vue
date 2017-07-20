@@ -38,8 +38,8 @@
                                 <li v-if="$root.permissions.includes('list_remit_online_withdraw_page')"><router-link to="/bill/online?report_flag=True"><span class="nav-text">{{$t('bill.online_payment')}}</span></router-link></li>
                                 <li v-if="$root.permissions.includes('list_remit_online_withdraw_page')"><router-link to="/bill/withdraw?report_flag=True"><span class="nav-text">{{$t('bill.withdrawal_audit')}}</span></router-link></li>
                                 <li><router-link to="/bill/search?report_flag=True"><span class="nav-text">{{$t('bill.transcations_query')}}</span></router-link></li>
-                                <li><router-link to="'/bill/returnrate'"><span class="nav-text">{{$t('bill.return_report')}}</span></router-link></li>
-                                <li v-if="$root.permissions.includes('calculate_commission')"><a to="/bill/commission" ><span class="nav-text">{{$t('bill.commission_report')}}</span></a></li>
+                                <li><router-link to="/bill/returnrate"><span class="nav-text">{{$t('bill.return_report')}}</span></router-link></li>
+                                <li v-if="$root.permissions.includes('calculate_commission')"><router-link to="/bill/commission" ><span class="nav-text">{{$t('bill.commission_report')}}</span></router-link></li>
                             </ul>
                         </li>
 

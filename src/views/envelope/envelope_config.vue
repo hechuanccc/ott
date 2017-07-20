@@ -45,11 +45,11 @@ export default {
             query: {}
         }
     },
-    route: {
-        data (transition) {
-            this.$refs.pulling.rebase()
-        }
-    },
+   // route: {
+      //  data (transition) {
+        //    this.$refs.pulling.rebase()
+        // }
+    // },
     created () {
         this.$nextTick(() => {
             this.$refs.pulling.rebase()

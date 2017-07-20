@@ -74,7 +74,8 @@
                         window.document.cookie = 'refresh_token=' + data.refresh_token + ';path=/;expires=' + d.toGMTString()
                     }
                     this.$root.getPermissions((next) => {
-                        this.$router.push('/ban')
+                        console.log(111)
+                        this.$router.push('/')
                     })
                     // this.$emit('initAuthentication', (next) => {
                     //     this.$router.go(next)
