@@ -97,7 +97,7 @@
                 default: true
             }
         },
-        ready () {
+        created () {
             this.getCount()
             setInterval(this.getCount, 5000)
         },

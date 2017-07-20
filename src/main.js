@@ -8,12 +8,14 @@ import Moment from 'vue-moment'
 import store from './vuex/store'
 import { sync } from 'vuex-router-sync'
 import router from './router'
+import Vue2Filters from 'vue2-filters'
 
 import App from './views/app'
 
 const config = require('../config')
 const env = process.env.NODE_ENV === 'development' ? config.dev.env : config.build.env
 
+Vue.use(Vue2Filters)
 Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.use(Moment)
