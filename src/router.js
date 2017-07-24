@@ -1,6 +1,23 @@
 import Vue from 'vue'
+import VueI18n from 'vue-i18n'
 import Router from 'vue-router'
+import locales from './i18n/locales'
+
 Vue.use(Router)
+Vue.use(VueI18n)
+
+let navLang = navigator.language || navigator.userLanguage
+if (navLang === 'zh-CN' || navLang === 'zh-cn') {
+    Vue.config.lang = 'cn'
+} else if (navLang === 'en-US' || navLang === 'en-us') {
+    Vue.config.lang = 'en'
+} else {
+    Vue.config.lang = 'cn'
+}
+
+Object.keys(locales).forEach(lang => {
+    Vue.locale(lang, locales[lang])
+})
 
 export default new Router({
     scrollBehavior: () => ({ y: 0 }),
@@ -190,7 +207,8 @@ export default new Router({
         },
         meta: {
             auth: true,
-            group: 'setting'
+            group: 'setting',
+            title: Vue.t('nav.setting_level')
         }
     },
     {
@@ -200,6 +218,7 @@ export default new Router({
         },
         meta: {
             auth: true,
+            title: Vue.t('title.member_level_add'),
             group: 'setting'
         }
     },
@@ -210,6 +229,7 @@ export default new Router({
         },
         meta: {
             auth: true,
+            title: Vue.t('title.level_detail'),
             group: 'setting'
         }
     },
@@ -220,6 +240,7 @@ export default new Router({
         },
         meta: {
             group: 'setting',
+            title: Vue.t('title.member_level_edit'),
             auth: true
         }
     },
@@ -230,7 +251,8 @@ export default new Router({
         },
         meta: {
             group: 'setting',
-            auth: true
+            auth: true,
+            title: Vue.t('nav.setting_online_payee')
         }
     },
     {
@@ -240,6 +262,7 @@ export default new Router({
         },
         meta: {
             group: 'setting',
+            title: Vue.t('setting.create_online_payee'),
             auth: true
         }
     },
@@ -250,6 +273,7 @@ export default new Router({
         },
         meta: {
             group: 'setting',
+            title: Vue.t('nav.online_payee_detail'),
             auth: true
         }
     },
@@ -260,6 +284,7 @@ export default new Router({
         },
         meta: {
             group: 'setting',
+            title: Vue.t('nav.online_payee_detail_edit'),
             auth: true
         }
     },
@@ -270,7 +295,8 @@ export default new Router({
         },
         meta: {
             group: 'setting',
-            auth: true
+            auth: true,
+            title: Vue.t('setting.setting_paymenttype')
         }
     },
     {
@@ -281,7 +307,8 @@ export default new Router({
         meta: {
             group: 'setting',
             auth: true,
-            permission: 'change_paymenttype'
+            permission: 'change_paymenttype',
+            title: Vue.t('setting.setting_paymenttype')
         }
     },
     {
@@ -291,7 +318,8 @@ export default new Router({
         },
         meta: {
             group: 'setting',
-            auth: true
+            auth: true,
+            title: Vue.t('nav.setting_remit_payee')
         }
     },
     {
@@ -301,7 +329,8 @@ export default new Router({
         },
         meta: {
             group: 'setting',
-            auth: true
+            auth: true,
+            title: Vue.t('nav.remit_payee_add')
         }
     },
     {
@@ -311,7 +340,8 @@ export default new Router({
         },
         meta: {
             group: 'setting',
-            auth: true
+            auth: true,
+            title: Vue.t('nav.remit_payee_detail')
         }
     },
     {
@@ -321,6 +351,7 @@ export default new Router({
         },
         meta: {
             group: 'setting',
+            title: Vue.t('nav.remit_payee_update'),
             auth: true
         }
     },
@@ -331,7 +362,8 @@ export default new Router({
         },
         meta: {
             group: 'setting',
-            auth: true
+            auth: true,
+            title: Vue.t('title.setting_return')
         }
     },
     {
@@ -341,7 +373,8 @@ export default new Router({
         },
         meta: {
             group: 'setting',
-            auth: true
+            auth: true,
+            title: Vue.t('title.setting_return_add')
         }
     },
     {
@@ -351,7 +384,8 @@ export default new Router({
         },
         meta: {
             group: 'setting',
-            auth: true
+            auth: true,
+            title: Vue.t('title.setting_return_edit')
         }
     },
     {
@@ -361,7 +395,8 @@ export default new Router({
         },
         meta: {
             group: 'setting',
-            auth: true
+            auth: true,
+            title: Vue.t('title.setting_commission')
         }
     },
     {
@@ -371,7 +406,8 @@ export default new Router({
         },
         meta: {
             group: 'setting',
-            auth: true
+            auth: true,
+            title: Vue.t('title.setting_commission_add')
         }
     },
     {
@@ -381,7 +417,8 @@ export default new Router({
         },
         meta: {
             group: 'setting',
-            auth: true
+            auth: true,
+            title: Vue.t('title.setting_commission_edit')
         }
     },
     {
@@ -391,7 +428,8 @@ export default new Router({
         },
         meta: {
             group: 'setting',
-            auth: true
+            auth: true,
+            title: Vue.t('provider.title')
         }
     }, {
         path: '/provider/:providerId',
@@ -400,7 +438,8 @@ export default new Router({
         },
         meta: {
             group: 'setting',
-            auth: true
+            auth: true,
+            title: Vue.t('provider.detail')
         }
     }, {
         path: '/provider/:providerId/edit',
@@ -409,7 +448,8 @@ export default new Router({
         },
         meta: {
             group: 'setting',
-            auth: true
+            auth: true,
+            title: Vue.t('provider.update_provider')
         }
     }, {
         path: '/provider/add',
@@ -418,43 +458,52 @@ export default new Router({
         },
         meta: {
             group: 'setting',
-            auth: true
+            auth: true,
+            title: Vue.t('provider.create')
         }
     }, {
         path: '/staff',
+        name: 'staff',
         component: function (resolve) {
             require(['./views/setting/staff.vue'], resolve)
         },
         meta: {
             group: 'setting',
-            auth: true
+            auth: true,
+            title: Vue.t('nav.staff')
         }
     }, {
         path: '/staff/add',
+        name: 'staff_add',
         component: function (resolve) {
             require(['./views/setting/staff_form.vue'], resolve)
         },
         meta: {
             group: 'setting',
-            auth: true
+            auth: true,
+            title: Vue.t('nav.add_staff')
         }
     }, {
         path: '/staff/:staffId',
+        name: 'staff_detail',
         component: function (resolve) {
             require(['./views/setting/staff_detail.vue'], resolve)
         },
         meta: {
             group: 'setting',
-            auth: true
+            auth: true,
+            title: Vue.t('nav.staff_detail')
         }
     }, {
         path: '/staff/:staffId/edit',
+        name: 'staff_edit',
         component: function (resolve) {
             require(['./views/setting/staff_form.vue'], resolve)
         },
         meta: {
             group: 'setting',
-            auth: true
+            auth: true,
+            title: Vue.t('staff.update_staff')
         }
     }, {
         path: '/envelope_settings',
@@ -542,6 +591,83 @@ export default new Router({
         meta: {
             group: 'manage',
             auth: true
+        }
+    }, {
+        path: '/messages',
+        name: 'manage',
+        component: function (resolve) {
+            require(['./views/setting/messages.vue'], resolve)
+        },
+        meta: {
+            group: 'manage',
+            title: '站内信',
+            auth: true
+        }
+    }, {
+        path: '/messages/add',
+        name: 'messages_add',
+        component: function (resolve) {
+            require(['./views/setting/messages_form.vue'], resolve)
+        },
+        meta: {
+            group: 'manage',
+            title: '新增站内信',
+            auth: true
+        }
+    }, {
+        path: '/messages/:messagesId',
+        name: 'messages_detail',
+        component: function (resolve) {
+            require(['./views/setting/messages_detail.vue'], resolve)
+        },
+        meta: {
+            group: 'manage',
+            title: '站内信详情',
+            auth: true
+        }
+    }, {
+        path: '/promotion',
+        name: 'promotion',
+        component: function (resolve) {
+            require(['./views/setting/promotion.vue'], resolve)
+        },
+        meta: {
+            group: 'setting',
+            auth: true,
+            title: Vue.t('promotion.title')
+        }
+    }, {
+        path: '/promotion/add',
+        name: 'promotion_add',
+        component: function (resolve) {
+            require(['./views/setting/promotion_form.vue'], resolve)
+        },
+        meta: {
+            group: 'setting',
+            auth: true,
+            title: Vue.t('promotion.add')
+        }
+    }, {
+        path: '/promotion/:promotionId',
+        name: 'promotion_detail',
+        component: function (resolve) {
+            require(['./views/setting/promotion_detail.vue'], resolve)
+        },
+        meta: {
+            group: 'setting',
+            auth: true,
+            title: Vue.t('promotion.detail')
+        }
+    }, {
+        path: '/promotion/:promotionId/edit',
+        name: 'promotion_edit',
+        component: function (resolve) {
+            require(['./views/setting/promotion_form.vue'], resolve)
+        },
+        meta: {
+            group: 'setting',
+            auth: true,
+            title: Vue.t('promotion.update')
         }
     }]
 })

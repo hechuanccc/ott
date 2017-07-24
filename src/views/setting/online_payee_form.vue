@@ -145,19 +145,17 @@
                 formData.append('domain_url', this.payee.domain_url)
 
                 if (this.payee.id) {
-                    console.log('this.payee.id 存在')
                     this.$http.put(api.onlinepayee + this.payee.id + '/', formData).then(response => {
                         if (response.status === 200) {
-                            this.$router.go('/online_payee/' + response.data.id)
+                            this.$router.push('/online_payee/' + response.data.id)
                         }
                     })
                 } else {
                     this.$http.post(api.onlinepayee, this.payee).then(response => {
                         if (response.status === 201) {
-                            this.$router.go('/online_payee/' + response.data.id)
+                            this.$router.push('/online_payee/' + response.data.id)
                         }
                     }, response => {
-                        console.log('this.payee.id no存在')
                         this.responseError = ''
                         for (let field in this.field_locales) {
                             this.responseError += handleError(response, field, this.field_locales)
@@ -170,13 +168,11 @@
                 }
             },
             getPaymentTypes () {
-                console.log('getPaymentTypes ' + api.paymentgateway)
                 this.$http.get(api.paymentgateway).then((response) => {
                     this.paymenttypes = response.data
                 })
             },
             getPayee (id) {
-                console.log('getPayee form ' + api.onlinepayee + id + '/')
                 this.$http.get(api.onlinepayee + id + '/').then((response) => {
                     this.payee = Object.assign(this.payee, response.data)
                 })

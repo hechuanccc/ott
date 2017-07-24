@@ -3,7 +3,7 @@
         <div class="m-b">
             <ol class="breadcrumb">
                 <li class="active"><router-link to="/online_payee">线上支付管理</router-link></li>
-                <li class="active">{{$route.title}}</li>
+                <li class="active">{{$route.meta.title}}</li>
             </ol>
         </div>
         <div class="box">
@@ -124,7 +124,6 @@
         },
         methods: {
             getPayee (id) {
-                console.log('getPayee ' + api.onlinepayee + id + '/?opt_expand=1')
                 this.$http.get(api.onlinepayee + id + '/?opt_expand=1').then(response => {
                     // this.$data = response.data
                     console.log(response.data)

@@ -154,7 +154,7 @@
                 }
                 if (!this.isActive) {
                     this.$http.delete(api.remitpayee + id + '/').then((response) => {
-                        this.$router.go('/remit_payee')
+                        this.$router.push('/remit_payee')
                     })
                 } else {
                     this.showDeleteError = true

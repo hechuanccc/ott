@@ -187,14 +187,14 @@
                     this.getSelect()
                     this.$http.put(api.staff + this.staff.id + '/', this.staff).then(response => {
                         if (response.status === 200) {
-                            this.$router.go('/staff/' + response.data.id)
+                            this.$router.push('/staff/' + response.data.id)
                         }
                     })
                 } else {
                     this.getSelect()
                     this.$http.post(api.staff, this.staff).then(response => {
                         if (response.status === 201) {
-                            this.$router.go('/staff/' + response.data.id)
+                            this.$router.push('/staff/' + response.data.id)
                         }
                     }, response => {
                         this.errorMsg = ''

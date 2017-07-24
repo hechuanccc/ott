@@ -78,7 +78,7 @@
                         this.$router.push('/')
                     })
                     // this.$emit('initAuthentication', (next) => {
-                    //     this.$router.go(next)
+                    //     this.$router.push(next)
                     // })
                     this.$root.userType = data.type
                 }, (response) => {

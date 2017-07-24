@@ -153,7 +153,7 @@
                 if (this.envelope.id) {
                     this.$http.put(api.envelope_settings + this.envelope.id + '/', this.envelope).then(response => {
                         if (response.status === 200) {
-                            this.$router.go('/envelope_settings')
+                            this.$router.push('/envelope_settings')
                         }
                     }, response => {
                         this.errorMsg = ''
@@ -164,7 +164,7 @@
                 } else {
                     this.$http.post(api.envelope_settings, this.envelope).then(response => {
                         if (response.status === 201) {
-                            this.$router.go('/envelope_settings')
+                            this.$router.push('/envelope_settings')
                         }
                     }, response => {
                         this.errorMsg = ''
@@ -191,7 +191,7 @@
                     this.$http.delete(api.commission + this.envelope.id + '/').then(response => {
                         this.deleted = 1
                         setTimeout(() => {
-                            this.$router.go('/commission')
+                            this.$router.push('/commission')
                         }, 2000)
                     }, response => {
                         this.deleted = -1

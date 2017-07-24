@@ -160,7 +160,7 @@
                     }
                 }
                 this.$http.delete(api.staff + id + '/').then((response) => {
-                    this.$router.go('/staff')
+                    this.$router.push('/staff')
                 })
             }
         }

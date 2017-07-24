@@ -48,11 +48,6 @@ export default {
             'online_payees': []
         }
     },
-    // route: {
-    //     data (transition) {
-    //         this.getPayees()
-    //     }
-    // },
     created () {
         this.getPayees()
     },

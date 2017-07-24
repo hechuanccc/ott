@@ -212,7 +212,7 @@
                 } else {
                     this.$http.post(api.commission, this.commissionsetting).then(response => {
                         if (response.status === 201) {
-                            this.$router.go('/commission/' + response.data.id + '/edit')
+                            this.$router.push('/commission/' + response.data.id + '/edit')
                         }
                     })
                 }
@@ -227,7 +227,7 @@
                     this.$http.delete(api.commission + this.commissionsetting.id + '/').then(response => {
                         this.deleted = 1
                         setTimeout(() => {
-                            this.$router.go('/commission')
+                            this.$router.push('/commission')
                         }, 2000)
                     }, response => {
                         this.deleted = -1

@@ -1,7 +1,7 @@
 <template>
     <div class="app-header white box-shadow" v-if="showNav">
         <div class="navbar">
-            <div class="navbar-item pull-left h5 ng-binding" id="pageTitle">{{$route.title}}</div>
+            <div class="navbar-item pull-left h5 ng-binding" id="pageTitle">{{$route.meta.title}}</div>
 
             <div class="dropdown pull-right my">
                 <button class="btn white btn-sm dropdown-toggle" @click="$root.dropdown=!$root.dropdown">
@@ -222,6 +222,7 @@
             },
             getCount () {
                 if (this.$route.name !== 'login') {
+                    console.log('in getCount')
                     let authenticationCookie = Vue.http.headers.common['Authorization']
                     if (authenticationCookie) {
                         authenticationCookie = authenticationCookie.split(' ').pop()
@@ -237,7 +238,8 @@
                                 this.agent_application = response.data.agent_application
                                 this.online_member = response.data.online_member
                             }, response => {
-                                this.$router.go('/login?next=' + this.$route.path)
+                                console.log('in error metrics_count')
+                                this.$router.push('/login?next=' + this.$route.path)
                             })
                         }
                     } else {

@@ -161,7 +161,7 @@
                 } else {
                     this.$http.post(api.return, this.returnsetting).then(response => {
                         if (response.status === 201) {
-                            this.$router.go('/return/')
+                            this.$router.push('/return/')
                         }
                     })
                 }
@@ -178,7 +178,7 @@
                     this.$http.delete(api.return + this.returnsetting.id + '/').then(response => {
                         this.deleted = 1
                         setTimeout(() => {
-                            this.$router.go('/return')
+                            this.$router.push('/return')
                         }, 2000)
                     }, response => {
                         this.deleted = -1

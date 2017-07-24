@@ -132,7 +132,7 @@
                 if (this.provider.id) {
                     this.$http.put(api.provider + this.provider.id + '/', formData).then(response => {
                         if (response.status === 200) {
-                            this.$router.go('/provider/' + response.data.id)
+                            this.$router.push('/provider/' + response.data.id)
                         }
                     }, response => {
                         this.responseError = response.data.error
@@ -140,7 +140,7 @@
                 } else {
                     this.$http.post(api.provider, formData).then(response => {
                         if (response.status === 201) {
-                            this.$router.go('/provider/' + response.data.id)
+                            this.$router.push('/provider/' + response.data.id)
                         }
                     }, response => {
                         this.responseError = response.data.error

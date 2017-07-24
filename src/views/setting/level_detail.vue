@@ -302,7 +302,7 @@ export default {
                 return
             }
             this.$http.delete(api.level + id).then((response) => {
-                this.$router.go('/level')
+                this.$router.push('/level')
             }, response => {
                 this.responseError = response.data.error[0].level
             })
@@ -319,7 +319,7 @@ export default {
                 console.log(response.data)
             }, response => {
                 if (('' + response.status).indexOf('4') === 0) {
-                    this.$router.go('/login?next=' + this.$route.path)
+                    this.$router.push('/login?next=' + this.$route.path)
                 }
             })
         }

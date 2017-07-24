@@ -94,7 +94,7 @@
                 if (this.envelope.id) {
                     this.$http.put(api.envelope + this.envelope.id + '/', this.envelope).then(response => {
                         if (response.status === 200) {
-                            this.$router.go('/envelope')
+                            this.$router.push('/envelope')
                         }
                     }, response => {
                         this.errorMsg = ''
@@ -105,7 +105,7 @@
                 } else {
                     this.$http.post(api.envelope, this.envelope).then(response => {
                         if (response.status === 201) {
-                            this.$router.go('/envelope')
+                            this.$router.push('/envelope')
                         }
                     }, response => {
                         this.errorMsg = ''

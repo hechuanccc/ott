@@ -129,7 +129,7 @@ export default {
                 console.log(response.data)
             }, (response) => {
                 if (response.status === 404) {
-                    this.$router.go('/login')
+                    this.$router.push('/login')
                 }
             })
         },

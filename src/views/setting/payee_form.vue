@@ -177,7 +177,7 @@
                 if (this.payee.id) {
                     this.$http.put(api.remitpayee + this.payee.id + '/', formData).then(response => {
                         if (response.status === 200) {
-                            this.$router.go('/remit_payee/' + response.data.id)
+                            this.$router.push('/remit_payee/' + response.data.id)
                         }
                     }, response => {
                         this.responseError = response.data.error
@@ -185,7 +185,7 @@
                 } else {
                     this.$http.post(api.remitpayee, formData).then(response => {
                         if (response.status === 201) {
-                            this.$router.go('/remit_payee/' + response.data.id)
+                            this.$router.push('/remit_payee/' + response.data.id)
                         }
                     }, response => {
                         this.responseError = response.data.error

@@ -46,6 +46,8 @@ Object.keys(locales).forEach(lang => {
 })
 
 router.beforeEach((to, from, next) => {
+    console.log('in global beforeEach')
+    console.log('token ' + VueCookie.get('access_token'))
     if (to.meta.auth) {
         if (VueCookie.get('access_token')) {
             next()
@@ -59,6 +61,7 @@ router.beforeEach((to, from, next) => {
             } else {
                 target = '/login?next=' + nextPage
             }
+            console.log('target ' + target)
             router.push(target)
         }
     } else {
