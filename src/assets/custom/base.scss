@@ -75,3 +75,11 @@ a.text-blue:hover {
     width: 110px;
     height: 33px;
 }
+
+.table-striped > tbody > tr:nth-child(odd).table-amount{
+  background: #c3e1ff;
+  font-weight: 700;
+}
+.report-button a {
+  color: #000;
+}

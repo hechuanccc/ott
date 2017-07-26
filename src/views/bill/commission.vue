@@ -15,6 +15,21 @@
                                 <!--:disabled-days-of-Week="disabled"-->
                                 <!--format="yyyy-MM-dd">-->
                     <!--</datepicker>-->
+                    <datepicker v-model="date_0"
+                                format="yyyy-MM-dd"
+                                language="zh"
+                                wrapper-class="datepicker"
+                                input-class="pro-date"
+                                name="start_date">
+                    </datepicker>
+                    <span>~</span>
+                    <datepicker v-model="date_1"
+                                format="yyyy-MM-dd"
+                                language="zh"
+                                wrapper-class="datepicker"
+                                input-class="pro-date"
+                                name="end_date">
+                    </datepicker>
                 </div>
                 <div class="col-xs-12 m-t">
                     <a :href="href" class="md-btn w-sm blue a-btn" :disabled="!hasDates">{{$t('returnrate.export')}}</a>
@@ -25,7 +40,7 @@
 </template>
 <script>
     import api from '../../api'
-    import { datepicker } from 'vue-strap'
+    import Datepicker from 'vuejs-datepicker'
     import VueCookie from 'vue-cookie'
     import Vue from 'vue'
     const format = 'YYYY-MM-DD'
@@ -48,7 +63,7 @@
             }
         },
         components: {
-            datepicker
+            Datepicker
         }
     }
 </script>

@@ -34,8 +34,6 @@
                               <!--format="yyyy-MM-dd">-->
                           <!--</datepicker>-->
                       </div>
-
-
                       <div class="col-xs-2">
                           <button class="md-btn w-sm blue pull-right" type="submit">{{$t('common.search')}}</button>
                       </div>

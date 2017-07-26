@@ -87,9 +87,9 @@
             <tbody v-if="!searchAgentValid">
                 <tr v-if="$root.userType !== 'agent'">
                     <td>{{overall.member_count}}</td>
-                    <td><router-link to="filterLink">{{overall.betrecord_count}}</router-link></td>
-                    <td><router-link to="filterLink">{{overall.bet_amount | currency('￥')}}</router-link></td>
-                    <td><router-link to="filterLink">{{overall.valid_bet_amount | currency('￥')}}</router-link></td>
+                    <td><router-link :to="filterLink">{{overall.betrecord_count}}</router-link></td>
+                    <td><router-link :to="filterLink">{{overall.bet_amount | currency('￥')}}</router-link></td>
+                    <td><router-link :to="filterLink">{{overall.valid_bet_amount | currency('￥')}}</router-link></td>
                     <td>{{overall.profit | currency('￥')}}</td>
                     <td>{{overall.deposit_amount | currency('￥')}}</td>
                 </tr>
@@ -120,7 +120,7 @@
 </template>
 
 <script>
-import { datepicker } from 'vue-strap'
+import Datepicker from 'vuejs-datepicker'
 import VueTypeahead from 'vue-typeahead'
 import api from '../../api'
 import Vue from 'vue'
@@ -182,20 +182,18 @@ export default {
         'filter': {
             handler () {
                 this.memberLink = `/report/betrecord?created_at_0=${this.filter.created_at_0}&created_at_1=${this.filter.created_at_1}&member_q=`
-                this.filterLink = `/report/betrecord?created_at_0=${this.filter.created_at_0}&created_at_1=${this.filter.created_at_1}&provider=${this.filter.provider}&category=${this.filter.category}`
-                console.log(this.filterLink)
-                console.log(this.memberLink)
+                this.filterLink = `/report/betrecord?created_at_0=${this.filter.created_at_0}&created_at_1=${this.filter.created_at_1}&provider=${this.filter.provider}&category=${this.filter.category}&result=0&result=1&result=2`
             },
             deep: true
+        },
+        '$route' (to, from) {
+            this.getReports()
         }
     },
     beforeRouteEnter (to, from, next) {
         next(vm => {
-            console.log('===beforeRouteEnter===')
             let query = vm.$route.query
-            console.log(query)
             let userType = storage.fetch().type
-            console.log(userType)
             for (let x in query) {
                 if (query[x]) {
                     vm.filter[x] = query[x]
@@ -242,11 +240,14 @@ export default {
             }
         },
         submit () {
+            console.log(this.filter)
             let query = this.filter
+            console.log(this.$route.path)
             this.$router.push({
                 path: this.$route.path,
                 query: query
             })
+            console.log(query)
         },
         resetAgent (username) {
             if (this.agentLevel === 4) {
@@ -280,7 +281,9 @@ export default {
             }
         },
         toggleProvider (name) {
+            console.log(name)
             this.filter.provider = name
+            console.log(this.filter.provider)
             this.submit()
         },
         toggleCategory (id) {
@@ -371,7 +374,7 @@ export default {
         }
     },
     components: {
-        datepicker,
+        Datepicker,
         sort
     }
 }

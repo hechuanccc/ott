@@ -89,6 +89,7 @@ export default {
         game: 'Game',
         settledat: 'Settled at',
         betamount: 'Bet amount',
+        valid_bet_amount: 'Valid bet amount',
         betdate: 'Bet date',
         settlementamount: 'Settlement amount',
         transferred_at: 'Transferred at',
@@ -198,15 +199,19 @@ export default {
         pcmanagement: 'PC Website Management',
         mobilemanagement: 'Mobile Website Management',
         online_payee_detail_edit: 'Online Payee Detail Edit',
-        message: 'message'
+        message: 'message',
+        action_record: 'Action Record'
     },
     member: {
         page_title: 'Search Members',
         account: 'Account',
         created_at: 'Registered at',
         created_ip: 'Registered IP',
+        ip: 'IP',
+        area: 'Area',
         list_no: 'No',
         last_login: 'Last login',
+        login_platform: 'Platform',
         level: 'Member level',
         status: 'Status',
         balance: 'Balance',
@@ -241,7 +246,8 @@ export default {
         collapse_options: 'Collapse Options',
         balance_providers: 'Balance providers',
         loggedin_domain: 'Logged In Domain',
-        loggedin_ip: 'Logged In Ip'
+        loggedin_ip: 'Logged In Ip',
+        sug_balance: 'Suggestion Balance'
     },
     bank: {
         bank_title: 'Bank infos',
@@ -424,10 +430,50 @@ export default {
         parlay_type: 'Parlay Type',
         scores: 'Scores',
         race_number: 'Race Number',
-        race_lane: 'Race Lane'
+        race_lane: 'Race Lane',
+        banker_cards: 'Banker Cards',
+        player_cards: 'Player Cards',
+        banker_point: 'Banker Point',
+        player_point: 'Player Point',
+        player: 'Player',
+        player_1_cards: 'Player Cards 1',
+        player_2_cards: 'Player Cards 2',
+        player_3_cards: 'Player Cards 3',
+        player_1_point: 'Player Point 1',
+        player_2_point: 'Player Point 2',
+        player_3_point: 'Player Point 3',
+        first_cards: 'First Cards',
+        slot_result: 'Slot Result',
+        start_time: 'Start Time',
+        end_time: 'End Time',
+        rule_type: 'Rule Type',
+        detail_rule_type: 'Detail Rule Type',
+        match_result: 'Match Result',
+        banker_result: 'Banker Result',
+        pair_result: 'Pair Result',
+        result_21_plus_3: 'Result 21 Plus 3',
+        is_black_jack: 'Is Black Jack',
+        hand_1_result: 'Hand 1 Result',
+        hand_1_point: 'Hand 1 Point',
+        banker_first_card: 'Banker First Card',
+        winning_result: 'Winning Result',
+        bets: 'Bets',
+        dice_roll_result: 'Dice Roll Result',
+        spin_result: 'Spin Result'
     },
     header: {
         deposit: 'Deposit',
         withdraw: 'Withdraw'
+    },
+    actionrecord: {
+        id: 'ID',
+        action_username: 'Action Username',
+        username: 'username',
+        action_time: 'Action Time',
+        ipaddr: 'IP',
+        action_type: 'Action Type',
+        provider: 'Provider',
+        game_name: 'Game Name',
+        action_result: 'Action Result'
     }
 }

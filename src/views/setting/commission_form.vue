@@ -3,7 +3,7 @@
         <div class="m-b">
             <ol class="breadcrumb">
                 <li class="active"><router-link to="/commission">佣金设定</router-link></li>
-                <li class="active">{{$route.title}}</li>
+                <li class="active">{{$route.meta.title}}</li>
             </ol>
         </div>
         <div class="alert alert-danger" v-if="!$root.permissions.includes('change_commission')">{{$t('common.errorPermission')}}</div>

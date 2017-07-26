@@ -3,15 +3,10 @@
         <table class="table table-striped b-t">
             <thead>
             <tr>
-                <th v-for="key in columns"  @click="sortBy(key)"  :class="{ active: sortKey == key }">
-                  {{ key | capitalize }}
+                <th v-for="(columns, key) in columns"  @click="sortBy(key)"  :class="{active: sortKey == key}">
+                  {{ columns | capitalize }}
                   <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'"></span>
                 </th>
-
-                <!--<th v-for="(columns, key) in columns"  @click="sortBy(key)" :class="{active: sortKey == key}">-->
-                    <!--{{columns}}-->
-                    <!--<span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'"></span>-->
-                <!--</th>-->
             </tr>
             </thead>
             <tbody v-if="!searchAgentValid && agent_level < 4">
@@ -29,11 +24,11 @@
             <tbody v-else>
             <tr v-for="d in filteredData">
                 <td>{{d.name}}</td>
-                <td v-if="$root.userType !== 'agent'"><router-link to="member_link + d.name">{{d.betrecord_count}}</router-link></td>
+                <td v-if="$root.userType !== 'agent'"><router-link :to="member_link + d.name">{{d.betrecord_count}}</router-link></td>
                 <td v-else>{{d.betrecord_count}}</td>
-                <td v-if="$root.userType !== 'agent'"><router-link to="member_link + d.name">{{d.bet_amount | currency('￥')}}</router-link></td>
+                <td v-if="$root.userType !== 'agent'"><router-link :to="member_link + d.name">{{d.bet_amount | currency('￥')}}</router-link></td>
                 <td v-else>{{d.bet_amount | currency('￥')}}</td>
-                <td v-if="$root.userType !== 'agent'"><router-link to="member_link + d.name">{{d.valid_bet_amount | currency('￥')}}</router-link></td>
+                <td v-if="$root.userType !== 'agent'"><router-link :to="member_link + d.name">{{d.valid_bet_amount | currency('￥')}}</router-link></td>
                 <td v-else>{{d.valid_bet_amount | currency('￥')}}</td>
                 <td>{{d.profit | currency('￥')}} </td>
                 <td>{{d.deposit_amount | currency('￥')}} </td>

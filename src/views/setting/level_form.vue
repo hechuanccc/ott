@@ -3,7 +3,7 @@
             <div class="m-b">
                 <ol class="breadcrumb">
                     <li class="active"><router-link to="/level">会员等级</router-link></li>
-                    <li class="active">{{$route.title}}</li>
+                    <li class="active">{{$route.meta.title}}</li>
                 </ol>
             </div>
             <div class="alert alert-danger" v-show="!$root.permissions.includes('change_level')">{{$t('common.errorPermission')}}</div>
@@ -217,7 +217,7 @@
             </div>
         </div>
     </div>
-    
+
 </template>
 <script>
 import api from '../../api'

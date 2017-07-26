@@ -16,8 +16,8 @@ export default {
         }
     },
     watch: {
-        myBank (val) {
-            this.$emit('bank-select', val)
+        myBank: function (old, newObj) {
+            this.$emit('bank-select', old)
         }
     },
     created () {

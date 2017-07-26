@@ -63,7 +63,7 @@ export default new Router({
         meta: {
             auth: true,
             disable_tabs: true,
-            title: 'bill.remit_audit',
+            title: Vue.t('bill.remit_audit'),
             permission: 'list_remit_online_withdraw_page'
         }
     },
@@ -76,7 +76,7 @@ export default new Router({
         meta: {
             auth: true,
             disable_tabs: true,
-            title: 'bill.online_payment',
+            title: Vue.t('bill.online_payment'),
             group: 'bill',
             permission: 'list_remit_online_withdraw_page'
         }
@@ -90,7 +90,7 @@ export default new Router({
         meta: {
             auth: true,
             disable_tabs: true,
-            title: 'bill.withdrawal_audit',
+            title: Vue.t('bill.withdrawal_audit'),
             group: 'bill',
             permission: 'list_remit_online_withdraw_page'
         }
@@ -105,7 +105,7 @@ export default new Router({
             auth: true,
             disable_tabs: true,
             group: 'bill',
-            title: 'bill.transcations_query'
+            title: Vue.t('bill.transcations_query')
         }
     },
     {
@@ -118,7 +118,7 @@ export default new Router({
             auth: true,
             disable_tabs: true,
             group: 'bill',
-            title: 'nav.transaction'
+            title: Vue.t('nav.transaction')
         }
     },
     {
@@ -130,7 +130,7 @@ export default new Router({
         meta: {
             auth: true,
             disable_tabs: true,
-            title: 'bill.return_report',
+            title: Vue.t('bill.return_report'),
             group: 'bill'
         }
     },
@@ -143,7 +143,7 @@ export default new Router({
         meta: {
             auth: true,
             disable_tabs: true,
-            title: 'nav.returnrate',
+            title: Vue.t('nav.returnrate'),
             group: 'bill'
         }
     },
@@ -156,7 +156,7 @@ export default new Router({
         meta: {
             auth: true,
             disable_tabs: true,
-            title: 'nav.operation',
+            title: Vue.t('nav.operation'),
             permission: 'manual_deposit_withdraw',
             group: 'bill'
         }
@@ -170,7 +170,7 @@ export default new Router({
         meta: {
             auth: true,
             disable_tabs: true,
-            title: 'nav.commission',
+            title: Vue.t('nav.commission'),
             permission: 'calculate_commission',
             group: 'bill'
         }
@@ -184,8 +184,203 @@ export default new Router({
         meta: {
             auth: true,
             disable_tabs: true,
-            title: 'nav.game_report',
+            title: Vue.t('nav.game_report'),
             group: 'report'
+        }
+    },
+    {
+        path: '/report/login',
+        name: 'report_login',
+        component: function (resolve) {
+            require(['./views/report/login_record.vue'], resolve)
+        },
+        meta: {
+            auth: true,
+            disable_tabs: true,
+            title: Vue.t('nav.login_record'),
+            group: 'report'
+        }
+    },
+    {
+        path: '/report/betrecord',
+        name: 'report_betrecord',
+        component: function (resolve) {
+            require(['./views/report/bet_record.vue'], resolve)
+        },
+        meta: {
+            auth: true,
+            disable_tabs: true,
+            title: Vue.t('nav.bet_record'),
+            group: 'report'
+        }
+    },
+    {
+        path: '/report/betrecord/:betrecordId',
+        name: 'report_betrecord',
+        component: function (resolve) {
+            require(['./views/report/betrecord_detail.vue'], resolve)
+        },
+        meta: {
+            auth: true,
+            disable_tabs: true,
+            title: Vue.t('nav.bet_record_detail'),
+            group: 'report'
+        }
+    },
+    {
+        path: '/report/transferrecord',
+        name: 'report_transfer',
+        component: function (resolve) {
+            require(['./views/report/transfer_record.vue'], resolve)
+        },
+        meta: {
+            auth: true,
+            disable_tabs: true,
+            title: Vue.t('nav.transfer_record'),
+            group: 'report'
+        }
+    },
+    {
+        path: '/report/actionrecord',
+        name: 'action_record',
+        component: function (resolve) {
+            require(['./views/report/action_record.vue'], resolve)
+        },
+        meta: {
+            auth: true,
+            disable_tabs: true,
+            title: Vue.t('nav.action_record'),
+            group: 'report'
+        }
+    },
+    {
+        path: '/member',
+        name: 'member',
+        component: function (resolve) {
+            require(['./views/member/member.vue'], resolve)
+        },
+        meta: {
+            auth: true,
+            disable_tabs: true,
+            title: Vue.t('nav.member'),
+            group: 'member'
+        }
+    },
+    {
+        path: '/member/add',
+        name: 'member-add',
+        component: function (resolve) {
+            require(['./views/member/form.vue'], resolve)
+        },
+        meta: {
+            auth: true,
+            disable_tabs: true,
+            title: Vue.t('nav.member_add'),
+            group: 'member'
+        }
+    },
+    {
+        path: '/member/:memberId',
+        name: 'member-detail',
+        component: function (resolve) {
+            require(['./views/member/detail.vue'], resolve)
+        },
+        meta: {
+            auth: true,
+            disable_tabs: true,
+            title: Vue.t('nav.member_detail'),
+            group: 'member'
+        }
+    },
+    {
+        path: '/member/:memberId/edit',
+        name: 'member-detail',
+        component: function (resolve) {
+            require(['./views/member/form.vue'], resolve)
+        },
+        meta: {
+            auth: true,
+            disable_tabs: true,
+            title: Vue.t('nav.edit_member'),
+            group: 'member'
+        }
+    },
+    {
+        path: '/member/applications',
+        name: 'member_applications',
+        component: function (resolve) {
+            require(['./views/member/applications.vue'], resolve)
+        },
+        meta: {
+            auth: true,
+            disable_tabs: true,
+            title: Vue.t('nav.member_application'),
+            group: 'member'
+        }
+    },
+    {
+        path: '/agent',
+        name: 'agent',
+        component: function (resolve) {
+            require(['./views/agent/agent.vue'], resolve)
+        },
+        meta: {
+            auth: true,
+            disable_tabs: true,
+            title: Vue.t('nav.agent'),
+            group: 'agent'
+        }
+    },
+    {
+        path: '/agent/add',
+        name: 'agent-add',
+        component: function (resolve) {
+            require(['./views/agent/form.vue'], resolve)
+        },
+        meta: {
+            auth: true,
+            disable_tabs: true,
+            title: Vue.t('nav.agent'),
+            group: 'agent'
+        }
+    },
+    {
+        path: '/agent/:agentId',
+        name: 'agent-add',
+        component: function (resolve) {
+            require(['./views/agent/detail.vue'], resolve)
+        },
+        meta: {
+            auth: true,
+            disable_tabs: true,
+            title: Vue.t('nav.agent_detail'),
+            group: 'agent'
+        }
+    },
+    {
+        path: '/agent/:agentId/edit',
+        name: 'agent-edit',
+        component: function (resolve) {
+            require(['./views/agent/form.vue'], resolve)
+        },
+        meta: {
+            auth: true,
+            disable_tabs: true,
+            title: Vue.t('nav.edit_agent'),
+            group: 'agent'
+        }
+    },
+    {
+        path: '/agent/applications',
+        name: 'agent-applications',
+        component: function (resolve) {
+            require(['./views/agent/applications.vue'], resolve)
+        },
+        meta: {
+            auth: true,
+            disable_tabs: true,
+            title: Vue.t('nav.agent_application'),
+            group: 'agent'
         }
     },
     {
