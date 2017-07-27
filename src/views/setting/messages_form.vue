@@ -118,6 +118,7 @@
                 }
             },
             changeFromLevel (val, index) {
+                console.log('in changeFromLevel')
                 this.message.member_level = val
             }
         },
