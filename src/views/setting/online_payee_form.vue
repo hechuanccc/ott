@@ -161,7 +161,6 @@
                             this.responseError += handleError(response, field, this.field_locales)
                         }
                         if (!this.responseError) {
-                            console.log(23323232)
                             this.responseError = $.formatError(response.data.error)
                         }
                     })
@@ -178,7 +177,7 @@
                 })
             },
             levelSelect (val) {
-                this.level = val
+                this.payee.level = val
             }
         },
         components: {

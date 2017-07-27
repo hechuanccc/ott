@@ -3,7 +3,7 @@
         <div class="m-b">
             <ol class="breadcrumb">
                 <li class="active"><router-link to="/staff">子账号管理</router-link></li>
-                <li class="active">{{$route.title}}</li>
+                <li class="active">{{$route.meta.title}}</li>
             </ol>
         </div>
         <div class="alert alert-danger" v-if="!$root.permissions.includes('add_change_staff')">{{$t('common.errorPermission')}}</div>

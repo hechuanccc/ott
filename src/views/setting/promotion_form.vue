@@ -78,26 +78,29 @@
                             </div>
                             <div class="form-group">
                                 <label class="label-width">{{$t('promotion.availability')}}</label>
-                                <datepicker v-model="promotion.start_date"
+                                <vue-datetime-picker v-model="promotion.start_date"
                                 format="yyyy-MM-dd"
                                 language="zh"
                                 wrapper-class="datepicker"
                                 input-class="pro-date"
-                                name="start_date">
-                                </datepicker>
+                                name="start_date"
+                                v-on:closed="dateFrom('from')"
+                                >
+                                </vue-datetime-picker>
                                 <span>~</span>
-                                <datepicker v-model="promotion.end_date"
+                                <vue-datetime-picker v-model="promotion.end_date"
                                 format="yyyy-MM-dd"
                                 language="zh"
                                 wrapper-class="datepicker"
                                 input-class="pro-date"
                                 name="end_date"
+                                v-on:closed="dateFrom('to')"
                                 >
-                                </datepicker>
+                                </vue-datetime-picker>
                             </div>
                             <div>
                                 <label class="text-sm">{{$t('member.level')}}</label>
-                                <level :level.sync="promotion.level" :mode="'checkbox'"></level>
+                                <level :level="promotion.level" :mode="'checkbox'" @level-select="levelSelect"></level>
                             </div>
                         </div>
                     </div>
@@ -115,6 +118,12 @@
     import { handleError } from '../../utils/handleError'
     import Datepicker from 'vuejs-datepicker'
     import tinymce from '../../components/tinymce'
+    import Vue from 'vue'
+    // import myDatepicker from 'vue-datepicker'
+
+    // import datepicker from 'vue-date-picker'
+
+    const format = 'YYYY-MM-DD'
 
     export default {
         data () {
@@ -262,10 +271,20 @@
             },
             changeModel (val, name) {
                 this.promotion[name] = val
+            },
+            dateFrom (flag) {
+                if (flag === 'from') {
+                    this.promotion.start_date = Vue.moment(this.promotion.start_date).format(format)
+                } else {
+                    this.promotion.end_date = Vue.moment(this.promotion.end_date).format(format)
+                }
+            },
+            levelSelect (val) {
+                this.promotion.level = val
             }
         },
         components: {
-            Datepicker,
+            'vue-datetime-picker': Datepicker,
             tinymce,
             level: require('../../components/level')
         }

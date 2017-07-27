@@ -3,7 +3,7 @@
         <div class="m-b">
             <ol class="breadcrumb">
                 <li class="active"><router-link to="/remit_payee">公司入款账号</router-link></li>
-                <li class="active">{{$route.title}}</li>
+                <li class="active">{{$route.meta.title}}</li>
             </ol>
         </div>
         <div class="alert alert-danger" v-if="!$root.permissions.includes('change_remitpayee')">{{$t('common.errorPermission')}}</div>
@@ -16,7 +16,7 @@
                                 <label for="agent" class="label-width">{{$t('setting.payment_type')}}</label>
                                 <div class="from-control inline-form-control">
                                     <label class="md-check">
-                                        <input type="radio" name="remit_type" v-model="payee.remit_type" checked value="1">
+                                        <input type="radio" name="remit_type" checked="checked" v-model="payee.remit_type" value="1" ref="remit_type">
                                         <i class="blue"></i>
                                         {{$t('setting.payment_normal')}}
                                     </label>
@@ -102,7 +102,7 @@
 </template>
 <script>
     import api from '../../api'
-
+    
     export default {
         data () {
             return {
@@ -116,7 +116,7 @@
                     memo: '',
                     level: [],
                     qr_code: [],
-                    remit_type: ''
+                    remit_type: '1'
                 },
                 showLevelError: false,
                 hasImage: false,
@@ -142,8 +142,6 @@
         beforeRouteEnter (to, from, next) {
             next(vm => {
                 let id = to.params.payeeId
-                console.log('id ' + id)
-                console.log(vm)
                 if (id) {
                     vm.getPayee(id)
                 }
