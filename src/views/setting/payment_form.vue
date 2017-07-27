@@ -3,7 +3,7 @@
         <div class="m-b">
             <ol class="breadcrumb">
                 <li class="active"><router-link to="/paymenttype">支付类型管理</router-link></li>
-                <li class="active">{{$route.title}}</li>
+                <li class="active">{{$route.meta.title}}</li>
             </ol>
         </div>
         <div class="alert alert-danger" v-if="!$root.permissions.includes('change_paymenttype')">{{$t('common.errorPermission')}}</div>

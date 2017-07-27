@@ -57,7 +57,6 @@ export default {
     },
     methods: {
         onChange: function () {
-            console.log('jahha ' + this.index)
             this.$emit('level-choose', this.myLevel, this.index)
         }
     }

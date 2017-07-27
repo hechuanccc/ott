@@ -87,6 +87,7 @@ export default {
         game: '游戏',
         settledat: '结算时间',
         betamount: '投注金额',
+        valid_bet_amount: '有效投注',
         betdate: '投注时间',
         settlementamount: '结算金额',
         transferred_at: '日期',
@@ -197,16 +198,20 @@ export default {
         pcmanagement: '电脑网页管理',
         mobilemanagement: '手机网页管理',
         online_payee_detail_edit: '线上支付商户修改',
-        message: '站内信'
+        message: '站内信',
+        action_record: '操作记录'
     },
     member: {
         page_title: '查询条件',
         account: '账号',
         created_at: '注册日期',
         created_ip: '注册 IP',
+        ip: 'IP',
+        area: '地区',
         list_no: '序号',
         realname: '真实姓名',
         last_login: '最后登录',
+        login_platform: '平台',
         level: '会员等级',
         status: '状态',
         balance: '余额',
@@ -244,7 +249,8 @@ export default {
         collapse_options: '收起条件',
         balance_providers: '娱乐城总余额',
         loggedin_domain: '登录网址',
-        loggedin_ip: '登录IP'
+        loggedin_ip: '登录IP',
+        sug_balance: '估算额度'
     },
     bank: {
         bank_title: '银行资讯',
@@ -433,11 +439,51 @@ export default {
         parlay_type: '投注类型',
         scores: '分数',
         race_number: '种族编号',
-        race_lane: '赛道'
+        race_lane: '赛道',
+        banker_cards: '庄家牌',
+        player_cards: '玩家牌',
+        banker_point: '庄家点数',
+        player_point: '玩家点数',
+        player: '玩家人数',
+        player_1_cards: '玩家1牌',
+        player_2_cards: '玩家2牌',
+        player_3_cards: '玩家3牌',
+        player_1_point: '玩家1点值',
+        player_2_point: '玩家2点值',
+        player_3_point: '玩家3点值',
+        first_cards: '第一张牌',
+        slot_result: '老虎机结果',
+        start_time: '开始时间',
+        end_time: '结束时间',
+        rule_type: '玩法类型',
+        detail_rule_type: '玩法类型详情',
+        match_result: '下注内容',
+        banker_result: '庄家结果',
+        pair_result: '对子结果',
+        result_21_plus_3: '21+3 的结果',
+        is_black_jack: '是否黑 克(21 點)',
+        hand_1_result: '玩家第一手牌结果',
+        hand_1_point: '闲家第一手牌点数',
+        banker_first_card: '庄家结果',
+        winning_result: '获奖结果',
+        bets: '投注',
+        dice_roll_result: '骰子滚动结果',
+        spin_result: '旋转结果'
     },
     header: {
         deposit: '入款',
         withdraw: '取款'
+    },
+    actionrecord: {
+        id: '序号',
+        action_username: '操作账户',
+        username: '用户名',
+        action_time: '操作时间',
+        ipaddr: 'IP',
+        action_type: '操作类型',
+        provider: '娱乐城',
+        game_name: '游戏名称',
+        action_result: '状态'
     }
 
 }

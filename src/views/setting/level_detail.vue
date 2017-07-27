@@ -3,7 +3,7 @@
         <div class="m-b">
             <ol class="breadcrumb">
                 <li class="active"><router-link to="/level">会员等级</router-link></li>
-                <li class="active">{{$route.title}}</li>
+                <li class="active">{{$route.meta.title}}</li>
             </ol>
         </div>
         <div class="box">

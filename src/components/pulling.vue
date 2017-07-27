@@ -145,12 +145,12 @@ export default {
                 console.log('pull====')
                 if (response.data.total_amount) {
                     amount = response.data.total_amount
-                    this.$emit('amount', amount)
                 }
                 if (response.data.total_profit) {
                     profit = response.data.total_profit
-                    this.$emit('profit', profit)
                 }
+                this.$emit('amount', amount)
+                this.$emit('profit', profit)
                 this.busy = false
                 this.count = response.data.count
                 this.getPage()
@@ -215,6 +215,8 @@ export default {
                     delete query[x]
                 }
             }
+            console.log(query)
+            console.log(this.$route.path + '===111==')
             this.$router.push({path: this.$route.path, query: query})
         }
     }

@@ -4,7 +4,7 @@
             <ol class="breadcrumb">
                 <li class="active"><router-link to="/provider">娱乐城管理</router-link></li>
                 <li class="active"><router-link  :to="'/provider/' + provider.id">娱乐城详细资料</router-link></li>
-                <li class="active">{{$route.title}}</li>
+                <li class="active">{{$route.meta.title}}</li>
             </ol>
         </div>
         <div class="alert alert-danger" v-if="!$root.permissions.includes('change_provider')">{{$t('common.errorPermission')}}</div>

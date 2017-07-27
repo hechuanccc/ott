@@ -160,7 +160,7 @@
 </template>
 <script>
     import api from '../../api'
-    import { datepicker } from 'vue-strap'
+    import Datepicker from 'vuejs-datepicker'
     import pulling from '../../components/pulling'
     import transactionStatus from '../../components/transaction_status'
     import { handleError } from '../../utils/handleError'
@@ -276,7 +276,7 @@
             }
         },
         components: {
-            datepicker,
+            Datepicker,
             pulling,
             transactionStatus,
             level: require('../../components/level')

@@ -143,7 +143,7 @@
     import api from '../../api'
     import pulling from '../../components/pulling'
     import transactionStatus from '../../components/transaction_status'
-    import { datepicker } from 'vue-strap'
+    import Datepicker from 'vuejs-datepicker'
     export default {
         data () {
             return {
@@ -170,6 +170,12 @@
             },
             status: function (old, newObj) {
                 this.query.status = old
+            },
+            '$route' (to, from) {
+                console.log(11112222)
+                this.queryset = []
+                this.$refs.pulling.rebase()
+                this.$refs.pulling.getExportQuery()
             }
         },
         beforeRouteEnter (to, from, next) {
@@ -226,7 +232,7 @@
             }
         },
         components: {
-            datepicker,
+            Datepicker,
             pulling,
             transactionStatus,
             level: require('../../components/level')

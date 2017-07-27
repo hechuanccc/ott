@@ -79,7 +79,7 @@
 <script>
     import api from '../../api'
     import pulling from '../../components/pulling'
-    import { datepicker } from 'vue-strap'
+    import Datepicker from 'vuejs-datepicker'
     import Vue from 'vue'
     const format = 'YYYY-MM-DD'
 
@@ -138,7 +138,7 @@
             }
         },
         components: {
-            datepicker,
+            Datepicker,
             pulling
         }
     }
