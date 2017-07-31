@@ -131,6 +131,7 @@ export default {
         rebase () {
             console.log('re base')
             this.next = this.buildUrl(this.api, this.extra + '&opt_expand=' + this.optexpand + '&offset=' + this.offset + '&limit=' + this.limit)
+            console.log('request url ' + this.next)
             // this.queryset = []
             this.myQueryset = []
             this.pull()
@@ -208,16 +209,47 @@ export default {
         // and broadcast 'rebase' event
         submit () {
             let query = this.query
+            console.log('unhandle query')
+            console.log(query)
             this.offset = 0
             this.showPageGo = 1
+            let basePath = this.$route.path
+            let bFlag = false
+            let bFeach = false
+            console.log('query')
+            console.log(query)
             for (let x in query) {
                 if (query[x] === '' || query[x] === undefined) {
                     delete query[x]
+                } else if (query[x] instanceof Array) {
+                    query[x].forEach(function (value, index, array) {
+                        if (value) {
+                            // basePath = bFlag ? `${basePath},${value}` : `${basePath}?${x}=${value}`
+                            if (bFlag && !bFeach) {
+                                basePath = `${basePath}&${x}=${value}`
+                            } else if (bFlag && bFeach) {
+                                basePath = `${basePath},${value}`
+                            } else if (!bFlag && !bFeach) {
+                                basePath = `${basePath}?${x}=${value}`
+                            } else if (!bFlag && bFeach) {
+                                basePath = `${basePath},${value}`
+                            }
+                            bFeach = true
+                        }
+                    })
+                } else {
+                    if (!bFlag && !bFeach) {
+                        basePath = `${basePath}?${x}=${query[x]}`
+                    } else if (!bFlag && bFeach) {
+                        basePath = `${basePath}&${x}=${query[x]}`
+                    } else {
+                        basePath = `${basePath}&${x}=${query[x]}`
+                    }
+                    bFlag = true
                 }
             }
-            console.log(query)
-            console.log(this.$route.path + '===111==')
-            this.$router.push({path: this.$route.path, query: query})
+            console.log('basePath ' + basePath)
+            this.$router.push({path: basePath})
         }
     }
 }
