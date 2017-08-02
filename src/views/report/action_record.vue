@@ -155,8 +155,9 @@ export default {
     },
     mounted: function () {
         this.$nextTick(function () {
-            if (this.$route.query.action_result) {
-                this.action_result = this.$route.query.action_result
+            let actionResult = this.$route.query.action_result
+            if (actionResult) {
+                this.action_result = actionResult.split(',')
             }
         })
     },

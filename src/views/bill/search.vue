@@ -170,8 +170,9 @@
         mounted: function () {
             this.$nextTick(function () {
                 this.getTransactionType()
-                if (this.$route.query.transaction_type) {
-                    this.transaction_type = this.$route.query.transaction_type
+                let transactionType = this.$route.query.transaction_type
+                if (transactionType) {
+                    this.transaction_type = transactionType.split(',')
                 }
             })
         },

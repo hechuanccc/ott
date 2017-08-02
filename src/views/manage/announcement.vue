@@ -212,8 +212,6 @@ export default {
         },
         queryData (queryset) {
             this.queryset = queryset
-            console.log('queryset')
-            console.log(this.queryset)
         },
         queryParam (query) {
             this.query = query

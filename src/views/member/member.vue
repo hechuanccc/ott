@@ -308,7 +308,6 @@ export default {
             this.query.level = val
         },
         returnData (data) {
-            console.log(data)
             this.query.return_settings = data
         },
         queryData (queryset) {

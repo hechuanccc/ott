@@ -126,7 +126,6 @@ export default {
                 if (this.userType === 'agent') {
                     this.agentPermission()
                 }
-                console.log(response.data)
             }, (response) => {
                 if (response.status === 404) {
                     this.$router.push('/login')

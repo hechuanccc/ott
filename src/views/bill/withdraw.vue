@@ -166,7 +166,6 @@
                 this.query.status = old
             },
             '$route' (to, from) {
-                console.log(11112222)
                 this.queryset = []
                 this.$refs.pulling.rebase()
                 this.$refs.pulling.getExportQuery()
@@ -174,7 +173,6 @@
         },
         beforeRouteEnter (to, from, next) {
             next(vm => {
-                console.log('$route=====11')
                 vm.queryset = []
                 vm.$refs.pulling.rebase()
                 vm.$refs.pulling.getExportQuery()
@@ -182,8 +180,9 @@
         },
         mounted: function () {
             this.$nextTick(function () {
-                if (this.$route.query.status) {
-                    this.status = this.$route.query.status
+                let results = this.$route.query.status
+                if (results) {
+                    this.status = results.split(',')
                 }
             })
         },

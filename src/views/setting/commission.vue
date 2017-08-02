@@ -51,11 +51,6 @@ export default {
             withdraw_fee_max: ''
         }
     },
-    // route: {
-    //     data (transition) {
-    //         this.getCommissionsettings()
-    //     }
-    // },
     created () {
         this.getCommissionsettings()
     },
@@ -70,15 +65,7 @@ export default {
         getCommissionsettings () {
             let fields = '?opt_fields=invest_least,id,name,status,deposit_fee,deposit_fee_max,withdraw_fee,withdraw_fee_max,member_count,agent_count'
             this.$http.get(api.commission + fields).then((response) => {
-                console.log('return data')
-                console.log(response.data)
-                // this.commissionsettings = []
-                // for (let i = 0; i < response.data.length; i++) {
-                //     this.commissionsettings.push(response.data[i])
-                // }
                 this.commissionsettings = response.data
-                console.log('this.commissionsettings')
-                console.log(this.commissionsettings)
             })
         }
     }

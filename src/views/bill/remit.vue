@@ -193,8 +193,9 @@
         },
         mounted: function () {
             this.$nextTick(function () {
-                if (this.$route.query.status) {
-                    this.status = this.$route.query.status
+                let status = this.$route.query.status
+                if (status) {
+                    this.status = status.split(',')
                 }
             })
         },
@@ -221,7 +222,6 @@
             },
             changeFromLevel (val) {
                 this.query.member_level = val
-                console.log(this.query.member_level)
             },
             queryData (queryset) {
                 this.queryset = queryset
@@ -230,12 +230,9 @@
                 this.query = query
             },
             totalAmount (amount) {
-                console.log(amount)
-                console.log('amount' + amount)
                 this.total_amount = amount
             },
             exportQuery (expor) {
-                console.log(expor)
                 this.export_query = expor
             },
             submit () {

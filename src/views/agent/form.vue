@@ -292,7 +292,6 @@
         },
         methods: {
             bankSelect (bank) {
-                console.log(bank + '=====bank=form')
                 this.agent.bank.bank = bank
             },
             returnData (data) {

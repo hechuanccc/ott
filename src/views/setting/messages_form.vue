@@ -80,9 +80,6 @@
                 checkMembers: true
             }
         },
-        created () {
-            console.log('add messages')
-        },
         methods: {
             onSubmit (e) {
                 if (this.message.member_level || this.message.receiver) {
@@ -118,7 +115,6 @@
                 }
             },
             changeFromLevel (val, index) {
-                console.log('in changeFromLevel')
                 this.message.member_level = val
             }
         },

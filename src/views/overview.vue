@@ -121,7 +121,6 @@ export default {
     },
     created () {
         this.getReports()
-        console.log('in overview')
     },
     methods: {
         toggle (target) {

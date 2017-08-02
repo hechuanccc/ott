@@ -290,7 +290,6 @@ export default {
     beforeRouteEnter (to, from, next) {
         next(vm => {
             vm.id = to.params.levelId
-            console.log('id ' + vm.id)
             vm.getLevel(vm.id)
         })
     },
@@ -316,7 +315,6 @@ export default {
                 // this.data = Object.assign(this.$data, response.data)
                 // this.member_count = response.data.member_count || this.$data.member_count
                 // this.agent_count = response.data.agent_count || this.$data.agent_count
-                console.log(response.data)
             }, response => {
                 if (('' + response.status).indexOf('4') === 0) {
                     this.$router.push('/login?next=' + this.$route.path)

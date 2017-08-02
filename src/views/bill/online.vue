@@ -177,8 +177,9 @@
         },
         mounted: function () {
             this.$nextTick(function () {
-                if (this.$route.query.status) {
-                    this.status = this.$route.query.status
+                let status = this.$route.query.status
+                if (status) {
+                    this.status = status.split(',')
                 }
             })
         },

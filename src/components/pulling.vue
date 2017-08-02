@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 // to perform a pulling, parent componet need to boardcast 'rebase' event
 // once the comopnent is ready, and might trigger 'rebase' everytime needed
 export default {
@@ -129,7 +130,6 @@ export default {
             this.pageNum = pageNum
         },
         rebase () {
-            console.log('re base')
             this.next = this.buildUrl(this.api, this.extra + '&opt_expand=' + this.optexpand + '&offset=' + this.offset + '&limit=' + this.limit)
             // this.queryset = []
             this.myQueryset = []
@@ -142,7 +142,6 @@ export default {
             this.busy = true
             this.loading = true
             this.$http.get(this.next).then(response => {
-                console.log('pull====')
                 if (response.data.total_amount) {
                     amount = response.data.total_amount
                 }
@@ -183,8 +182,6 @@ export default {
                     params.push(x + '=' + query[x])
                 }
             }
-            console.log(params)
-            console.log(params + '======111=')
             return url + (defaultQuery ? '&' : '?') + params.join('&')
         },
         getExportQuery () {
@@ -214,9 +211,10 @@ export default {
             let bFlag = false
             let bFeach = false
             let format = 'YYYY-MM-DD'
-            console.log('query')
-            console.log(query)
             for (let x in query) {
+                if (x === 'created_at_0' || x === 'created_at_1' || x === 'logindate_0' || x === 'logindate_1' || x === 'action_time_0' || x === 'action_time_1') {
+                    query[x] = Vue.moment(query[x]).format(format)
+                }
                 if (query[x] === '' || query[x] === undefined) {
                     delete query[x]
                 } else if (query[x] instanceof Array) {
@@ -245,9 +243,6 @@ export default {
                     }
                     bFlag = true
                 }
-            }
-            if (x === 'created_at_0' || x === 'created_at_1' || x === 'logindate_0' || x === 'logindate_1' || x === 'action_time_0' || x === 'action_time_1') {
-                query[x] = Vue.moment(query[x]).format(format)
             }
             console.log('basePath ' + basePath)
             this.$router.push({path: basePath})
