@@ -68,6 +68,7 @@
             }
         },
         created () {
+            console.log('in applications')
             this.$nextTick(() => {
                 console.log('=======')
                 this.$refs.pulling.rebase()

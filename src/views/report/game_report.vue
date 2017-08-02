@@ -173,7 +173,7 @@ export default {
         'filter': {
             handler () {
                 this.memberLink = `/report/betrecord?created_at_0=${this.filter.created_at_0}&created_at_1=${this.filter.created_at_1}&member_q=`
-                this.filterLink = `/report/betrecord?created_at_0=${this.filter.created_at_0}&created_at_1=${this.filter.created_at_1}&provider=${this.filter.provider}&category=${this.filter.category}&result=0&result=1&result=2`
+                this.filterLink = `/report/betrecord?created_at_0=${this.filter.created_at_0}&created_at_1=${this.filter.created_at_1}&provider=${this.filter.provider}&category=${this.filter.category}&result=0,1,2`
             },
             deep: true
         },

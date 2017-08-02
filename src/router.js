@@ -384,6 +384,19 @@ export default new Router({
         }
     },
     {
+        path: '/agent/applications',
+        name: 'agent-applications',
+        component: function (resolve) {
+            require(['./views/agent/applications.vue'], resolve)
+        },
+        meta: {
+            auth: true,
+            disable_tabs: true,
+            title: Vue.t('nav.agent_application'),
+            group: 'agent'
+        }
+    },
+    {
         path: '/test',
         name: 'test',
         component: function (resolve) {

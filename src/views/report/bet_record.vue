@@ -188,8 +188,8 @@
                     game_q: '',
                     bet_gte: '',
                     bet_lte: '',
-                    created_at_0: '',
-                    created_at_1: '',
+                    created_at_0: '2017-07-24',
+                    created_at_1: '2017-07-30',
                     settlement_gte: '',
                     settlement_lte: '',
                     result: []
@@ -201,8 +201,9 @@
         },
         mounted: function () {
             this.$nextTick(function () {
-                if (this.$route.query.result) {
-                    this.result = this.$route.query.result
+                let results = this.$route.query.result
+                if (results) {
+                    this.result = results.split(',')
                 }
             })
         },
@@ -211,10 +212,13 @@
                 this.$refs.pulling.rebase()
                 this.getGameFilter()
             })
+            console.log('in reprot betrecord')
         },
         watch: {
             result: function (old, newObj) {
                 this.query.result = old
+                console.log('this.result ')
+                console.log(this.query.result)
             },
             '$route': 'nextTickFetch'
         },
@@ -223,6 +227,8 @@
                 let _this = this
                 this.queryset = []
                 setTimeout(() => {
+                    console.log('befor rebase query')
+                    console.log(this.query)
                     _this.$refs.pulling.rebase()
                 }, 100)
             },
@@ -239,6 +245,8 @@
                 this.total_profit = profit
             },
             submit () {
+                console.log('father query')
+                console.log(this.query)
                 this.$refs.pulling.submit()
             },
             getGameFilter () {
