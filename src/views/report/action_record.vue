@@ -15,19 +15,10 @@
               </div>
               <div class="col-xs-5">
                 <label class="text-sm m-r">{{$t('actionrecord.action_time')}}</label>
-                <!--<datepicker :width="'110px'"-->
-                <!--:value.sync="query.action_time_0"-->
-                <!--:disabled-days-of-Week="disabled"-->
-                <!--format="yyyy-MM-dd">-->
-                <!--</datepicker>-->
-                <!--<span>~</span>-->
-                <!--<datepicker :width="'110px'"-->
-                <!--:value.sync="query.action_time_1"-->
-                <!--:disabled-days-of-Week="disabled"-->
-                <!--format="yyyy-MM-dd">-->
-                <!--</datepicker>-->
+                <date-picker width='140' v-model="query.action_time_0"></date-picker>
+                <span>~</span>
+                <date-picker width='140' v-model="query.action_time_1"></date-picker>
               </div>
-
 
               <div class="col-xs-3">
                 <button class="pull-right md-btn blue-500 w-sm" type="submit">{{$t('common.search')}}</button>
@@ -132,7 +123,7 @@
 </template>
 
 <script>
-import Datepicker from 'vuejs-datepicker'
+import DatePicker from 'vue2-datepicker'
 import api from '../../api'
 import pulling from '../../components/pulling'
 
@@ -199,7 +190,7 @@ export default {
         }
     },
     components: {
-        Datepicker,
+        DatePicker,
         pulling
     }
 }

@@ -20,7 +20,6 @@ export default {
             default: false
         },
         level: [String, Number, Array],
-        default: [String, Number],
         mode: {
             default: 'select'
         },
@@ -38,21 +37,23 @@ export default {
         }
     },
     watch: {
-        level (val) {
-            this.myLevel = val
-        },
-        myLevel (val) {
-            this.$emit('level-select', val)
+        myLevel (newObj, old) {
+            console.log(newObj + 'level-=-----Number')
+            if (newObj) {
+                this.$emit('level-select', newObj)
+            }
         }
     },
     created () {
-        console.log('level api request ' + api.level)
-        this.$http.get(api.level)
-        .then(response => {
+        this.$http.get(api.level).then(response => {
             this.levels = response.data
             if (this.default) {
                 this.level = this.default
             }
+            let _this = this
+            setTimeout(function () {
+                _this.myLevel = _this.level
+            }, 500)
         })
     },
     methods: {

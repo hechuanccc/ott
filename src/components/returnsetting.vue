@@ -18,8 +18,8 @@ export default {
         }
     },
     watch: {
-        myReturnsetting: function (old, newObj) {
-            this.$emit('myReturn', old)
+        myReturnsetting (newObj, old) {
+            this.$emit('myReturn', newObj)
         }
     },
     mounted: function () {
@@ -30,6 +30,10 @@ export default {
                 if (this.default) {
                     this.$emit('return', this.default)
                 }
+                let _this = this
+                setTimeout(function () {
+                    _this.myReturnsetting = _this.returnsetting
+                }, 500)
             })
         })
     }

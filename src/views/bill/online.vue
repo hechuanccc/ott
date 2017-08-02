@@ -22,17 +22,10 @@
                       </div>
                       <div class="col-xs-4">
                           <label class="text-sm">{{$t('common.applied_at')}}</label>
-                          <!--<datepicker :width="'110px'"-->
-                              <!--:value="query.created_at_0"-->
-                              <!--:disabled-days-of-Week="disabled"-->
-                              <!--format="yyyy-MM-dd">-->
-                          <!--</datepicker>-->
-                          <!--<span>~</span>-->
-                          <!--<datepicker :width="'110px'"-->
-                              <!--:value="query.created_at_1"-->
-                              <!--:disabled-days-of-Week="disabled"-->
-                              <!--format="yyyy-MM-dd">-->
-                          <!--</datepicker>-->
+                          <date-picker width='140' v-model="query.created_at_0"></date-picker>
+                          <span>~</span>
+                          <date-picker width='140' v-model="query.created_at_1"></date-picker>
+
                       </div>
                       <div class="col-xs-2">
                           <button class="md-btn w-sm blue pull-right" type="submit">{{$t('common.search')}}</button>
@@ -151,8 +144,9 @@
     import api from '../../api'
     import pulling from '../../components/pulling'
     import transactionStatus from '../../components/transaction_status'
-    import { datepicker } from 'vue-strap'
     import VueCookie from 'vue-cookie'
+    import DatePicker from 'vue2-datepicker'
+
     export default {
         data () {
             return {
@@ -233,7 +227,7 @@
             }
         },
         components: {
-            datepicker,
+            DatePicker,
             pulling,
             transactionStatus,
             level: require('../../components/level')

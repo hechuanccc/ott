@@ -79,12 +79,7 @@
                 <div class="form-group">
                   <label for="birthday" class="label-width">{{$t('common.birthday')}} </label>
                   <div class="inline-form-control">
-                    <!--<datepicker-->
-                      <!--:width="'153px'"-->
-                      <!--:value.sync="member.birthday"-->
-                      <!--:disabled-days-of-Week="disabled"-->
-                      <!--format="yyyy-MM-dd">-->
-                    <!--</datepicker>-->
+                    <date-picker width='153' v-model="member.birthday"></date-picker>
                   </div>
                 </div>
 
@@ -122,19 +117,19 @@
                 <div class="form-group">
                   <label for="agent" class="label-width">{{$t('member.level')}} </label>
                   <div class="inline-form-control">
-                    <level :level="member.level" @level-select="levelSelect"></level>
+                    <level :level="member.level.id" @level-select="levelSelect"></level>
                   </div>
                 </div>
                 <div class="form-group b-b p-b">
                   <label for="agent" class="label-width">{{$t('member.return_setting')}}</label>
                   <div class="inline-form-control">
-                    <returnsetting :returnsetting="member.return_settings" @myReturn="returnData"></returnsetting>
+                    <returnsetting :returnsetting="member.return_settings.id" @myReturn="returnData"></returnsetting>
                   </div>
                 </div>
                 <div v-if="$root.permissions.includes('list_update_member_bank')">
                   <h5 class="m-b">{{$t('bank.bank_title')}} </h5>
                   <div class="form-group">
-                    <label class="label-width">{{$t('bank.name')}}</label>
+                    <label class="label-width">{{$t('bank.name')}}=={{member.bank.bank}}==</label>
                     <bank :bank="member.bank.bank" :req="bankFilled" @bank-select="bankSelect"></bank>
                   </div>
                   <div class="form-group">
@@ -161,6 +156,7 @@
             <div>
               <div class="alert alert-danger" v-if="errorMsg">{{errorMsg}}</div>
               <button type="submit" :disabled="!$root.permissions.includes('update_member_details')" class="md-btn blue w-sm" >{{$t('common.save')}} </button>
+              {{member.bank.bank}} member.bank.bank
             </div>
           </form>
         </div>
@@ -168,10 +164,12 @@
     </div>
 </template>
 <script>
-    import Datepicker from 'vuejs-datepicker'
+    import DatePicker from 'vue2-datepicker'
     import VueTypeahead from 'vue-typeahead'
     import { handleError } from '../../utils/handleError'
     import api from '../../api'
+    import Vue from 'vue'
+    const format = 'YYYY-MM-DD'
 
     export default {
         extends: VueTypeahead,
@@ -193,7 +191,16 @@
                     email: '',
                     memo: '',
                     bank: {
-                        bank: ''
+                        bank: '',
+                        province: ''
+                    },
+                    return_settings: {
+                        id: '',
+                        name: ''
+                    },
+                    level: {
+                        id: '',
+                        name: ''
                     },
                     password: '123456',
                     withdraw_password: '123456'
@@ -218,6 +225,13 @@
                 return api.agent + '?opt_fields=username,id,&username_q=' + this.query + '&level=4'
             }
         },
+        watch: {
+            'member.birthday' (newObj, old) {
+                if (newObj) {
+                    this.member.birthday = Vue.moment(this.member.birthday).format(format)
+                }
+            }
+        },
         beforeRouteEnter (to, from, next) {
             next(vm => {
                 let id = to.params.memberId
@@ -233,14 +247,14 @@
         },
         methods: {
             returnData (data) {
-                this.member.return_settings = data
+                this.member.return_settings.id = data
             },
             bankSelect (bank) {
-                console.log(bank + '====bank')
                 this.member.bank.bank = bank
             },
             levelSelect (val) {
-                this.member.level = val
+                console.log(val + '===val')
+                this.member.level.id = val
             },
             checkAgent () {
                 if (this.query !== '') {
@@ -298,15 +312,10 @@
                 this.$http.get(api.member + id + '/?opt_expand=1').then((response) => {
                     let data = response.data
                     if (!data.bank) {
-                        data.bank = {}
+                        data.bank = {bank: '', province: ''}
                     }
-                    if (data.level) {
-                        data.level = data.level.id
-                    }
-                    if (data.return_settings) {
-                        data.return_settings = data.return_settings.id
-                    }
-                    this.member = data
+                    this.member = Object.assign(this.member, data)
+                    console.log(this.member)
                 })
             },
             reset () {
@@ -324,7 +333,7 @@
             }
         },
         components: {
-            Datepicker,
+            DatePicker,
             bank: require('../../components/bank'),
             level: require('../../components/level'),
             returnsetting: require('../../components/returnsetting')

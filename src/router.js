@@ -332,6 +332,19 @@ export default new Router({
         }
     },
     {
+        path: '/agent/applications',
+        name: 'agent-applications',
+        component: function (resolve) {
+            require(['./views/agent/applications.vue'], resolve)
+        },
+        meta: {
+            auth: true,
+            disable_tabs: true,
+            title: Vue.t('nav.agent_application'),
+            group: 'agent'
+        }
+    },
+    {
         path: '/agent/add',
         name: 'agent-add',
         component: function (resolve) {
@@ -346,7 +359,7 @@ export default new Router({
     },
     {
         path: '/agent/:agentId',
-        name: 'agent-add',
+        name: 'agent-detail',
         component: function (resolve) {
             require(['./views/agent/detail.vue'], resolve)
         },
@@ -367,19 +380,6 @@ export default new Router({
             auth: true,
             disable_tabs: true,
             title: Vue.t('nav.edit_agent'),
-            group: 'agent'
-        }
-    },
-    {
-        path: '/agent/applications',
-        name: 'agent-applications',
-        component: function (resolve) {
-            require(['./views/agent/applications.vue'], resolve)
-        },
-        meta: {
-            auth: true,
-            disable_tabs: true,
-            title: Vue.t('nav.agent_application'),
             group: 'agent'
         }
     },

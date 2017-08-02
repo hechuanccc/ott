@@ -88,18 +88,9 @@
               </div>
               <div class="col-xs-4">
                 <label class="text-sm">{{$t('member.created_at')}}</label>
-                <!--<datepicker :width="'110px'"-->
-                <!--:value.sync="query.created_at_0"-->
-                <!--:disabled-days-of-Week="disabled"-->
-                <!--format="yyyy-MM-dd">-->
-                <!--</datepicker>-->
-                <!--<span>~</span>-->
-                <!--<datepicker :width="'110px'"-->
-                <!--:value.sync="query.created_at_1"-->
-                <!--:disabled-days-of-Week="disabled"-->
-                <!--format="yyyy-MM-dd">-->
-                <!--</datepicker>-->
-
+                <date-picker width='140' v-model="query.created_at_0"></date-picker>
+                <span>~</span>
+                <date-picker width='140' v-model="query.created_at_1"></date-picker>
               </div>
             </div>
           </div>
@@ -253,7 +244,7 @@
 </template>
 
 <script>
-import Datepicker from 'vuejs-datepicker'
+import DatePicker from 'vue2-datepicker'
 import api from '../../api'
 import pulling from '../../components/pulling'
 import VueCookie from 'vue-cookie'
@@ -335,7 +326,7 @@ export default {
         }
     },
     components: {
-        Datepicker,
+        DatePicker,
         level: require('../../components/level'),
         pulling,
         returnsetting: require('../../components/returnsetting')

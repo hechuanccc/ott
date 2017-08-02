@@ -78,22 +78,9 @@
 
               <div class="col-xs-4">
                 <label>{{$t('agent.joined_at')}}</label>
-                <datepicker v-model="query.created_at_0"
-                            format="yyyy-MM-dd"
-                            language="zh"
-                            wrapper-class="datepicker"
-                            input-class="pro-date"
-                            name="start_date">
-                </datepicker>
+                <date-picker width='140' v-model="query.created_at_0"></date-picker>
                 <span>~</span>
-                <datepicker v-model="query.created_at_1"
-                            format="yyyy-MM-dd"
-                            language="zh"
-                            wrapper-class="datepicker"
-                            input-class="pro-date"
-                            name="end_date"
-                >
-                </datepicker>
+                <date-picker width='140' v-model="query.created_at_1"></date-picker>
               </div>
             </div>
           </div>
@@ -154,7 +141,7 @@
 </template>
 
 <script>
-import Datepicker from 'vuejs-datepicker'
+import DatePicker from 'vue2-datepicker'
 import api from '../../api'
 import pulling from '../../components/pulling'
 
@@ -188,7 +175,6 @@ export default {
     },
     created () {
         this.$nextTick(() => {
-            console.log('agent====')
             this.$refs.pulling.rebase()
         })
     },
@@ -214,7 +200,7 @@ export default {
         }
     },
     components: {
-        Datepicker,
+        DatePicker,
         pulling,
         commissionsetting: require('../../components/commissionsetting')
     }

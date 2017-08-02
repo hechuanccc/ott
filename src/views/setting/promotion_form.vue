@@ -78,25 +78,9 @@
                             </div>
                             <div class="form-group">
                                 <label class="label-width">{{$t('promotion.availability')}}</label>
-                                <vue-datetime-picker v-model="promotion.start_date"
-                                format="yyyy-MM-dd"
-                                language="zh"
-                                wrapper-class="datepicker"
-                                input-class="pro-date"
-                                name="start_date"
-                                v-on:closed="dateFrom('from')"
-                                >
-                                </vue-datetime-picker>
+                                <date-picker v-model="promotion.start_date" width='140'></date-picker>
                                 <span>~</span>
-                                <vue-datetime-picker v-model="promotion.end_date"
-                                format="yyyy-MM-dd"
-                                language="zh"
-                                wrapper-class="datepicker"
-                                input-class="pro-date"
-                                name="end_date"
-                                v-on:closed="dateFrom('to')"
-                                >
-                                </vue-datetime-picker>
+                                <date-picker v-model="promotion.end_date" width='140'></date-picker>
                             </div>
                             <div>
                                 <label class="text-sm">{{$t('member.level')}}</label>
@@ -116,13 +100,9 @@
 <script>
     import api from '../../api'
     import { handleError } from '../../utils/handleError'
-    import Datepicker from 'vuejs-datepicker'
     import tinymce from '../../components/tinymce'
     import Vue from 'vue'
-    // import myDatepicker from 'vue-datepicker'
-
-    // import datepicker from 'vue-date-picker'
-
+    import DatePicker from 'vue2-datepicker'
     const format = 'YYYY-MM-DD'
 
     export default {
@@ -175,6 +155,14 @@
             let route = this.$route.name
             this.promotion.status = 1
             route === 'promotion_add' ? this.action = 'create' : this.action = 'update'
+        },
+        watch: {
+            'promotion.start_date' (newObj, old) {
+                this.promotion.start_date = Vue.moment(this.promotion.start_date).format(format)
+            },
+            'promotion.end_date' (newObj, old) {
+                this.promotion.end_date = Vue.moment(this.promotion.end_date).format(format)
+            }
         },
         computed: {
             randomId () {
@@ -274,7 +262,7 @@
             },
             dateFrom (flag) {
                 if (flag === 'from') {
-                    this.promotion.start_date = Vue.moment(this.promotion.start_date).format(format)
+
                 } else {
                     this.promotion.end_date = Vue.moment(this.promotion.end_date).format(format)
                 }
@@ -284,7 +272,7 @@
             }
         },
         components: {
-            'vue-datetime-picker': Datepicker,
+            DatePicker,
             tinymce,
             level: require('../../components/level')
         }
