@@ -76,6 +76,9 @@
               </div>
               <div class="col-xs-4">
                 <label class="m-r ">{{$t('common.betdate')}}</label>
+                <date-picker width='140' v-model="query.created_at_0"></date-picker>
+                <span>~</span>
+                <date-picker width='140' v-model="query.created_at_1"></date-picker>
               </div>
               <div class="col-xs-4">
                 <label class="m-r">{{$t('common.betamount')}}</label>
@@ -170,7 +173,7 @@
 <script>
     import api from '../../api'
     import pulling from '../../components/pulling'
-    import Datepicker from 'vuejs-datepicker'
+    import DatePicker from 'vue2-datepicker'
     export default {
         data () {
             return {
@@ -257,7 +260,7 @@
         },
         components: {
             pulling,
-            Datepicker
+            DatePicker
         }
     }
 </script>

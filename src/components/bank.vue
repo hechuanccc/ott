@@ -16,17 +16,21 @@ export default {
         }
     },
     watch: {
-        myBank: function (old, newObj) {
-            this.$emit('bank-select', old)
+        myBank (newObj, old) {
+            if (newObj) {
+                this.$emit('bank-select', newObj)
+            }
         }
     },
     created () {
-        console.log('in bank.vue')
-        this.$http.get(api.bank)
-        .then(response => {
-            console.log('banks')
-            console.log(response.data)
-            this.banks = response.data
+        this.$nextTick(() => {
+            let _this = this
+            _this.$http.get(api.bank).then(response => {
+                _this.banks = response.data
+            })
+            setTimeout(function () {
+                _this.myBank = _this.bank
+            }, 1500)
         })
     }
 }

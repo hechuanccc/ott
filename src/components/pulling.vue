@@ -131,7 +131,6 @@ export default {
         rebase () {
             console.log('re base')
             this.next = this.buildUrl(this.api, this.extra + '&opt_expand=' + this.optexpand + '&offset=' + this.offset + '&limit=' + this.limit)
-            console.log('request url ' + this.next)
             // this.queryset = []
             this.myQueryset = []
             this.pull()
@@ -209,13 +208,12 @@ export default {
         // and broadcast 'rebase' event
         submit () {
             let query = this.query
-            console.log('unhandle query')
-            console.log(query)
             this.offset = 0
             this.showPageGo = 1
             let basePath = this.$route.path
             let bFlag = false
             let bFeach = false
+            let format = 'YYYY-MM-DD'
             console.log('query')
             console.log(query)
             for (let x in query) {
@@ -247,6 +245,9 @@ export default {
                     }
                     bFlag = true
                 }
+            }
+            if (x === 'created_at_0' || x === 'created_at_1' || x === 'logindate_0' || x === 'logindate_1' || x === 'action_time_0' || x === 'action_time_1') {
+                query[x] = Vue.moment(query[x]).format(format)
             }
             console.log('basePath ' + basePath)
             this.$router.push({path: basePath})

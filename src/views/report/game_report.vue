@@ -5,18 +5,9 @@
             <div class="row">
                 <div class="col-xs-7">
                     <label class="text-sm">{{$t('common.date')}}</label>
-                    <!--<datepicker :width="'110px'"-->
-                        <!--:value.sync="filter.created_at_0"-->
-                        <!--:disabled-days-of-Week="disabled"-->
-                        <!--format="yyyy-MM-dd">-->
-                    <!--</datepicker>-->
-                    <!--<span>~</span>-->
-                    <!--<datepicker :width="'110px'"-->
-                        <!--:value.sync="filter.created_at_1"-->
-                        <!--:disabled-days-of-Week="disabled"-->
-                        <!--format="yyyy-MM-dd">-->
-                    <!--</datepicker>-->
-
+                    <date-picker width='140' v-model="filter.created_at_0"></date-picker>
+                    <span>~</span>
+                    <date-picker width='140' v-model="filter.created_at_1"></date-picker>
                     <div class="btn-group m-l">
                         <button type="button" class="btn btn-sm" :class="dateRange === 0 ? 'blue-500' : 'grey-300'" @click="toggleDate(0)">{{$t('common.today')}}</button>
                         <button type="button" class="btn btn-sm" :class="dateRange === 1 ? 'blue-500' : 'grey-300'" @click="toggleDate(1)">{{$t('common.yesterday')}}</button>
@@ -120,7 +111,7 @@
 </template>
 
 <script>
-import Datepicker from 'vuejs-datepicker'
+import DatePicker from 'vue2-datepicker'
 import VueTypeahead from 'vue-typeahead'
 import api from '../../api'
 import Vue from 'vue'
@@ -240,14 +231,13 @@ export default {
             }
         },
         submit () {
-            console.log(this.filter)
             let query = this.filter
-            console.log(this.$route.path)
+            this.filter.created_at_0 = Vue.moment(this.filter.created_at_0).format(format)
+            this.filter.created_at_1 = Vue.moment(this.filter.created_at_1).format(format)
             this.$router.push({
                 path: this.$route.path,
                 query: query
             })
-            console.log(query)
         },
         resetAgent (username) {
             if (this.agentLevel === 4) {
@@ -374,7 +364,7 @@ export default {
         }
     },
     components: {
-        Datepicker,
+        DatePicker,
         sort
     }
 }

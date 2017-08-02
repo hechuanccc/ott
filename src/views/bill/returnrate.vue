@@ -5,17 +5,10 @@
                 <div class="row">
                     <div class="col-xs-4">
                         <label class="m-r">{{$t('common.date')}}</label>
-                        <!--<datepicker :width="'110px'"-->
-                            <!--:value.sync="report.date_0"-->
-                            <!--:disabled-days-of-Week="disabled"-->
-                            <!--format="yyyy-MM-dd">-->
-                        <!--</datepicker>-->
-                        <!--<span>~</span>-->
-                        <!--<datepicker :width="'110px'"-->
-                            <!--:value.sync="report.date_1"-->
-                            <!--:disabled-days-of-Week="disabled"-->
-                            <!--format="yyyy-MM-dd">-->
-                        <!--</datepicker>-->
+                        <date-picker width='140' v-model="report.date_0"></date-picker>
+                        <span>~</span>
+                        <date-picker width='140' v-model="report.date_1"></date-picker>
+
                     </div>
                     <div class="col-xs-6">
                         <label class="text-sm">{{$t('member.agent')}}</label>
@@ -62,7 +55,6 @@
               :query="query"
               :optexpand="optexpand"
               @query-data="queryData"
-              @param="queryParam"
               :api="api"
               ref="pulling">
             </pulling>
@@ -79,7 +71,7 @@
 <script>
     import api from '../../api'
     import pulling from '../../components/pulling'
-    import Datepicker from 'vuejs-datepicker'
+    import DatePicker from 'vue2-datepicker'
     import Vue from 'vue'
     const format = 'YYYY-MM-DD'
 
@@ -88,11 +80,8 @@
             return {
                 api: api.returnhistory,
                 queryset: [],
+                query: {},
                 optexpand: 'created_by',
-                query: {
-                    created_at_0: '',
-                    created_at_1: ''
-                },
                 errorMsg: '',
                 returnMessage: false,
                 report: {
@@ -111,7 +100,14 @@
             '$route' (to, from) {
                 this.queryset = []
                 this.$refs.pulling.rebase()
+            },
+            'report.date_0' (newObj, old) {
+                this.report.date_0 = Vue.moment(this.report.date_0).format(format)
+            },
+            'report.date_1' (newObj, old) {
+                this.report.date_1 = Vue.moment(this.report.date_1).format(format)
             }
+
         },
         created () {
             this.$nextTick(() => {
@@ -121,12 +117,6 @@
         methods: {
             queryData (queryset) {
                 this.queryset = queryset
-            },
-            queryParam (query) {
-                this.query = query
-            },
-            submit () {
-                this.$refs.pulling.submit()
             },
             generateReport () {
                 this.$http.post(api.returnrate, this.report, {emulateJSON: true}).then((response) => {
@@ -138,7 +128,7 @@
             }
         },
         components: {
-            Datepicker,
+            DatePicker,
             pulling
         }
     }

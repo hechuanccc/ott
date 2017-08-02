@@ -58,17 +58,10 @@
                     </div>
                     <div class="col-xs-4">
                         <label class="text-sm">{{$t('common.applied_at')}}</label>
-                        <!--<datepicker :width="'110px'"-->
-                                    <!--:value="query.created_at_0"-->
-                                    <!--:disabled-days-of-Week="disabled"-->
-                                    <!--format="yyyy-MM-dd">-->
-                        <!--</datepicker>-->
-                        <!--<span>~</span>-->
-                        <!--<datepicker :width="'110px'"-->
-                                    <!--:value="query.created_at_1"-->
-                                    <!--:disabled-days-of-Week="disabled"-->
-                                    <!--format="yyyy-MM-dd">-->
-                        <!--</datepicker>-->
+                        <date-picker width='140' v-model="query.created_at_0"></date-picker>
+                        <span>~</span>
+                        <date-picker width='140' v-model="query.created_at_1"></date-picker>
+
                     </div>
                     <div class="col-xs-4">
                         <label class="text-sm">{{$t('common.amount')}}</label>
@@ -160,7 +153,7 @@
 </template>
 <script>
     import api from '../../api'
-    import Datepicker from 'vuejs-datepicker'
+    import DatePicker from 'vue2-datepicker'
     import pulling from '../../components/pulling'
     import transactionStatus from '../../components/transaction_status'
     import { handleError } from '../../utils/handleError'
@@ -276,7 +269,7 @@
             }
         },
         components: {
-            Datepicker,
+            DatePicker,
             pulling,
             transactionStatus,
             level: require('../../components/level')

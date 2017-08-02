@@ -2,7 +2,7 @@
     <div>
       <div class="m-b">
         <ol class="breadcrumb">
-          <li class="active"><router-link to="'/agent'">代理</router-link></li>
+          <li class="active"><router-link to="/agent">代理</router-link></li>
           <li class="active">{{$route.meta.title}}</li>
         </ol>
       </div>
@@ -135,18 +135,7 @@
                 <div class="form-group">
                   <label for="birthday" class="label-width">生日</label>
                   <div class="inline-form-control">
-                    <!--<datepicker :width="'153px'"-->
-                    <!--:value.sync="agent.birthday"-->
-                    <!--:disabled-days-of-Week="disabled"-->
-                    <!--format="yyyy-MM-dd">-->
-                    <!--</datepicker>-->
-                    <datepicker v-model="agent.birthday"
-                                format="yyyy-MM-dd"
-                                language="zh"
-                                wrapper-class="datepicker"
-                                input-class="pro-date"
-                                name="start_date">
-                    </datepicker>
+                    <date-picker width='153' v-model="agent.birthday"></date-picker>
                   </div>
                 </div>
 
@@ -193,9 +182,11 @@
 </template>
 <script>
     import VueTypeahead from 'vue-typeahead'
-    import Datepicker from 'vuejs-datepicker'
+    import DatePicker from 'vue2-datepicker'
     import { handleError } from '../../utils/handleError'
     import api from '../../api'
+    import Vue from 'vue'
+    const format = 'YYYY-MM-DD'
     export default {
         extends: VueTypeahead,
         data () {
@@ -226,7 +217,8 @@
                     email: '',
                     memo: '',
                     bank: {
-                        bank: ''
+                        bank: '',
+                        province: ''
                     },
                     domain: '',
                     password: '123456'
@@ -293,10 +285,14 @@
                         _this.getAgent(id)
                     }
                 }, 100)
+            },
+            'agent.birthday' (newObj, old) {
+                this.agent.birthday = Vue.moment(this.agent.birthday).format(format)
             }
         },
         methods: {
             bankSelect (bank) {
+                console.log(bank + '=====bank=form')
                 this.agent.bank.bank = bank
             },
             returnData (data) {
@@ -379,6 +375,9 @@
                         data.bank = {}
                     }
                     this.agent = data
+                    if (this.agent.birthday === null) {
+                        this.agent.birthday = ''
+                    }
                     // for nested objects parent_agent, level... we get json object from api, need to
                     // transfer to plain string
                     if (data.parent_agent) {
@@ -407,7 +406,7 @@
             }
         },
         components: {
-            Datepicker,
+            DatePicker,
             bank: require('../../components/bank'),
             level: require('../../components/level'),
             agentlevel: require('../../components/agentlevel'),
