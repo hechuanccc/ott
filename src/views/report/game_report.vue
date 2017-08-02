@@ -271,9 +271,7 @@ export default {
             }
         },
         toggleProvider (name) {
-            console.log(name)
             this.filter.provider = name
-            console.log(this.filter.provider)
             this.submit()
         },
         toggleCategory (id) {
@@ -338,7 +336,6 @@ export default {
                     this.agentLevel = data.agent_level
                     this.query = data.agent_name
                     this.filter.agent = data.agent_name
-                    console.log(this.filter.agent)
                     this.overall = data.overall
                     this.details = data.details
                     if (this.agentLevel < 4) {

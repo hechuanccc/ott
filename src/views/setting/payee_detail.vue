@@ -128,8 +128,6 @@
         beforeRouteEnter (to, from, next) {
             next(vm => {
                 let id = to.params.payeeId
-                console.log('id ' + id)
-                console.log(vm)
                 if (id) {
                     vm.getPayee(id)
                 }

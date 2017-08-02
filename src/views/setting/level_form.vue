@@ -275,14 +275,9 @@ export default {
             report_flag: true
         }
     },
-    created () {
-        console.log('in add level')
-    },
     beforeRouteEnter (to, from, next) {
         next(vm => {
             let id = to.params.levelId
-            console.log('id ' + id)
-            console.log(vm)
             if (id) {
                 vm.getLevel(id)
             }

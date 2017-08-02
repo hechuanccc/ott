@@ -135,7 +135,6 @@
                 this.allselected = !!this.allselected
                 if (this.allselected) {
                     for (let detail in this.returnData) {
-                        console.log(this.returnData[detail].status)
                         if (this.returnData[detail].status !== 1) {
                             this.ids.push(this.returnData[detail].id)
                         }

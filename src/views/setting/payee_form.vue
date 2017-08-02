@@ -102,7 +102,7 @@
 </template>
 <script>
     import api from '../../api'
-    
+
     export default {
         data () {
             return {
@@ -201,7 +201,6 @@
                 this.hasImage = true
             },
             levelSelect (val) {
-                console.log(val)
                 this.payee.level = val
             },
             bankSelect (val) {

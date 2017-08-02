@@ -245,11 +245,8 @@
                 })
             },
             getPromotions () {
-                console.log('in getPromotions')
                 this.$http.get(api.promotion).then((response) => {
                     this.promotions = response.data
-                    console.log('promotions')
-                    console.log(this.promotions)
                 })
             },
             selectPromotion (event) {

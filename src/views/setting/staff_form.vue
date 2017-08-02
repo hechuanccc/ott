@@ -212,8 +212,6 @@
             getPermissionsListAll () {
                 this.$http.get(api.permissions + '?opt_expand=permissions').then((response) => {
                     this.permissionsList = response.data
-                    console.log('permissionsList')
-                    console.log(this.permissionsList)
                 })
             },
             getStaffPermissionsList (id) {

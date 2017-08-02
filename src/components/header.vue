@@ -182,7 +182,6 @@
                     this.$root.dropdown = false
                     this.loading = true
                     if (response.status === 200) {
-                        console.log('to login')
                         this.$router.push('/login')
                         this.$cookie.delete('access_token')
                         this.$cookie.delete('refresh_token')
@@ -222,7 +221,6 @@
             },
             getCount () {
                 if (this.$route.name !== 'login') {
-                    console.log('in getCount')
                     let authenticationCookie = Vue.http.headers.common['Authorization']
                     if (authenticationCookie) {
                         authenticationCookie = authenticationCookie.split(' ').pop()
@@ -238,7 +236,6 @@
                                 this.agent_application = response.data.agent_application
                                 this.online_member = response.data.online_member
                             }, response => {
-                                console.log('in error metrics_count')
                                 this.$router.push('/login?next=' + this.$route.path)
                             })
                         }
@@ -255,8 +252,6 @@
                 if (this.query.username_q) {
                     this.$http.get(api.member + '?username_q=' + this.query.username_q).then((response) => {
                         this.results = response.data
-                        console.log('results')
-                        console.log(this.results)
                         this.results = response.data.slice(0, Number(this.searchlimit))
                         if (this.results.length) {
                             this.hasResults = true

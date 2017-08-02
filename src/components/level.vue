@@ -38,7 +38,6 @@ export default {
     },
     watch: {
         myLevel (newObj, old) {
-            console.log(newObj + 'level-=-----Number')
             if (newObj) {
                 this.$emit('level-select', newObj)
             }

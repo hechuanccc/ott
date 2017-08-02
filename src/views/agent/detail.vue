@@ -248,7 +248,6 @@
         },
         beforeRouteEnter (to, from, next) {
             next(vm => {
-                console.log('q12123')
                 let id = to.params.agentId
                 vm.getAgent(id)
             })

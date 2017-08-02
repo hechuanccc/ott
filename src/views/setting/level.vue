@@ -90,7 +90,6 @@ export default {
         }
     },
     created () {
-        console.log('in level page')
         this.getLevels()
     },
     methods: {

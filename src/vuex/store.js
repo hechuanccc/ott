@@ -21,9 +21,6 @@ const mutations = {
     }
 }
 
-console.log('actions')
-console.log(actions)
-
 export default new Vuex.Store({
     state,
     mutations,

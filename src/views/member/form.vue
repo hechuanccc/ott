@@ -253,7 +253,6 @@
                 this.member.bank.bank = bank
             },
             levelSelect (val) {
-                console.log(val + '===val')
                 this.member.level.id = val
             },
             checkAgent () {
@@ -315,7 +314,6 @@
                         data.bank = {bank: '', province: ''}
                     }
                     this.member = Object.assign(this.member, data)
-                    console.log(this.member)
                 })
             },
             reset () {

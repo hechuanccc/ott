@@ -182,8 +182,6 @@
             getEnvelope () {
                 this.$http.get(api.envelope + '?status=1').then((response) => {
                     this.envelopes = response.data
-                    console.log('envelope')
-                    console.log(response.data)
                 })
             },
             delete () {
