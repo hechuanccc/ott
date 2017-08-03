@@ -19,6 +19,23 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                  <label class="col-sm-2 form-control-label">是否记入审查记录</label>
+                  <div class="col-xs-5 form-control-label">
+                    <label class="md-check m-r">
+                      <input type="radio" value="1" name="compensation" v-model="compensation" checked="checked"/>
+                      <i class="blue"></i>
+                      是
+                    </label>
+
+                    <label class="md-check m-r">
+                      <input type="radio" value="0" name="compensation" v-model="compensation" />
+                      <i class="blue"></i>
+                      否
+                    </label>
+                    <span class="text-danger"> 用于补偿额度丢失，选否 </span>
+                  </div>
+                </div>
+                <div class="form-group row">
                     <label class="col-sm-2 form-control-label">稽核方式</label>
                     <div class="col-xs-5 form-control-label">
                         <label class="md-check m-r">
@@ -120,14 +137,16 @@
                         amount: ''
                     },
                     memo: '',
-                    password: ''
-                }
+                    password: '',
+                    is_compensation: false
+                },
+                compensation: true
             }
         },
-        route: {
-            data (transition) {
+        mounted: function () {
+            this.$nextTick(function () {
                 this.transaction.member = this.$route.query.member
-            }
+            })
         },
         methods: {
             fetchMember (username) {
@@ -138,9 +157,14 @@
                 })
             },
             onSubmit () {
+                if (this.compensation === '1') {
+                    this.transaction.is_compensation = false
+                } else {
+                    this.transaction.is_compensation = true
+                }
                 this.$http.post(api.manual_transaction, this.transaction).then(response => {
                     if (response.data.id) {
-                        this.$router.go('/transaction/' + response.data.id)
+                        this.$router.push('/transaction/' + response.data.id)
                     }
                 }, response => {
                     this.errorMsg = response.data.error
