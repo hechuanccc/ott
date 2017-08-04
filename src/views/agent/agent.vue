@@ -110,7 +110,9 @@
               <span v-else>-</span>
             </td>
             <td>
-              <span v-if="agent.domain">{{agent.domain}}</span>
+              <span v-if="agent.domain">
+                <label class="m-r" v-for="deamin in agent.domain">{{deamin}}</label>
+              </span>
               <span v-else>-</span>
             </td>
             <td>

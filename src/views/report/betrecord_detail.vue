@@ -2,7 +2,7 @@
   <div>
     <div class="m-b">
       <ol class="breadcrumb">
-        <li class="active"><router-link to="'/report/betrecord'">投注详情</router-link></li>
+        <li class="active"><router-link to="/report/betrecord">投注详情</router-link></li>
         <li class="active">{{$route.meta.title}}</li>
       </ol>
     </div>

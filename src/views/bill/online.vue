@@ -17,7 +17,7 @@
                           <label class="text-sm">{{$t('member.level')}}</label>
                           <level
                             :level="query.member_level"
-                            @level-choose="changeFromLevel">
+                            @level-select="changeFromLevel">
                           </level>
                       </div>
                       <div class="col-xs-4">

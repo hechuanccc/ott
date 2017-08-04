@@ -28,6 +28,10 @@ export default {
                 if (this.default) {
                     this.commissionsetting = this.default
                 }
+                let _this = this
+                setTimeout(function () {
+                    _this.myCommission = _this.commissionsetting
+                }, 500)
             })
         })
     }

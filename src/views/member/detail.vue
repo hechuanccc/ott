@@ -2,7 +2,7 @@
     <div>
       <div class="m-b">
         <ol class="breadcrumb">
-          <li class="active"><router-link to="'/member?report_flag=True'">会员</router-link></li>
+          <li class="active"><router-link to="/member?report_flag=True">会员</router-link></li>
           <li class="active">{{$route.meta.title}}</li>
         </ol>
       </div>
@@ -76,7 +76,8 @@
                 <div class="row">
                 <div class="loading" v-if="loading"><i class='fa fa-circle-o-notch fa-spin'></i></div>
                 <div class="col-xs-3 m-t" v-else v-for="account in accounts">
-                  <providerform :account="account" :member="member" :getmember="getMember" :getaccounts="getAccounts" :balanceloading="balanceLoading" :isactive="providerActive" @click="toggleProvider(account.provider.name)"></providerform>
+                  {{account.provider.name}}
+                  <providerform :account="account" :member="member" :getmember="getMember" :getaccounts="getAccounts" :balanceloading="balanceLoading"  :provider="account.provider.name"></providerform>
                 </div>
               </div>
               </div>
@@ -213,7 +214,7 @@
             <div class="col-xs-5" v-if="member.level">
               <span class="text-muted">{{$t('member.level')}}</span>
               <div>
-                <router-link to="'/level/' + member.level.id">{{member.level.name}}</router-link>
+                <router-link :to="'/level/' + member.level.id">{{member.level.name}}</router-link>
               </div>
             </div>
           </div>

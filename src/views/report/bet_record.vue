@@ -107,9 +107,10 @@
           </tr>
           </thead>
           <tbody>
-          <tr v-if="total_amount || total_profit" class="table-amount">
+          <tr v-if="total_amount || total_profit || total_bet_amount" class="table-amount">
             <td class="" colspan="5">总计</td>
-            <td colspan="3">{{total_amount | currency('￥')}}</td>
+            <td>{{total_bet_amount | currency('￥')}}</td>
+            <td colspan="2">{{total_amount | currency('￥')}}</td>
             <td colspan="2">{{total_profit | currency('￥')}}</td>
           </tr>
           <tr v-for="t in queryset">
@@ -160,10 +161,12 @@
         <pulling
           :queryset="queryset"
           :query="query"
+          :total_bet_amount="total_bet_amount"
           @query-data="queryData"
           @param="queryParam"
           @amount="totalAmount"
           @profit="totalProfit"
+          @totalBet="totalBet"
           :api="betApi"
           ref="pulling">
         </pulling>
@@ -196,7 +199,8 @@
                 },
                 result: [],
                 total_amount: '',
-                total_profit: ''
+                total_profit: '',
+                total_bet_amount: ''
             }
         },
         mounted: function () {
@@ -238,6 +242,9 @@
             },
             totalProfit (profit) {
                 this.total_profit = profit
+            },
+            totalBet (val) {
+                this.total_bet_amount = val
             },
             submit () {
                 this.$refs.pulling.submit()

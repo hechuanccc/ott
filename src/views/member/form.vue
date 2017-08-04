@@ -2,7 +2,7 @@
     <div>
       <div class="m-b">
         <ol class="breadcrumb">
-          <li class="active"><router-link :to="'/member?report_flag=True'">会员</router-link></li>
+          <li class="active"><router-link to="/member?report_flag=True">会员</router-link></li>
           <li class="active">{{$route.meta.title}}</li>
         </ol>
       </div>

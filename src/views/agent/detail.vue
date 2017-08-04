@@ -2,7 +2,7 @@
     <div>
       <div class="m-b">
         <ol class="breadcrumb">
-          <li class="active"><router-link to="'/agent'">代理</router-link></li>
+          <li class="active"><router-link to="/agent">代理</router-link></li>
           <li class="active">{{$route.meta.title}}</li>
         </ol>
       </div>
@@ -26,7 +26,7 @@
               <router-link class="md-btn md-flat m-r-sm" :to="'/bill/search?agent_q=' + agent.username">{{$t('action.view_member_record')}}</router-link>
               <a class="md-btn md-flat m-r-sm" @click="resetPassword($event)" v-if="levelPermission">{{$t('action.reset_password')}}</a>
               <router-link class="md-btn md-flat m-r-sm" :to="'/agent/' + agent.id + '/edit'" v-if="levelPermission">{{$t('action.update_agent')}}</router-link>
-              <a class="md-btn md-flat m-r-sm" @click="deleteAgent(agent.id,true,$event)" v-if="">{{$t('action.delete')}}</a>
+              <!--<a class="md-btn md-flat m-r-sm" @click="deleteAgent(agent.id,true,$event)" v-if="">{{$t('action.delete')}}</a>-->
             </div>
           </div>
         </div>
