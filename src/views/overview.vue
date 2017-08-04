@@ -67,12 +67,12 @@
                 <tr v-for="d in periodic" >
                     <td>{{$t('common.' + d.report_age)}}</td>
                     <td>{{d.active_agent}}</td>
-                    <td><router-link to="'/member?created_at_0=' + dateSet[d.report_age][0] + '=&created_at_1=' + dateSet[d.report_age][1] + '&report_flag=True'">{{d.new_member_count}}</router-link></td>
+                    <td><router-link :to="'/member?created_at_0=' + dateSet[d.report_age][0] + '&created_at_1=' + dateSet[d.report_age][1] + '&report_flag=True'">{{d.new_member_count}}</router-link></td>
                     <td>{{d.deposit_member_count}}</td>
-                    <td><router-link to="'/bill/search?transaction_type[]=remit&transaction_type[]=online_pay&created_at_0=' + dateSet[d.report_age][0] + '=&created_at_1=' + dateSet[d.report_age][1] + '&report_flag=True'">{{d.deposit_amount | currency('￥')}}</router-link></td>
-                    <td><router-link to="'/bill/search?transaction_type[]=withdraw&created_at_0=' + dateSet[d.report_age][0] + '=&created_at_1=' + dateSet[d.report_age][1] + '&report_flag=True'">{{d.withdraw_amount | currency('￥')}}</router-link></td>
-                    <td><router-link to="'/report/game?date_0=' + dateSet[d.report_age][0] + '=&date_1=' + dateSet[d.report_age][1] + '&dateRange=' + d.report_age">{{d.valid_bet | currency('￥')}}</router-link></td>
-                    <td><router-link to="'/report/game?date_0=' + dateSet[d.report_age][0] + '=&date_1=' + dateSet[d.report_age][1] + '&dateRange=' + d.report_age">{{d.profit | currency('￥')}}</router-link></td>
+                    <td><router-link :to="'/bill/search?transaction_type[]=remit&transaction_type[]=online_pay&created_at_0=' + dateSet[d.report_age][0] + '&created_at_1=' + dateSet[d.report_age][1] + '&report_flag=True'">{{d.deposit_amount | currency('￥')}}</router-link></td>
+                    <td><router-link :to="'/bill/search?transaction_type[]=withdraw&created_at_0=' + dateSet[d.report_age][0] + '&created_at_1=' + dateSet[d.report_age][1] + '&report_flag=True'">{{d.withdraw_amount | currency('￥')}}</router-link></td>
+                    <td><router-link :to="'/report/game?date_0=' + dateSet[d.report_age][0] + '&date_1=' + dateSet[d.report_age][1] + '&dateRange=' + d.report_age">{{d.valid_bet | currency('￥')}}</router-link></td>
+                    <td><router-link :to="'/report/game?date_0=' + dateSet[d.report_age][0] + '&date_1=' + dateSet[d.report_age][1] + '&dateRange=' + d.report_age">{{d.profit | currency('￥')}}</router-link></td>
                 </tr>
 
             </tbody>
