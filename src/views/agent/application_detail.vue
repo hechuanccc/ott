@@ -155,18 +155,7 @@
                 <div class="form-group">
                   <label class="label-width">{{$t('common.birthday')}}</label>
                   <div class="inline-form-control">
-                    <!--<datepicker :width="'153px'"-->
-                    <!--:value.sync="agent.birthday"-->
-                    <!--:disabled-days-of-Week="disabled"-->
-                    <!--format="yyyy-MM-dd">-->
-                    <!--</datepicker>-->
-                    <datepicker v-model="agent.birthday"
-                                format="yyyy-MM-dd"
-                                language="zh"
-                                wrapper-class="datepicker"
-                                input-class="pro-date"
-                                name="start_date">
-                    </datepicker>
+                    <date-picker width='153' v-model="agent.birthday"></date-picker>
                   </div>
                 </div>
 
@@ -395,9 +384,11 @@
 </template>
 <script>
     import VueTypeahead from 'vue-typeahead'
-    import Datepicker from 'vuejs-datepicker'
+    import DatePicker from 'vue2-datepicker'
     import api from '../../api'
     import { handleError } from '../../utils/handleError'
+    import Vue from 'vue'
+    const format = 'YYYY-MM-DD'
 
     export default {
         extends: VueTypeahead,
@@ -490,6 +481,7 @@
                 })
             },
             onSubmit (e) {
+                this.agent.birthday = Vue.moment(this.agent.birthday).format(format)
                 if (!this.agent.parent_agent && parseInt(this.agent.level) !== 1) {
                     this.formError = '请选择正确的上线'
                     return
@@ -574,7 +566,7 @@
             }
         },
         components: {
-            Datepicker,
+            DatePicker,
             bank: require('../../components/bank'),
             level: require('../../components/level'),
             agentlevel: require('../../components/agentlevel'),

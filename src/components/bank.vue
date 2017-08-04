@@ -17,9 +17,7 @@ export default {
     },
     watch: {
         myBank (newObj, old) {
-            if (newObj !== undefined) {
-                this.$emit('bank-select', newObj)
-            }
+            this.$emit('bank-select', newObj)
         }
     },
     created () {
