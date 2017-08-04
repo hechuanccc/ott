@@ -38,7 +38,7 @@ export default {
     },
     watch: {
         myLevel (newObj, old) {
-            if (newObj) {
+            if (newObj !== undefined) {
                 this.$emit('level-select', newObj)
             }
         }
