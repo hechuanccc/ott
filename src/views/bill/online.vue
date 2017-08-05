@@ -130,7 +130,7 @@
           :total_amount="total_amount"
           :export_query="export_query"
           @query-data="queryData"
-          @param="queryParam"
+          @query-param="queryParam"
           @amount="totalAmount"
           @export-query="exportQuery"
           :api="billApi"
@@ -161,12 +161,14 @@
                     amount_gte: '',
                     status: [],
                     member_level: '',
-                    online_paye: ''
+                    online_paye: '',
+                    report_flag: true
                 },
                 status: [],
                 total_amount: '',
                 href: '',
-                export_query: []
+                export_query: [],
+                filter: {}
             }
         },
         watch: {
@@ -208,10 +210,11 @@
                 this.query.member_level = val
             },
             queryData (queryset) {
+                this.query = Object.assign(this.query, this.filter)
                 this.queryset = queryset
             },
             queryParam (query) {
-                this.query = query
+                this.filter = query
             },
             totalAmount (amount) {
                 this.total_amount = amount

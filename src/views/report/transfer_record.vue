@@ -89,7 +89,7 @@
           :queryset="queryset"
           :query="query"
           @query-data="queryData"
-          @param="queryParam"
+          @query-param="queryParam"
           :api="recordApi"
           ref="pulling">
         </pulling>
@@ -112,8 +112,10 @@
                     amount_gte: '',
                     amount_lte: '',
                     created_at_0: '',
-                    created_at_1: ''
-                }
+                    created_at_1: '',
+                    report_flag: true
+                },
+                filter: {}
             }
         },
         watch: {
@@ -134,10 +136,11 @@
                 }, 100)
             },
             queryData (queryset) {
+                this.query = Object.assign(this.query, this.filter)
                 this.queryset = queryset
             },
             queryParam (query) {
-                this.query = query
+                this.filter = query
             },
             submit () {
                 this.$refs.pulling.submit()

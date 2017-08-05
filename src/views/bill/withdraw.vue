@@ -124,7 +124,7 @@
         :query="query"
         :total_amount="total_amount"
         @query-data="queryData"
-        @param="queryParam"
+        @query-param="queryParam"
         @amount="totalAmount"
         :api="billApi"
         ref="pulling"
@@ -152,10 +152,12 @@
                     amount_lte: '',
                     amount_gte: '',
                     member_level: '',
-                    operator: ''
+                    operator: '',
+                    report_flag: true
                 },
                 status: [],
-                total_amount: ''
+                total_amount: '',
+                filter: {}
             }
         },
         watch: {
@@ -204,10 +206,11 @@
                 this.query.member_level = val
             },
             queryData (queryset) {
+                this.query = Object.assign(this.query, this.filter)
                 this.queryset = queryset
             },
             queryParam (query) {
-                this.query = query
+                this.filter = query
             },
             totalAmount (amount) {
                 this.total_amount = amount

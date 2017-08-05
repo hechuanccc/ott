@@ -25,7 +25,7 @@
               </div>
               <div class="col-xs-3">
                 <div class="pull-right">
-                  <button class="md-btn grey-100 m-r" @click="showAll=!showAll">
+                  <button class="md-btn grey-100 m-r" type="button" @click="showAll=!showAll">
                     <span v-if="!showAll">{{$t('member.more_options')}} <i class="fa fa-angle-double-down"></i></span>
                     <span v-else>{{$t('member.collapse_options')}} <i class="fa fa-angle-double-up"></i></span>
                   </button>
@@ -234,7 +234,7 @@
           :queryset="queryset"
           :query="query"
           @query-data="queryData"
-          @param="queryParam"
+          @query-param="queryParam"
           @export-query="exportQuery"
           :api="memberApi"
           ref="pulling">
@@ -271,8 +271,10 @@ export default {
                 wechat_q: '',
                 logined: '',
                 register_ip: '',
-                level: ''
+                level: '',
+                report_flag: true
             },
+            filter: {},
             href: '',
             logined: false,
             export_query: []
@@ -311,10 +313,11 @@ export default {
             this.query.return_settings = data
         },
         queryData (queryset) {
+            this.query = Object.assign(this.query, this.filter)
             this.queryset = queryset
         },
         queryParam (query) {
-            this.query = query
+            this.filter = query
         },
         exportQuery (expor) {
             this.export_query = expor

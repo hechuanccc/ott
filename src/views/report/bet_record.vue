@@ -163,7 +163,7 @@
           :query="query"
           :total_bet_amount="total_bet_amount"
           @query-data="queryData"
-          @param="queryParam"
+          @query-param="queryParam"
           @amount="totalAmount"
           @profit="totalProfit"
           @totalBet="totalBet"
@@ -195,8 +195,10 @@
                     created_at_1: '',
                     settlement_gte: '',
                     settlement_lte: '',
-                    result: []
+                    result: [],
+                    report_flag: true
                 },
+                filter: {},
                 result: [],
                 total_amount: '',
                 total_profit: '',
@@ -232,10 +234,11 @@
                 }, 100)
             },
             queryData (queryset) {
+                this.query = Object.assign(this.query, this.filter)
                 this.queryset = queryset
             },
             queryParam (query) {
-                this.query = query
+                this.filter = query
             },
             totalAmount (amount) {
                 this.total_amount = amount

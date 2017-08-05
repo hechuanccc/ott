@@ -186,7 +186,9 @@
           <div class="row m-b b-b p-b">
             <div class="col-xs-4">
               <span class="text-muted">{{$t('agent.domain')}}</span>
-              <div  v-if="agent.domain" class="domain">{{agent.domain}}</div>
+              <div  v-if="agent.domain" class="domain">
+                <label class="m-r" v-for="domain in agent.domain">{{domain}}</label>
+              </div>
               <div class="text-muted" v-else>{{$t('agent.unDomain')}}</div>
             </div>
             <div class="col-xs-6">

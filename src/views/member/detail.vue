@@ -24,7 +24,6 @@
             </div>
             <div class="col-xs-8 text-right">
               <div>
-                <input v-show="false" v-model="today" :value="new Date() | moment('YYYY-MM-DD')">
                 <a class="md-btn md-flat m-r-sm" @click="getAccountUpdate(member.id)">刷新娱乐城余额</a>
                 <router-link class="md-btn md-flat m-r-sm"  :to="'/report/betrecord?member=' + member.username + '&created_at_0=' + today + '&created_at_1=' + today">{{$t('action.view_today_bet_recoard')}}</router-link>
                 <template v-if="$root.permissions.includes('update_member_details')">
@@ -137,11 +136,11 @@
               <div class="row">
                 <div class="col-md-5">
                   <span class="text-muted">{{$t('betrecord.win')}}</span>
-                  <div><router-link :to="'/report/betrecord?member=' + member.username + '&result[]=1'">{{member.total_gain | currency('￥')}}</router-link></div>
+                  <div><router-link :to="'/report/betrecord?member=' + member.username + '&result=1'">{{member.total_gain | currency('￥')}}</router-link></div>
                 </div>
                 <div class="col-md-5">
                   <span class="text-muted">{{$t('betrecord.bet')}}</span>
-                  <div><router-link :to="'/report/betrecord?member=' + member.username + '&result[]=0'">{{member.total_loss | currency('￥')}}</router-link></div>
+                  <div><router-link :to="'/report/betrecord?member=' + member.username + '&result=0'">{{member.total_loss | currency('￥')}}</router-link></div>
                 </div>
               </div>
             </div>
@@ -268,6 +267,8 @@
 <script>
     import api from '../../api'
     import providerform from '../../components/providerform'
+    import Vue from 'vue'
+    const format = 'YYYY-MM-DD'
 
     export default {
         data () {
@@ -318,6 +319,7 @@
                 let id = to.params.memberId
                 vm.getMember(id)
                 vm.getAccounts(id)
+                vm.today = Vue.moment(new Date()).format(format)
             })
         },
         watch: {

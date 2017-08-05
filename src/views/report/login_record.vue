@@ -78,9 +78,11 @@ export default {
                 member_q: '',
                 logindate_0: '',
                 logindate_1: '',
-                ipaddr_q: ''
+                ipaddr_q: '',
+                report_flag: true
             },
-            queryset: []
+            queryset: [],
+            filter: {}
         }
     },
     watch: {
@@ -102,10 +104,11 @@ export default {
             this.query.ipaddr_q = this.query.ipaddr_q.replace(/[^\d]+/g, '')
         },
         queryData (queryset) {
+            this.query = Object.assign(this.query, this.filter)
             this.queryset = queryset
         },
         queryParam (query) {
-            this.query = query
+            this.filter = query
         }
     },
     components: {

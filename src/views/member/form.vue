@@ -129,7 +129,7 @@
                 <div v-if="$root.permissions.includes('list_update_member_bank')">
                   <h5 class="m-b">{{$t('bank.bank_title')}} </h5>
                   <div class="form-group">
-                    <label class="label-width">{{$t('bank.name')}}=={{member.bank.bank}}==</label>
+                    <label class="label-width">{{$t('bank.name')}}</label>
                     <bank :bank="member.bank.bank" :req="bankFilled" @bank-select="bankSelect"></bank>
                   </div>
                   <div class="form-group">
@@ -156,7 +156,6 @@
             <div>
               <div class="alert alert-danger" v-if="errorMsg">{{errorMsg}}</div>
               <button type="submit" :disabled="!$root.permissions.includes('update_member_details')" class="md-btn blue w-sm" >{{$t('common.save')}} </button>
-              {{member.bank.bank}} member.bank.bank
             </div>
           </form>
         </div>

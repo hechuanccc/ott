@@ -169,7 +169,8 @@ export default {
                 qq: '',
                 wechat: '',
                 bank: ''
-            }
+            },
+            filter: {}
         }
     },
     watch: {
@@ -189,10 +190,11 @@ export default {
             }, 100)
         },
         queryData (queryset) {
+            this.query = Object.assign(this.query, this.filter)
             this.queryset = queryset
         },
         queryParam (query) {
-            this.query = query
+            this.filter = query
         },
         myCommission (val) {
             this.query.commission_settings = val

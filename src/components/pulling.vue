@@ -44,7 +44,7 @@ export default {
     props: {
         queryset: {
             required: true,
-            type: Array
+            type: [Array, Object]
         },
         query: {
             required: true,
@@ -86,7 +86,8 @@ export default {
             offset: 0,
             countPage: 0,
             pageNum: [],
-            myQueryset: this.queryset
+            myQueryset: this.queryset,
+            myQuery: ''
         }
     },
     watch: {
@@ -171,6 +172,7 @@ export default {
                     this.$router.push('/login?next=' + this.$route.path)
                 }
             })
+            this.$emit('query-param', this.myQuery)
         },
         // build router query string through this.query
         buildUrl (api, defaultQuery) {
@@ -183,7 +185,7 @@ export default {
                 }
             }
             // sync query data with local data
-            this.$emit('query-param', query)
+            this.myQuery = query
             // this.query = query
             for (let x in query) {
                 if (query[x]) {
@@ -216,44 +218,22 @@ export default {
             this.offset = 0
             this.showPageGo = 1
             let basePath = this.$route.path
-            let bFlag = false
-            let bFeach = false
             let format = 'YYYY-MM-DD'
             for (let x in query) {
-                if (x === 'created_at_0' || x === 'created_at_1' || x === 'logindate_0' || x === 'logindate_1' || x === 'action_time_0' || x === 'action_time_1') {
-                    query[x] = Vue.moment(query[x]).format(format)
-                }
                 if (query[x] === '' || query[x] === undefined) {
                     delete query[x]
-                } else if (query[x] instanceof Array) {
+                } else if (x === 'created_at_0' || x === 'created_at_1' || x === 'logindate_0' || x === 'logindate_1' || x === 'action_time_0' || x === 'action_time_1') {
+                    query[x] = Vue.moment(query[x]).format(format)
+                }
+                if (query[x] instanceof Array) {
                     query[x].forEach(function (value, index, array) {
                         if (value) {
-                            // basePath = bFlag ? `${basePath},${value}` : `${basePath}?${x}=${value}`
-                            if (bFlag && !bFeach) {
-                                basePath = `${basePath}&${x}=${value}`
-                            } else if (bFlag && bFeach) {
-                                basePath = `${basePath},${value}`
-                            } else if (!bFlag && !bFeach) {
-                                basePath = `${basePath}?${x}=${value}`
-                            } else if (!bFlag && bFeach) {
-                                basePath = `${basePath},${value}`
-                            }
-                            bFeach = true
+                            query[x] = `${array}`
                         }
                     })
-                } else {
-                    if (!bFlag && !bFeach) {
-                        basePath = `${basePath}?${x}=${query[x]}`
-                    } else if (!bFlag && bFeach) {
-                        basePath = `${basePath}&${x}=${query[x]}`
-                    } else {
-                        basePath = `${basePath}&${x}=${query[x]}`
-                    }
-                    bFlag = true
                 }
             }
-            console.log('basePath ' + basePath)
-            this.$router.push({path: basePath})
+            this.$router.push({path: basePath, query})
         }
     }
 }
