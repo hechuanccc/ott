@@ -102,7 +102,7 @@
         :query="query"
         :export_query="export_query"
         @query-data="queryData"
-        @param="queryParam"
+        @query-param="queryParam"
         @export-query="exportQuery"
         :api="billApi"
         ref="pulling">
@@ -131,7 +131,8 @@
                     member_level: '',
                     operator: '',
                     agent_q: '',
-                    transaction_type: []
+                    transaction_type: [],
+                    report_flag: true
                 },
                 // use selectd transaction types
                 transaction_type: [],
@@ -139,7 +140,8 @@
                 trans_type: [],
                 showAgent: false,
                 href: '',
-                export_query: ''
+                export_query: '',
+                filter: {}
             }
         },
         watch: {
@@ -181,10 +183,11 @@
                 this.query.member_level = val
             },
             queryData (queryset) {
+                this.query = Object.assign(this.query, this.filter)
                 this.queryset = queryset
             },
             queryParam (query) {
-                this.query = query
+                this.filter = query
             },
             exportQuery (expor) {
                 this.export_query = expor

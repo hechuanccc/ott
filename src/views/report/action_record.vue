@@ -114,7 +114,7 @@
           :queryset="queryset"
           :query="query"
           @query-data="queryData"
-          @param="queryParam"
+          @query-param="queryParam"
           :api="actionrecordApi"
           ref="pulling">
         </pulling>
@@ -139,12 +139,14 @@ export default {
                 ipaddr: '',
                 game_name: '',
                 action_result: [],
-                action_type: []
+                action_type: [],
+                report_flag: true
             },
             queryset: [],
             providers: '',
             action_result: [],
-            action_type: ''
+            action_type: '',
+            filter: {}
         }
     },
     created () {
@@ -176,10 +178,11 @@ export default {
             }, 100)
         },
         queryData (queryset) {
+            this.query = Object.assign(this.query, this.filter)
             this.queryset = queryset
         },
         queryParam (query) {
-            this.query = query
+            this.filter = query
         },
         submit () {
             this.$refs.pulling.submit()
