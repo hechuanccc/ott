@@ -54,7 +54,7 @@
         </tr>
         </tbody>
         <tbody v-else>
-        <tr><td colspan="5">查无代理，请更换条件再查询</td></tr>
+        <tr><td colspan="5">查无记录，请更换条件再查询</td></tr>
         </tbody>
       </table>
     </div>
