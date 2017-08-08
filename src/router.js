@@ -176,6 +176,7 @@ export default new Router({
             auth: true,
             disable_tabs: true,
             title: Vue.t('nav.commission'),
+            permission: 'calculate_commission',
             agentPermission: 'true',
             group: 'bill'
         }
