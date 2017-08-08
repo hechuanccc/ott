@@ -71,8 +71,8 @@
                     <td>{{d.deposit_member_count}}</td>
                     <td><router-link :to="'/bill/search?transaction_type=remit,online_pay&created_at_0=' + dateSet[d.report_age][0] + '&created_at_1=' + dateSet[d.report_age][1] + '&report_flag=True'">{{d.deposit_amount | currency('￥')}}</router-link></td>
                     <td><router-link :to="'/bill/search?transaction_type=withdraw&created_at_0=' + dateSet[d.report_age][0] + '&created_at_1=' + dateSet[d.report_age][1] + '&report_flag=True'">{{d.withdraw_amount | currency('￥')}}</router-link></td>
-                    <td><router-link :to="'/report/game?date_0=' + dateSet[d.report_age][0] + '&date_1=' + dateSet[d.report_age][1] + '&dateRange=' + d.report_age">{{d.valid_bet | currency('￥')}}</router-link></td>
-                    <td><router-link :to="'/report/game?date_0=' + dateSet[d.report_age][0] + '&date_1=' + dateSet[d.report_age][1] + '&dateRange=' + d.report_age">{{d.profit | currency('￥')}}</router-link></td>
+                    <td><router-link :to="'/report/game?created_at_0=' + dateSet[d.report_age][0] + '&created_at_1=' + dateSet[d.report_age][1] + '&dateRange=' + d.report_age">{{d.valid_bet | currency('￥')}}</router-link></td>
+                    <td><router-link :to="'/report/game?created_at_0=' + dateSet[d.report_age][0] + '&created_at_1=' + dateSet[d.report_age][1] + '&dateRange=' + d.report_age">{{d.profit | currency('￥')}}</router-link></td>
                 </tr>
 
             </tbody>
@@ -183,7 +183,7 @@ export default {
             let start = Vue.moment().subtract(7, 'days').format('YYYY-MM-DD')
             let end = Vue.moment().subtract(1, 'days').format('YYYY-MM-DD')
 
-            this.$http.get(api.platform_report + `?mode=daily&date_0=${start}&date_1=${end}`).then(response => {
+            this.$http.get(api.platform_report + `?mode=daily&created_at_0=${start}&created_at_1=${end}`).then(response => {
                 this.daily = response.data
             }).then(() => {
                 this.generateChart('profit-chart', '损益', this.daily.map(obj => {

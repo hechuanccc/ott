@@ -69,7 +69,6 @@ export default {
     },
     computed: {
         filteredData: function () {
-            console.log(this.data.length)
             var sortKey = this.sortKey
             var filterKey = this.filterKey && this.filterKey.toLowerCase()
             var order = this.sortOrders[sortKey] || 1
