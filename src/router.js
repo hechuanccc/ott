@@ -51,7 +51,8 @@ export default new Router({
         },
         meta: {
             auth: true,
-            disable_tabs: true
+            disable_tabs: true,
+            title: Vue.t('nav.overview')
         }
     },
     {
@@ -879,7 +880,8 @@ export default new Router({
             auth: true,
             title: Vue.t('promotion.detail')
         }
-    }, {
+    },
+    {
         path: '/promotion/:promotionId/edit',
         name: 'promotion_edit',
         component: function (resolve) {
@@ -890,5 +892,19 @@ export default new Router({
             auth: true,
             title: Vue.t('promotion.update')
         }
-    }]
+    },
+    {
+        path: '/change_password',
+        name: 'change_password',
+        component: function (resolve) {
+            require(['./views/setting/change_password.vue'], resolve)
+        },
+        meta: {
+            group: 'setting',
+            auth: true,
+            agentPermission: 'true',
+            title: '修改密码'
+        }
+    }
+    ]
 })
