@@ -73,6 +73,7 @@
                         window.document.cookie = 'refresh_token=' + data.refresh_token + ';path=/;expires=' + d.toGMTString()
                     }
                     this.$router.push('/')
+
                     this.$root.userType = data.type
                 }, (response) => {
                     this.errorMsg = ''

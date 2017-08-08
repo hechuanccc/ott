@@ -91,7 +91,7 @@
                   <span class="pull-right">
                       <span class="t-red" v-if="t.transaction_type__code === 'withdraw' || parseFloat(t.amount__sum) < 0"> {{t.amount__sum}}</span>
                       <span class="t-green" v-else> + {{t.amount__sum}}</span>
-                      <router-link class="link-width" :to="'/bill/search?member=' + member.username + '&status=1&transaction_type[]=' + t.transaction_type__code" >{{t.id__count}} 次 </router-link>
+                      <router-link class="link-width" :to="'/bill/search?member=' + member.username + '&status=1&transaction_type=' + t.transaction_type__code" >{{t.id__count}} 次 </router-link>
                   </span>
                 </div>
                 <div v-if="!member.transaction_info.confirmed || member.transaction_info.confirmed.length === 0" class="text-muted">{{$t('member.no_confirmed_transactions')}}</div>
@@ -111,7 +111,7 @@
                   <span class="text-muted">{{t.transaction_type__display_name}}</span>
                   <span class="pull-right">
                       <span class="t-grey">{{t.amount__sum | currency('￥')}}</span>
-                      <router-link class="link-width" :to="'/bill/search?member=' + member.username + '&status=3&transaction_type[]=' + t.transaction_type__code" >{{t.id__count}} 次 </router-link>
+                      <router-link class="link-width" :to="'/bill/search?member=' + member.username + '&status=3&transaction_type=' + t.transaction_type__code" >{{t.id__count}} 次 </router-link>
                   </span>
                 </div>
                 <div v-if="!member.transaction_info.ongoing || member.transaction_info.ongoing.length === 0" class="text-muted">{{$t('member.no_ongoing_transactions')}}</div>

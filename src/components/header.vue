@@ -240,7 +240,7 @@
                             })
                         }
                     } else {
-                        this.$router.go('/login?next=' + this.$route.path)
+                        this.$router.push('/login?next=' + this.$route.path)
                     }
                 } else if (this.iNotify) {
                     this.iNotify.faviconClear()
