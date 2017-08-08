@@ -16,6 +16,7 @@ if (navLang === 'zh-CN' || navLang === 'zh-cn') {
 }
 
 Object.keys(locales).forEach(lang => {
+    console.log(111)
     Vue.locale(lang, locales[lang])
 })
 
@@ -52,7 +53,9 @@ export default new Router({
         meta: {
             auth: true,
             disable_tabs: true,
-            title: Vue.t('nav.overview')
+            agentPermission: 'true',
+            title: Vue.t('nav.overview'),
+            group: 'overview'
         }
     },
     {
@@ -62,6 +65,7 @@ export default new Router({
             require(['./views/bill/remit.vue'], resolve)
         },
         meta: {
+            group: 'bill',
             auth: true,
             disable_tabs: true,
             title: Vue.t('bill.remit_audit'),
@@ -173,6 +177,7 @@ export default new Router({
             disable_tabs: true,
             title: Vue.t('nav.commission'),
             permission: 'calculate_commission',
+            agentPermission: 'true',
             group: 'bill'
         }
     },
@@ -186,6 +191,7 @@ export default new Router({
             auth: true,
             disable_tabs: true,
             title: Vue.t('nav.game_report'),
+            agentPermission: 'true',
             group: 'report'
         }
     },
@@ -238,6 +244,7 @@ export default new Router({
             auth: true,
             disable_tabs: true,
             title: Vue.t('nav.transfer_record'),
+            agentPermission: 'true',
             group: 'report'
         }
     },
@@ -264,6 +271,7 @@ export default new Router({
             auth: true,
             disable_tabs: true,
             title: Vue.t('nav.member'),
+            agentPermission: 'true',
             group: 'member'
         }
     },

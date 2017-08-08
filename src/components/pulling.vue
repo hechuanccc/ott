@@ -162,6 +162,7 @@ export default {
                 this.busy = false
                 this.count = response.data.count
                 this.getPage()
+                this.myQueryset = []
                 // this.queryset = this.queryset.concat(response.data.results)
                 this.myQueryset = this.myQueryset.concat(response.data.results)
                 this.$emit('query-data', this.myQueryset)
