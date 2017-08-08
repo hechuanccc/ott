@@ -124,7 +124,7 @@ export default new Router({
     },
     {
         path: '/bill/returnrate',
-        name: 'bill-returnrate',
+        name: 'returnrate',
         component: function (resolve) {
             require(['./views/bill/returnrate.vue'], resolve)
         },
@@ -137,7 +137,7 @@ export default new Router({
     },
     {
         path: '/bill/returnrate/:returnId',
-        name: 'bill-returnrate',
+        name: 'returnrate_detail',
         component: function (resolve) {
             require(['./views/bill/returnrate_detail.vue'], resolve)
         },
@@ -217,7 +217,7 @@ export default new Router({
     },
     {
         path: '/report/betrecord/:betrecordId',
-        name: 'report_betrecord',
+        name: 'betrecord_detail',
         component: function (resolve) {
             require(['./views/report/betrecord_detail.vue'], resolve)
         },
@@ -295,7 +295,7 @@ export default new Router({
     },
     {
         path: '/member/:memberId/edit',
-        name: 'member-detail',
+        name: 'member-edit',
         component: function (resolve) {
             require(['./views/member/form.vue'], resolve)
         },
@@ -360,7 +360,7 @@ export default new Router({
     },
     {
         path: '/agent_application/:agentId',
-        name: 'agent',
+        name: 'ageapplication_detail',
         component: function (resolve) {
             require(['./views/agent/application_detail.vue'], resolve)
         },
@@ -394,19 +394,6 @@ export default new Router({
             auth: true,
             disable_tabs: true,
             title: Vue.t('nav.edit_agent'),
-            group: 'agent'
-        }
-    },
-    {
-        path: '/agent/applications',
-        name: 'agent-applications',
-        component: function (resolve) {
-            require(['./views/agent/applications.vue'], resolve)
-        },
-        meta: {
-            auth: true,
-            disable_tabs: true,
-            title: Vue.t('nav.agent_application'),
             group: 'agent'
         }
     },

@@ -60,6 +60,10 @@ export default {
     created () {
         this.getPermissions()
         // setup an event for login.vue to call when login successfully
+
+        this.$emit('initAuthentication', function (cb) {
+            this.getPermissions(cb)
+        })
     },
     methods: {
         /**
