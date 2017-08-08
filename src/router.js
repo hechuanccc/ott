@@ -16,7 +16,6 @@ if (navLang === 'zh-CN' || navLang === 'zh-cn') {
 }
 
 Object.keys(locales).forEach(lang => {
-    console.log(111)
     Vue.locale(lang, locales[lang])
 })
 
