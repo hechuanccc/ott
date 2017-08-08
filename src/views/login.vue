@@ -75,8 +75,8 @@
                     // this.$root.getPermissions((next) => {
                        // this.$router.push(next)
                    // })
-                    this.$on('initAuthentication', (next) =>  {
-                         this.$router.push(next)
+                    this.$on('initAuthentication', (next) => {
+                        this.$router.push(next)
                     })
                     this.$root.userType = data.type
                 }, (response) => {
