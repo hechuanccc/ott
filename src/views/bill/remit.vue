@@ -82,6 +82,8 @@
                       <th>{{$t('bill.depositor')}}</th>
                       <th>{{$t('bill.deposited_at')}}</th>
                       <th>{{$t('bank.name')}} - {{$t('bill.remit_payee')}}</th>
+                      <th>{{$t('common.balance_before')}}</th>
+                      <th>{{$t('common.balance_after')}}</th>
                       <th>{{$t('common.amount')}}</th>
                       <th>{{$t('common.operator')}}</th>
                       <th>{{$t('common.status_updated_at')}}</th>
@@ -90,7 +92,7 @@
               </thead>
               <tbody v-if="queryset.length >0">
                   <tr v-if="total_amount" class="table-amount">
-                      <td colspan="6">总计</td>
+                      <td colspan="8">总计</td>
                       <td colspan="4">{{total_amount | currency('￥')}}</td>
                   </tr>
                   <tr v-for="t in queryset" >
@@ -108,6 +110,14 @@
                       <td>
                         <router-link :to="'/remit_payee/' + t.remit_info.remit_payee.id" v-if="t.remit_info.remit_payee" >{{t.remit_info.remit_payee.bank.name}} - {{t.remit_info.remit_payee.payee_name}}</router-link>
                           <span v-else> - </span>
+                      </td>
+                      <td>
+                        <span v-if="t.balance_before">{{t.balance_before | currency('￥')}}</span>
+                        <span v-else>-</span>
+                      </td>
+                      <td>
+                        <span v-if="t.balance_after">{{t.balance_after | currency('￥')}}</span>
+                        <span v-else>-</span>
                       </td>
                       <td>{{t.amount | currency('￥')}}</td>
 

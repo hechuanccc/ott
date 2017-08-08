@@ -67,6 +67,8 @@
                     <th>{{$t('bill.created_at')}}</th>
                     <th>{{$t('bill.transaction_type')}}</th>
                     <th>{{$t('common.status')}}</th>
+                    <th>{{$t('common.balance_before')}}</th>
+                    <th>{{$t('common.balance_after')}}</th>
                     <th>{{$t('common.amount')}}</th>
                 </tr>
             </thead>
@@ -85,6 +87,14 @@
                     <td>{{t.transaction_type.display_name}}</td>
                     <td>
                         <transaction-status :transaction="t"></transaction-status>
+                    </td>
+                    <td>
+                      <span v-if="t.balance_before">{{t.balance_before | currency('￥')}}</span>
+                      <span v-else>-</span>
+                    </td>
+                    <td>
+                      <span v-if="t.balance_after">{{t.balance_after | currency('￥')}}</span>
+                      <span v-else>-</span>
                     </td>
                     <td>{{t.amount | currency('￥')}} <label v-if="t.withdraw_fee"> - 手续费：{{t.withdraw_fee}}</label></td>
                 </tr>
