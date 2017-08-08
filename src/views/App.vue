@@ -60,10 +60,6 @@ export default {
     created () {
         this.getPermissions()
         // setup an event for login.vue to call when login successfully
-
-        this.$emit('initAuthentication', function (cb) {
-            this.getPermissions(cb)
-        })
     },
     methods: {
         /**
@@ -165,20 +161,9 @@ export default {
                     // permissions must be loaded before we can handle other data
                     this.setUpAuth()
                     this.setUpRouterHooks()
-                    let url = this.$route.query.next
-                    url = url ? decodeURIComponent(url.split('?')[0]) : '/'
-                    let next = this.$root.permissions.includes('list_report_betrecord') ? url : '/bill/returnrate'
-                    if (cb) {
-                        cb(next)
-                    }
                 })
             } else {
                 this.setUpAuth()
-                let next = this.$route.query.next
-                next = next ? decodeURIComponent(next.split('?')[0]) : '/'
-                if (cb) {
-                    cb(next)
-                }
             }
         }
     },

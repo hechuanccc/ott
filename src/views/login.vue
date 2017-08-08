@@ -72,12 +72,7 @@
                     if (data.refresh_token) {
                         window.document.cookie = 'refresh_token=' + data.refresh_token + ';path=/;expires=' + d.toGMTString()
                     }
-                    // this.$root.getPermissions((next) => {
-                       // this.$router.push(next)
-                   // })
-                    this.$on('initAuthentication', (next) => {
-                        this.$router.push(next)
-                    })
+                    this.$router.push('/')
                     this.$root.userType = data.type
                 }, (response) => {
                     this.errorMsg = ''
