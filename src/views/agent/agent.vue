@@ -111,7 +111,7 @@
             </td>
             <td>
               <span v-if="agent.domain">
-                <label class="m-r" v-for="deamin in agent.domain">{{deamin}}</label>
+                <label class="m-r deamin-label" v-for="deamin in agent.domain">{{deamin}}</label>
               </span>
               <span v-else>-</span>
             </td>
@@ -218,5 +218,8 @@ export default {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+    td .deamin-label{
+        display: inline;
     }
 </style>

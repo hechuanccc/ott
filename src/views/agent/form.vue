@@ -199,7 +199,7 @@
                 minChars: 1,
                 query: '',
                 formError: '',
-                birthdayFormat: ['MMM/dd/yyyy'],
+                birthdayFormat: '',
                 agent: {
                     id: '',
                     level: '',
@@ -287,7 +287,9 @@
                 }, 100)
             },
             'agent.birthday' (newObj, old) {
-                this.agent.birthday = Vue.moment(this.agent.birthday).format(format)
+                if (newObj) {
+                    this.agent.birthday = Vue.moment(this.agent.birthday).format(format)
+                }
             }
         },
         methods: {
