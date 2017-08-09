@@ -403,7 +403,6 @@
                 query: '',
                 formError: '',
                 levels: [],
-                birthdayFormat: ['MMM/dd/yyyy'],
                 agent: {
                     id: '',
                     level: '4',
@@ -481,7 +480,9 @@
                 })
             },
             onSubmit (e) {
-                this.agent.birthday = Vue.moment(this.agent.birthday).format(format)
+                if (this.agent.birthday) {
+                    this.agent.birthday = Vue.moment(this.agent.birthday).format(format)
+                }
                 if (!this.agent.parent_agent && parseInt(this.agent.level) !== 1) {
                     this.formError = '请选择正确的上线'
                     return
@@ -543,6 +544,9 @@
                         data.bank = {}
                     }
                     this.agent = data
+                    if (this.agent.birthday === null) {
+                        this.agent.birthday = ''
+                    }
                     // for nested objects parent_agent, level... we get json object from api, need to
                     // transfer to plain string
                     if (data.parent_agent) {
