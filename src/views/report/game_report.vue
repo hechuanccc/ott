@@ -89,7 +89,7 @@
                     <td>{{overall.betrecord_count}}</td>
                     <td>{{overall.bet_amount | currency('￥')}}</td>
                     <td>{{overall.valid_bet_amount | currency('￥')}}</td>
-                    <td>{{overall.profit | currency '￥'}}</td>
+                    <td>{{overall.profit | currency('￥')}}</td>
                     <td>{{overall.deposit_amount | currency('￥')}}</td>
                 </tr>
             </tbody>
@@ -98,15 +98,16 @@
             </tbody>
         </table>
     </div>
-
-    <h6>下线详细资料</h6>
-    <sort
-      :data="details"
-      :columns="columns"
-      :searchAgentValid="searchAgentValid"
-      :agent_level="agentLevel"
-      :member_link="memberLink">
-    </sort>
+    <div v-if="details.length">
+      <h6>下线详细资料</h6>
+      <sort
+        :data="details"
+        :columns="columns"
+        :searchAgentValid="searchAgentValid"
+        :agent_level="agentLevel"
+        :member_link="memberLink">
+      </sort>
+    </div>
   </div>
 </template>
 

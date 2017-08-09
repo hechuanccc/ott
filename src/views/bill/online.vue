@@ -75,6 +75,8 @@
                       <th>{{$t('bill.order_id')}}</th>
                       <th>{{$t('common.member')}}</th>
                       <th>{{$t('member.level')}}</th>
+                      <th>{{$t('common.balance_before')}}</th>
+                      <th>{{$t('common.balance_after')}}</th>
                       <th>{{$t('common.amount')}}</th>
                       <th>{{$t('common.applied_at')}}</th>
                       <th>{{$t('common.status_updated_at')}}</th>
@@ -85,7 +87,7 @@
               </thead>
               <tbody>
                   <tr v-if="total_amount" class="table-amount">
-                      <td class="" colspan="3">总计</td>
+                      <td class="" colspan="5">总计</td>
                       <td colspan="6">{{total_amount | currency('￥')}}</td>
                   </tr>
                   <tr v-for="t in queryset">
@@ -97,6 +99,14 @@
                       </td>
                       <td>
                           <router-link :to="'/level/' + t.member.level.id">{{t.member.level.name}}</router-link>
+                      </td>
+                      <td>
+                        <span v-if="t.balance_before">{{t.balance_before | currency('￥')}}</span>
+                        <span v-else>-</span>
+                      </td>
+                      <td>
+                        <span v-if="t.balance_after">{{t.balance_after | currency('￥')}}</span>
+                        <span v-else>-</span>
                       </td>
                       <td>
                           {{t.amount | currency('￥')}}

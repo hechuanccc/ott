@@ -73,13 +73,6 @@
                         window.document.cookie = 'refresh_token=' + data.refresh_token + ';path=/;expires=' + d.toGMTString()
                     }
                     this.$router.push('/')
-                    // this.$root.getPermissions((next) => {
-                       // this.$router.push(next)
-                   // })
-                    // this.$on('initAuthentication', (next) => {
-                    //     console.log('next is ' + next)
-                    //     this.$router.push(next)
-                    // })
                     this.$root.userType = data.type
                 }, (response) => {
                     this.errorMsg = ''

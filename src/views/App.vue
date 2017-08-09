@@ -74,7 +74,7 @@ export default {
         agentPermission () {
             this.$router.beforeEach((to, from, next) => {
                 this.dropdown = false
-                if (!to.agentPermission) {
+                if (!to.meta.agentPermission) {
                     this.$router.push('/')
                 } else {
                     next()
@@ -154,7 +154,7 @@ export default {
                 Vue.http.headers.common['Authorization'] = 'Bearer ' + data.access_token
             })
         },
-        getPermissions (cb) {
+        getPermissions () {
             if (!this.$cookie.get('access_token')) {
                 return
             }

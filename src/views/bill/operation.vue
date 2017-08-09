@@ -22,7 +22,7 @@
                   <label class="col-sm-2 form-control-label">是否记入审查记录</label>
                   <div class="col-xs-5 form-control-label">
                     <label class="md-check m-r">
-                      <input type="radio" value="1" name="compensation" v-model="compensation" checked="checked"/>
+                      <input type="radio" value="1" name="compensation"  v-model="compensation"/>
                       <i class="blue"></i>
                       是
                     </label>
@@ -140,7 +140,7 @@
                     password: '',
                     is_compensation: false
                 },
-                compensation: true
+                compensation: '1'
             }
         },
         mounted: function () {
