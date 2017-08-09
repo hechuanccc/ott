@@ -94,7 +94,7 @@ export default {
             query: {
             },
             banner: {
-                platform: '',
+                platform: 2,
                 image: []
             },
             loading: false,

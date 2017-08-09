@@ -72,7 +72,7 @@
                 <div class="row m-b p-b b-b">
                     <div class="col-xs-5">
                         <span class="text-muted">{{$t('setting.sum_fund')}}</span>
-                        <div><span v-if="remit_payee.sum_fund">{{remit_payee.sum_fund | currency '￥' }}</span><span v-else>￥0</span></div>
+                        <div><span v-if="remit_payee.sum_fund">{{remit_payee.sum_fund | currency('￥') }}</span><span v-else>￥0</span></div>
                     </div>
                     <div class="col-xs-5">
                     </div>

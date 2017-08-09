@@ -781,7 +781,8 @@ export default new Router({
         },
         meta: {
             group: 'manage',
-            auth: true
+            auth: true,
+            title: Vue.t('manage.title_banner')
         }
     }, {
         path: '/announcement',
@@ -790,7 +791,8 @@ export default new Router({
         },
         meta: {
             group: 'manage',
-            auth: true
+            auth: true,
+            title: Vue.t('manage.title_announcement')
         }
     }, {
         path: '/website',
@@ -799,7 +801,8 @@ export default new Router({
         },
         meta: {
             group: 'manage',
-            auth: true
+            auth: true,
+            title: Vue.t('manage.title_website')
         }
     }, {
         path: '/messages',

@@ -60,6 +60,7 @@
                                 <div class="inline-form-control">
                                     <input  class="form-control" v-model="payee.domain_url"/>
                                 </div>
+                                <p class="text-danger note">提醒:修改域名时请记得在网址结尾加上反斜线, '/'</p>
                             </div>
 
                             <div class="form-group">
@@ -169,11 +170,15 @@
             getPaymentTypes () {
                 this.$http.get(api.paymentgateway).then((response) => {
                     this.paymenttypes = response.data
+                    console.log('paymenttypes')
+                    console.log(this.paymenttypes)
                 })
             },
             getPayee (id) {
                 this.$http.get(api.onlinepayee + id + '/').then((response) => {
-                    this.payee = Object.assign(this.payee, response.data)
+                    setTimeout(() => {
+                        this.payee = Object.assign(this.payee, response.data)
+                    }, 300)
                 })
             },
             levelSelect (val) {
@@ -188,4 +193,8 @@
 </script>
 
 <style>
+    .note {
+        padding-left: 20px;
+        display: inline-block;
+    }
 </style>
