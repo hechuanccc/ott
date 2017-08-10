@@ -19,7 +19,7 @@ export default {
         req: {
             default: false
         },
-        level: [String, Number, Array],
+        level: '',
         mode: {
             default: 'select'
         },

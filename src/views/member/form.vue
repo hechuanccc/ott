@@ -117,13 +117,13 @@
                 <div class="form-group">
                   <label for="agent" class="label-width">{{$t('member.level')}} </label>
                   <div class="inline-form-control">
-                    <level :level="member.level.id" @level-select="levelSelect"></level>
+                    <level :level="member.level" @level-select="levelSelect"></level>
                   </div>
                 </div>
                 <div class="form-group b-b p-b">
                   <label for="agent" class="label-width">{{$t('member.return_setting')}}</label>
                   <div class="inline-form-control">
-                    <returnsetting :returnsetting="member.return_settings.id" @myReturn="returnData"></returnsetting>
+                    <returnsetting :returnsetting="member.return_settings" @myReturn="returnData"></returnsetting>
                   </div>
                 </div>
                 <div v-if="$root.permissions.includes('list_update_member_bank')">
@@ -193,14 +193,8 @@
                         bank: '',
                         province: ''
                     },
-                    return_settings: {
-                        id: '',
-                        name: ''
-                    },
-                    level: {
-                        id: '',
-                        name: ''
-                    },
+                    return_settings: '',
+                    level: '',
                     password: '123456',
                     withdraw_password: '123456'
                 },
@@ -246,13 +240,13 @@
         },
         methods: {
             returnData (data) {
-                this.member.return_settings.id = data
+                this.member.return_settings = data
             },
             bankSelect (bank) {
                 this.member.bank.bank = bank
             },
             levelSelect (val) {
-                this.member.level.id = val
+                this.member.level = val
             },
             checkAgent () {
                 if (this.query !== '') {
@@ -272,10 +266,10 @@
                 }
             },
             onSubmit (e) {
+                this.initMember = Object.assign(this.initMember, this.member)
                 if (!this.bankFilled) {
-                    delete this.member.bank
+                    delete this.initMember.bank
                 }
-
                 // transfer json to string for agent
                 if (!this.member.agent) {
                     this.errorMsg = '选择一个代理'
@@ -283,7 +277,7 @@
                 }
 
                 if (this.member.id) {
-                    this.$http.put(api.member + this.member.id + '/', this.member).then(response => {
+                    this.$http.put(api.member + this.member.id + '/', this.initMember).then(response => {
                         if (response.status === 200) {
                             this.$router.push('/member/' + response.data.id)
                         }
@@ -294,7 +288,7 @@
                         }
                     })
                 } else {
-                    this.$http.post(api.member, this.member).then(response => {
+                    this.$http.post(api.member, this.initMember).then(response => {
                         if (response.status === 201) {
                             this.$router.push('/member/' + response.data.id)
                         }
@@ -311,6 +305,12 @@
                     let data = response.data
                     if (!data.bank) {
                         data.bank = {bank: '', province: ''}
+                    }
+                    if (data.level) {
+                        data.level = data.level.id
+                    }
+                    if (data.return_settings) {
+                        data.return_settings = data.return_settings.id
                     }
                     this.member = Object.assign(this.member, data)
                 })
