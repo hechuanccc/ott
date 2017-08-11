@@ -187,15 +187,11 @@
             },
             '$route': 'nextTickFetch'
         },
-        mounted: function () {
-            this.$nextTick(function () {
-                let status = this.$route.query.status
-                if (status) {
-                    this.status = status.split(',')
-                }
-            })
-        },
         created () {
+            let status = this.$route.query.status
+            if (status) {
+                this.status = status.split(',')
+            }
             this.$nextTick(() => {
                 this.$refs.pulling.rebase()
                 this.$refs.pulling.getExportQuery()

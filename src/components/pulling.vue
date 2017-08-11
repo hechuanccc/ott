@@ -198,7 +198,7 @@ export default {
         getExportQuery () {
             let query = this.query
             for (let x in query) {
-                if (query[x] === '' || query[x] === undefined) {
+                if (query[x] === '' || query[x] === undefined || x === 'report_flag') {
                     delete query[x]
                 }
             }

@@ -190,15 +190,11 @@
                 vm.$refs.pulling.getExportQuery()
             })
         },
-        mounted: function () {
-            this.$nextTick(function () {
-                let results = this.$route.query.status
-                if (results) {
-                    this.status = results.split(',')
-                }
-            })
-        },
         created () {
+            let results = this.$route.query.status
+            if (results) {
+                this.status = results.split(',')
+            }
             this.$nextTick(() => {
                 this.$refs.pulling.rebase()
             })

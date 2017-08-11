@@ -205,15 +205,11 @@
                 total_bet_amount: ''
             }
         },
-        mounted: function () {
-            this.$nextTick(function () {
-                let results = this.$route.query.result
-                if (results) {
-                    this.result = results.split(',')
-                }
-            })
-        },
         created () {
+            let results = this.$route.query.result
+            if (results) {
+                this.result = results.split(',')
+            }
             this.$nextTick(() => {
                 this.$refs.pulling.rebase()
                 this.getGameFilter()

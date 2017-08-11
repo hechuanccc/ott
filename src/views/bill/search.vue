@@ -165,6 +165,11 @@
             }
         },
         created () {
+            this.getTransactionType()
+            let transactionType = this.$route.query.transaction_type
+            if (transactionType) {
+                this.transaction_type = transactionType.split(',')
+            }
             this.$nextTick(() => {
                 this.$refs.pulling.rebase()
                 this.$refs.pulling.getExportQuery()
@@ -178,15 +183,6 @@
                 this.href = `${api.report_deposit}?token=${VueCookie.get('access_token')}&${this.export_query}`
                 return this.queryset.length
             }
-        },
-        mounted: function () {
-            this.$nextTick(function () {
-                this.getTransactionType()
-                let transactionType = this.$route.query.transaction_type
-                if (transactionType) {
-                    this.transaction_type = transactionType.split(',')
-                }
-            })
         },
         methods: {
             changeFromLevel (val) {
