@@ -183,7 +183,7 @@ export default {
             let start = Vue.moment().subtract(7, 'days').format('YYYY-MM-DD')
             let end = Vue.moment().subtract(1, 'days').format('YYYY-MM-DD')
 
-            this.$http.get(api.platform_report + `?mode=daily&created_at_0=${start}&created_at_1=${end}`).then(response => {
+            this.$http.get(api.platform_report + `?mode=daily&date_0=${start}&date_1=${end}`).then(response => {
                 this.daily = response.data
             }).then(() => {
                 this.generateChart('profit-chart', '损益', this.daily.map(obj => {

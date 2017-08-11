@@ -150,17 +150,13 @@ export default {
         }
     },
     created () {
+        let actionResult = this.$route.query.action_result
+        if (actionResult) {
+            this.action_result = actionResult.split(',')
+        }
         this.$nextTick(() => {
             this.$refs.pulling.rebase()
             this.getProvider()
-        })
-    },
-    mounted: function () {
-        this.$nextTick(function () {
-            let actionResult = this.$route.query.action_result
-            if (actionResult) {
-                this.action_result = actionResult.split(',')
-            }
         })
     },
     watch: {
