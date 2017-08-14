@@ -21,7 +21,7 @@
                             <div class="form-group">
                                 <label  class="label-width">{{$t('setting.display_name')}}</label>
                                 <div class="inline-form-control">
-                                    <input type="text" class="form-control" placeholder="显示名称" v-model="payee.display_name" >
+                                    <input type="text" class="form-control" placeholder="显示名称" v-model="payee.display_name" required>
                                 </div>
                             </div>
 
@@ -99,7 +99,6 @@
 <script>
     import api from '../../api'
     import { handleError } from '../../utils/handleError'
-    import $ from '../../utils/util'
 
     export default {
         data () {
@@ -113,10 +112,12 @@
                     expired_in: '',
                     memo: '',
                     payment_gateway: '',
-                    domain_url: ''
+                    domain_url: '',
+                    display_name: ''
                 },
                 field_locales: {
-                    'display_name': '显示名称有误：'
+                    'display_name': '显示名称有误：',
+                    'level_field': '会员等级有误：'
                 },
                 responseError: '',
                 paymenttypes: []
@@ -133,22 +134,15 @@
         },
         methods: {
             onSubmit (e) {
-                let formData = new window.FormData()
-                formData.append('name', this.payee.name)
-                formData.append('display_name', this.payee.display_name)
-                formData.append('payment_gateway', this.payee.payment_gateway)
-                formData.append('merchant_num', this.payee.merchant_num)
-                formData.append('certificate', this.payee.certificate)
-                formData.append('board_url', this.payee.board_url)
-                formData.append('level', this.payee.level)
-                formData.append('expired_in', this.payee.expired_in)
-                formData.append('payment_gateway', this.payee.payment_gateway)
-                formData.append('domain_url', this.payee.domain_url)
-
                 if (this.payee.id) {
-                    this.$http.put(api.onlinepayee + this.payee.id + '/', formData).then(response => {
+                    this.$http.put(api.onlinepayee + this.payee.id + '/', this.payee).then(response => {
                         if (response.status === 200) {
                             this.$router.push('/online_payee/' + response.data.id)
+                        }
+                    }, response => {
+                        this.responseError = ''
+                        for (let field in this.field_locales) {
+                            this.responseError += handleError(response, field, this.field_locales)
                         }
                     })
                 } else {
@@ -161,17 +155,12 @@
                         for (let field in this.field_locales) {
                             this.responseError += handleError(response, field, this.field_locales)
                         }
-                        if (!this.responseError) {
-                            this.responseError = $.formatError(response.data.error)
-                        }
                     })
                 }
             },
             getPaymentTypes () {
                 this.$http.get(api.paymentgateway).then((response) => {
                     this.paymenttypes = response.data
-                    console.log('paymenttypes')
-                    console.log(this.paymenttypes)
                 })
             },
             getPayee (id) {

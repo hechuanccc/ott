@@ -199,7 +199,7 @@
                 minChars: 1,
                 query: '',
                 formError: '',
-                birthdayFormat: ['MMM/dd/yyyy'],
+                birthdayFormat: '',
                 agent: {
                     id: '',
                     level: '',
@@ -287,7 +287,9 @@
                 }, 100)
             },
             'agent.birthday' (newObj, old) {
-                this.agent.birthday = Vue.moment(this.agent.birthday).format(format)
+                if (newObj) {
+                    this.agent.birthday = Vue.moment(this.agent.birthday).format(format)
+                }
             }
         },
         methods: {
@@ -318,11 +320,12 @@
                 } else {
                     this.formError = ''
                 }
+                this.initAgent = Object.assign(this.initAgent, this.member)
                 if (!this.bankFilled) {
                     delete this.agent.bank
                 }
                 if (this.agent.id) {
-                    this.$http.put(api.agent + this.agent.id + '/', this.agent).then(response => {
+                    this.$http.put(api.agent + this.agent.id + '/', this.initAgent).then(response => {
                         if (response.status === 200) {
                             this.statusUpdated = true
                             setTimeout(() => {
@@ -336,7 +339,7 @@
                         }
                     })
                 } else {
-                    this.$http.post(api.agent, this.agent).then(response => {
+                    this.$http.post(api.agent, this.initAgent).then(response => {
                         if (response.status === 201) {
                             this.statusUpdated = true
                             setTimeout(() => {
@@ -371,7 +374,7 @@
                 this.$http.get(api.agent + id + '/?opt_expand=parent_agent').then((response) => {
                     let data = response.data
                     if (!data.bank) {
-                        data.bank = {}
+                        data.bank = {bank: '', province: ''}
                     }
                     this.agent = data
                     if (this.agent.birthday === null) {
