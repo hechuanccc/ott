@@ -31,8 +31,8 @@
                             <div class="form-group">
                                 <label  class="label-width">{{$t('setting.payment_gateway')}}</label>
                                 <div>
-                                    <label class="ui-check ui-check-md m-r"   v-for="detail in payment.detail">
-                                        <input :disabled="!$root.permissions.includes('change_paymenttype')" type="checkbox" name="payees" :checked="detail.activate" :value="detail.payee_id" v-model="payment.payees">
+                                    <label class="ui-check ui-check-md m-r"   v-for="(detail, index) in payment.detail">
+                                        <input :disabled="!$root.permissions.includes('change_paymenttype')" type="checkbox" name="payees"  :value="detail.payee_id" :diu="detail.activate" :checked="detail.activate" @click="changePayee(detail.payee_id, index)">
                                         <i class="dark-white"></i>
                                         {{detail.name}}
                                     </label>
@@ -48,7 +48,7 @@
                     <div>
                         <button :disabled="!$root.permissions.includes('change_paymenttype')" type="submit" class="md-btn w-sm blue">{{$t('common.save')}}</button>
                         <span class="text-success m-l-md" v-show="updated">{{$t('common.saved_successfully')}}</span>
-                     </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -98,6 +98,7 @@
             onSubmit (e) {
                 if (this.payment.id) {
                     this.$http.put(api.paymenttype + this.payment.id + '/', this.payment).then(response => {
+                        console.log(response.data)
                         if (response.status === 200) {
                             this.updated = true
                         }
@@ -106,8 +107,35 @@
             },
             getPaymentType (id) {
                 this.$http.get(api.paymenttype + id + '?opt_expand=1').then((response) => {
+                    console.log('return data')
+                    console.log(response.data)
+                    for (let i = 0; i < response.data.detail.length; i++) {
+                        response.data.detail[i].payee_id = String(response.data.detail[i].payee_id)
+                        if (response.data.detail[i].activate) {
+                            this.payment.payees.push(response.data.detail[i].payee_id)
+                        }
+                    }
                     this.payment = Object.assign(this.payment, response.data)
+                    console.log(this.payment)
                 })
+            },
+            changePayee (id, index) {
+                if (this.payment.detail.length && this.payment.payees.includes(id)) {
+                    this.payment.detail[index].activate = false
+                } else if (this.payment.detail.length) {
+                    this.payment.detail[index].activate = true
+                }
+                if (this.payment.payees.includes(id)) {
+                    for (let i = 0; i < this.payment.payees.length; i++) {
+                        if (id === this.payment.payees[i]) {
+                            this.payment.payees.splice(i, 1)
+                        }
+                    }
+                } else {
+                    this.payment.payees.push(id)
+                }
+                console.log(this.payment)
+                console.log(this.payment.payees)
             }
         },
         components: {
