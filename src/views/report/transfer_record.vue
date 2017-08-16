@@ -30,9 +30,9 @@
             <div class="row m-t">
               <div class="col-xs-8">
                 <label class="m-r">{{$t('common.transferred_at')}}</label>
-                <date-picker width='140' v-model="query.created_at_0"></date-picker>
+                <date-picker width='140' v-model="created_at_0"></date-picker>
                 <span>~</span>
-                <date-picker width='140' v-model="query.created_at_1"></date-picker>
+                <date-picker width='140' v-model="created_at_1"></date-picker>
               </div>
 
             </div>
@@ -103,6 +103,8 @@
     export default {
         data () {
             return {
+                created_at_0: '',
+                created_at_1: '',
                 queryset: [],
                 recordApi: api.transferrecords,
                 providers: '',
@@ -119,7 +121,13 @@
             }
         },
         watch: {
-            '$route': 'nextTickFetch'
+            '$route': 'nextTickFetch',
+            created_at_0 (newObj, old) {
+                this.query.created_at_0 = newObj
+            },
+            created_at_1 (newObj, old) {
+                this.query.created_at_1 = newObj
+            }
         },
         created () {
             this.$nextTick(() => {
@@ -137,6 +145,12 @@
             },
             queryData (queryset) {
                 this.query = Object.assign(this.query, this.filter)
+                if (this.query.created_at_0) {
+                    this.created_at_0 = this.query.created_at_0
+                }
+                if (this.query.created_at_1) {
+                    this.created_at_1 = this.query.created_at_1
+                }
                 this.queryset = queryset
             },
             queryParam (query) {
