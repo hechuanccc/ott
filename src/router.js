@@ -362,7 +362,7 @@ export default new Router({
         meta: {
             auth: true,
             disable_tabs: true,
-            title: Vue.t('nav.agent'),
+            title: Vue.t('nav.agent_add'),
             group: 'agent'
         }
     },
