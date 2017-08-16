@@ -67,7 +67,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((route) => {
-    document.title = route.title + ' - ' + env.NAME
+    document.title = route.meta.title + ' - ' + env.NAME
 })
 
 sync(store, router)

@@ -181,7 +181,7 @@
                     <div v-if="transaction.status === 1" class="t-green">
                         {{$t('bill.saved')}}
                         <router-link :to="'/bill/search?member=' + transaction.member.username " class="m-l">{{$t('bill.view_all_transactions')}}</router-link>
-                        <router-link :to="'/bill/search?transaction_type[]=remit&transaction_type[]=online_pay&member=' + transaction.member.username " class="m-l">{{$t('bill.view_all_discounts')}}</router-link>
+                        <router-link :to="'/bill/search?transaction_type=remit,online_pay&member=' + transaction.member.username " class="m-l">{{$t('bill.view_all_discounts')}}</router-link>
                     </div>
                 </div>
 
@@ -199,7 +199,7 @@
 
                     <div v-if="transaction.status === 1" class="t-green">
                         {{$t('bill.saved')}}
-                        <router-link :to="'/bill/search?transaction_type[]=withdraw&member=' + transaction.member.username " class="m-l">{{$t('bill.view_all_transactions')}}</router-link>
+                        <router-link :to="'/bill/search?transaction_type=withdraw&member=' + transaction.member.username " class="m-l">{{$t('bill.view_all_transactions')}}</router-link>
                     </div>
                     <div v-if="transaction.status === 5 " class="t-red">
                         {{$t('bill.withdraw_declined')}}
@@ -283,7 +283,7 @@
                     url = api.transactiononlinepay
                 } else {
                     url = api.transactionwithdraw
-                    routerLink = '/bill/withdraw?status[]=3'
+                    routerLink = '/bill/withdraw?status=3'
                 }
 
                 if (this.transaction.id) {
