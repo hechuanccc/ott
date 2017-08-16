@@ -29,6 +29,7 @@ export default new Router({
         },
         meta: {
             agentPermission: 'true',
+            title: Vue.t('nav.login'),
             auth: false
         }
     },

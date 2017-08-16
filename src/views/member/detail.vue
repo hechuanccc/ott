@@ -24,6 +24,7 @@
             </div>
             <div class="col-xs-8 text-right">
               <div>
+                <router-link class="md-btn md-flat m-r-sm"  :to="'/report/actionrecord?username=' + member.username">查看操作记录</router-link>
                 <a class="md-btn md-flat m-r-sm" @click="getAccountUpdate(member.id)">刷新娱乐城余额</a>
                 <router-link class="md-btn md-flat m-r-sm"  :to="'/report/betrecord?member=' + member.username + '&created_at_0=' + today + '&created_at_1=' + today">{{$t('action.view_today_bet_recoard')}}</router-link>
                 <template v-if="$root.permissions.includes('update_member_details')">
@@ -252,6 +253,56 @@
             </div>
           </div>
 
+          <div class="row m-b b-b p-b">
+            <div class="col-xs-12">
+              <span class="text-muted">最近操作</span>
+              <table class="table table-striped b-t m-t" v-if="member.action.detail.length">
+                <thead>
+                <tr>
+                  <th>{{$t('actionrecord.id')}}</th>
+                  <th>{{$t('actionrecord.action_username')}}</th>
+                  <th>{{$t('actionrecord.username')}}</th>
+                  <th>{{$t('actionrecord.action_time')}}</th>
+                  <th>{{$t('actionrecord.ipaddr')}}</th>
+                  <th>{{$t('actionrecord.action_type')}}</th>
+                  <th>{{$t('actionrecord.provider')}}</th>
+                  <th>{{$t('actionrecord.game_name')}}</th>
+                  <th>{{$t('actionrecord.action_result')}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="action in member.action.detail" >
+                  <td>{{action.id}}</td>
+                  <td>{{action.action_username || '-'}}</td>
+                  <td><router-link :to="'/report/actionrecord?username=' + action.username">{{action.username}}</router-link></td>
+                  <td>{{action.action_time | moment("YYYY-MM-DD HH:mm:ss")}}</td>
+                  <td>{{action.ipaddr}}</td>
+                  <td>
+                    <span v-if="action.action_type == '0'">登入</span>
+                    <span v-if="action.action_type == '1'">修改密码</span>
+                    <span v-if="action.action_type == '2'">修改取款密码</span>
+                    <span v-if="action.action_type == '3'">登入游戏</span>
+                  </td>
+                  <td>
+                    <span v-if="action.provider">{{action.provider || ''}}</span>
+                    <span v-else>-</span>
+                  </td>
+                  <td>
+                    <span v-if="action.game_name">{{action.game_name}}</span>
+                    <span v-else>-</span>
+                  </td>
+                  <td>
+                    <span v-if="action.action_result" class="label success">成功</span>
+
+                    <span v-else class="label  danger">失败</span>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <div class="text-muted" v-else>暂无记录</div>
+            </div>
+          </div>
+
           <div class="row">
             <div class="col-xs-5">
               <span class="text-muted">备注</span>
@@ -367,7 +418,7 @@
                 })
             },
             getMember (id) {
-                this.$http.get(api.member + id + '/?opt_expand=bank').then((response) => {
+                this.$http.get(api.member + id + '/?opt_expand=bank&action').then((response) => {
                     this.member = response.data
                     this.member_id = {'account_id': response.data.id}
                 }, response => {

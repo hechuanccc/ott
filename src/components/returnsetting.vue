@@ -18,6 +18,9 @@ export default {
         }
     },
     watch: {
+        returnsetting (newObj, old) {
+            this.myReturnsetting = this.returnsetting
+        },
         myReturnsetting (newObj, old) {
             this.$emit('myReturn', newObj)
         }

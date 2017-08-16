@@ -215,7 +215,7 @@
                     title: title,
                     body: '您有信息待处理',
                     onclick: function () {
-                        vm.$router.go(url)
+                        vm.$router.push(url)
                     }
                 })
             },
