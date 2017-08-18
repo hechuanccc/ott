@@ -108,13 +108,17 @@
                                 <div class="col-xs-9" v-else>
                                     <span>免稽核</span>
                                 </div>
-                                <div class="col-xs-3 text-right text-muted">{{$t('common.memo')}}</div>
-                                <div class="col-xs-9 ">{{transaction.memo || '无'}}</div>
 
                                 <div class="col-xs-3 text-right text-muted">{{$t('bill.operator')}}</div>
                                 <div class="col-xs-9 ">{{transaction.updated_by.username || '无'}}</div>
                             </div>
                         </div>
+                    </div>
+                    <div class="row m-t" v-if="transaction.transaction_type.code != 'remit' && transaction.transaction_type.code != 'online_pay' && transaction.transaction_type.code != 'withdraw'">
+                      <div class="col-xs-3 text-right">{{$t('common.memo')}}</div>
+                      <div class="col-xs-8" >
+                        <span class="text-muted">{{transaction.memo || '无备注信息'}}</span>
+                      </div>
                     </div>
                 </div>
                 <div class="col-xs-6">
