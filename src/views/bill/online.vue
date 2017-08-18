@@ -196,6 +196,7 @@
             }
         },
         created () {
+            this.query = this.$route.query
             let status = this.$route.query.status
             if (status) {
                 this.status = status.split(',')

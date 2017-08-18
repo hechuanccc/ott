@@ -101,7 +101,7 @@ export default {
             this.$refs.pulling.submit()
         },
         removeSpace () {
-            this.query.ipaddr_q = this.query.ipaddr_q.replace(/[^\d]+/g, '')
+            this.query.ipaddr_q = this.query.ipaddr_q.replace(/[^\d\.]+/g, '')
         },
         queryData (queryset) {
             this.query = Object.assign(this.query, this.filter)

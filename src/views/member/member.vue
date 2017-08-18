@@ -283,6 +283,7 @@ export default {
         }
     },
     created () {
+        this.query = this.$route.query
         this.$nextTick(() => {
             this.logined = this.$route.query.logined
             this.$refs.pulling.rebase()
