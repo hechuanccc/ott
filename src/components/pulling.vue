@@ -204,14 +204,11 @@ export default {
             }
             let params = []
             let exportQuery = this.export_query
-            console.log(this.export_query)
-            console.log(query)
             for (let x in query) {
                 if (query[x]) {
                     params.push(x + '=' + query[x])
                 }
             }
-            console.log(params)
             exportQuery = params.join('&')
             this.$emit('export-query', exportQuery)
         },
