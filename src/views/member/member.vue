@@ -138,7 +138,7 @@
               <div>{{member.loggedin_ip || '-'}}</div>
             </td>
             <td>
-              <span v-if="member.last_login.platform">{{member.last_login.platform}}</span>
+              <span v-if="member.last_login">{{member.last_login.platform}}</span>
               <span v-else>-</span>
             </td>
 

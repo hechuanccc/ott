@@ -198,17 +198,20 @@ export default {
         getExportQuery () {
             let query = this.query
             for (let x in query) {
-                if (query[x] === '' || query[x] === undefined || x === 'report_flag') {
+                if (query[x] === '' || query[x] === undefined || x === 'report_flag' || !query[x].length) {
                     delete query[x]
                 }
             }
             let params = []
             let exportQuery = this.export_query
+            console.log(this.export_query)
+            console.log(query)
             for (let x in query) {
                 if (query[x]) {
                     params.push(x + '=' + query[x])
                 }
             }
+            console.log(params)
             exportQuery = params.join('&')
             this.$emit('export-query', exportQuery)
         },
