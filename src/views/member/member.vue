@@ -296,7 +296,6 @@ export default {
         },
         created_at_1 (newObj, old) {
             this.query.created_at_1 = newObj
-            console.log(this.query)
         }
     },
     computed: {

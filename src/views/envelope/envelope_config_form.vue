@@ -122,15 +122,6 @@
                 updated: false
             }
         },
-        // route: {
-        //     data (transition) {
-        //         this.getEnvelope()
-        //         let id = transition.to.params.envelopeId
-        //         if (id) {
-        //             this.getEnvelopeGroup(id)
-        //         }
-        //     }
-        // },
         beforeRouteEnter (to, from, next) {
             next(vm => {
                 let id = to.params.envelopeId
@@ -176,29 +167,15 @@
             },
             getEnvelopeGroup (id) {
                 this.$http.get(api.envelope_settings + id + '/?opt_expand=group').then((response) => {
-                    this.envelope = response.data
+                    setTimeout(() => {
+                        this.envelope = response.data
+                    }, 500)
                 })
             },
             getEnvelope () {
                 this.$http.get(api.envelope + '?status=1').then((response) => {
                     this.envelopes = response.data
                 })
-            },
-            delete () {
-                if (window.confirm('确定删除红包设定吗？')) {
-                    this.$http.delete(api.commission + this.envelope.id + '/').then(response => {
-                        this.deleted = 1
-                        setTimeout(() => {
-                            this.$router.push('/commission')
-                        }, 2000)
-                    }, response => {
-                        this.deleted = -1
-                        this.errorMsg = response.data.detail
-                        setTimeout(() => {
-                            this.deleted = 0
-                        }, 5000)
-                    })
-                }
             },
             changeFromLevel (val, index) {
                 this.envelope.groups[index].member_lvl = val

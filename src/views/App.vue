@@ -60,7 +60,6 @@ export default {
     created () {
         this.getPermissions()
         // setup an event for login.vue to call when login successfully
-        console.log('in App')
         // this.$emit('initAuthentication', function (cb) {
         //     console.log('in emit initAuthentication')
         //     this.getPermissions(cb)
@@ -159,8 +158,7 @@ export default {
                 return
             }
             this.getMy()
-            let userType = $.storage.fetch().type
-            if (userType !== 'agent') {
+            if (this.userType !== 'agent') {
                 this.$http.get(api.permissionsUser).then((response) => {
                     this.permissions = response.data
                     // permissions must be loaded before we can handle other data

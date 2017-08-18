@@ -1,5 +1,5 @@
 <template>
-    <select class="form-control w-sm c-select" v-model="myLevel" @change="onChange" v-if="mode==='select'" :required="req" :disabled="!disabled">
+    <select class="form-control w-sm c-select" v-model="myLevel" v-if="mode==='select'" :required="req" :disabled="!disabled">
         <option value="">{{$t('common.please_select')}}</option>
         <option class="form-control" :value="l.id" v-for="l in levels">{{l.name}}</option>
     </select>
@@ -43,6 +43,7 @@ export default {
         myLevel (newObj, old) {
             if (newObj !== undefined) {
                 this.$emit('level-select', newObj)
+                this.$emit('level-choose', this.myLevel, this.index)
             }
         }
     },
@@ -55,13 +56,8 @@ export default {
             let _this = this
             setTimeout(function () {
                 _this.myLevel = _this.level
-            }, 500)
+            }, 100)
         })
-    },
-    methods: {
-        onChange: function () {
-            this.$emit('level-choose', this.myLevel, this.index)
-        }
     }
 }
 </script>
