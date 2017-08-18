@@ -110,10 +110,11 @@
               <span v-else>-</span>
             </td>
             <td>
-              <span v-if="agent.domain">
+              <span v-if="isArray(agent.domain)">
                 <label class="m-r deamin-label" v-for="deamin in agent.domain">{{deamin}}</label>
               </span>
-              <span v-else>-</span>
+              <span  v-else-if="agent.domain">{{agent.domain}}</span>
+              <span  v-else>-</span>
             </td>
             <td>
               <span v-if="agent.level">{{agent.level.name}}</span>
@@ -215,7 +216,11 @@ export default {
         },
         submit () {
             this.$refs.pulling.submit()
+        },
+        isArray (o) {
+            return Object.prototype.toString.call(o) === '[object Array]'
         }
+
     },
     components: {
         DatePicker,

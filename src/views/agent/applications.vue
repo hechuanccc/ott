@@ -75,9 +75,15 @@
         watch: {
             '$root.agent_application' (newObj, old) {
                 this.$refs.pulling.rebase()
-            }
+            },
+            '$route': 'nextTickFetch'
         },
         methods: {
+            nextTickFetch () {
+                this.$nextTick(() => {
+                    this.$refs.pulling.rebase()
+                })
+            },
             queryData (queryset) {
                 this.queryset = queryset
             },

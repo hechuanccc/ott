@@ -173,6 +173,7 @@
             }
         },
         created () {
+            this.query = this.$route.query
             this.getTransactionType()
             let transactionType = this.$route.query.transaction_type
             if (transactionType) {

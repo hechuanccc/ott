@@ -186,10 +186,11 @@
           <div class="row m-b b-b p-b">
             <div class="col-xs-4">
               <span class="text-muted">{{$t('agent.domain')}}</span>
-              <div  v-if="agent.domain" class="domain">
+              <div  v-if="isArray(agent.domain)" class="domain">
                 <label class="m-r" v-for="domain in agent.domain">{{domain}}</label>
               </div>
-              <div class="text-muted" v-else>{{$t('agent.unDomain')}}</div>
+              <div class="text-muted" v-else-if="!agent.domain">{{$t('agent.unDomain')}}</div>
+              <div class="text-muted" v-else>{{agent.domain}}</div>
             </div>
             <div class="col-xs-6">
               <span class="text-muted">{{$t('manage.link')}}</span>
@@ -259,9 +260,13 @@
                 setTimeout(() => {
                     this.passwordChanged = 0
                 }, 8000)
-            }
+            },
+            '$route': 'nextTickFetch'
         },
         methods: {
+            nextTickFetch () {
+                this.getAgent(this.$route.params.agentId)
+            },
             toggleStatus () {
                 this.statusUpdated = false
                 this.$http.put(api.agent + this.agent.id + '/?opt_fields=status', {
@@ -310,6 +315,9 @@
             getAgentPermission (levelId) {
                 let agentPermissionId = 'change_agent_level_' + levelId
                 return this.$root.permissions.includes(agentPermissionId)
+            },
+            isArray (o) {
+                return Object.prototype.toString.call(o) === '[object Array]'
             }
         }
     }
