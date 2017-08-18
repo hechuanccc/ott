@@ -259,10 +259,9 @@
               <table class="table table-striped b-t m-t" v-if="member.action.detail.length">
                 <thead>
                 <tr>
-                  <th>{{$t('actionrecord.id')}}</th>
+                  <th>{{$t('actionrecord.action_time')}}</th>
                   <th>{{$t('actionrecord.action_username')}}</th>
                   <th>{{$t('actionrecord.username')}}</th>
-                  <th>{{$t('actionrecord.action_time')}}</th>
                   <th>{{$t('actionrecord.ipaddr')}}</th>
                   <th>{{$t('actionrecord.action_type')}}</th>
                   <th>{{$t('actionrecord.provider')}}</th>
@@ -272,10 +271,9 @@
                 </thead>
                 <tbody>
                 <tr v-for="action in member.action.detail" >
-                  <td>{{action.id}}</td>
+                  <td>{{action.action_time | moment("YYYY-MM-DD HH:mm:ss")}}</td>
                   <td>{{action.action_username || '-'}}</td>
                   <td><router-link :to="'/report/actionrecord?username=' + action.username">{{action.username}}</router-link></td>
-                  <td>{{action.action_time | moment("YYYY-MM-DD HH:mm:ss")}}</td>
                   <td>{{action.ipaddr}}</td>
                   <td>
                     <span v-if="action.action_type == '0'">登入</span>
@@ -343,7 +341,10 @@
                         ongoing: [],
                         confirmed: []
                     },
-                    last_login: {}
+                    last_login: {},
+                    action: {
+                        detail: []
+                    }
                 },
                 accounts: [],
                 loading: true,
@@ -478,5 +479,11 @@
 }
 .loading {
     text-align: center;
+}
+.table-striped > tbody > tr:nth-child(odd) {
+  background: none;
+}
+.table {
+  background-color: #fafafa
 }
 </style>

@@ -15,9 +15,9 @@
               </div>
               <div class="col-xs-5">
                 <label class="text-sm m-r">{{$t('actionrecord.action_time')}}</label>
-                <date-picker width='140' v-model="query.action_time_0"></date-picker>
+                <date-picker width='140' v-model="action_time_0"></date-picker>
                 <span>~</span>
-                <date-picker width='140' v-model="query.action_time_1"></date-picker>
+                <date-picker width='140' v-model="action_time_1"></date-picker>
               </div>
 
               <div class="col-xs-3">
@@ -131,6 +131,8 @@ export default {
     data () {
         return {
             actionrecordApi: api.action_record,
+            action_time_0: '',
+            action_time_1: '',
             query: {
                 action_username_q: '',
                 username_q: '',
@@ -163,7 +165,13 @@ export default {
         action_result: function (old, newObj) {
             this.query.action_result = old
         },
-        '$route': 'nextTickFetch'
+        '$route': 'nextTickFetch',
+        action_time_0 (newObj, old) {
+            this.query.action_time_0 = newObj
+        },
+        action_time_1 (newObj, old) {
+            this.query.action_time_1 = newObj
+        }
     },
     methods: {
         nextTickFetch () {
@@ -175,6 +183,12 @@ export default {
         },
         queryData (queryset) {
             this.query = Object.assign(this.query, this.filter)
+            if (this.query.action_time_0) {
+                this.action_time_0 = this.query.action_time_0
+            }
+            if (this.query.action_time_1) {
+                this.action_time_1 = this.query.action_time_1
+            }
             this.queryset = queryset
         },
         queryParam (query) {
