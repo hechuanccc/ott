@@ -222,7 +222,7 @@
           </tr>
           </tbody>
         </table>
-        <div class="report-button" v-if="queryset.length && !logined">
+        <div class="report-button" v-if="queryset.length && logined !== 1">
           <div class="col-xs-2 pull-right">
             <a :href="href" class="md-btn w-sm grey-400" :getReport="getReport">{{$t('returnrate.export')}}</a>
           </div>

@@ -223,7 +223,7 @@
                     domain: '',
                     password: '123456'
                 },
-                initAgent: '',
+                initAgent: {},
                 field_locales: {
                     'username': '用户名错误：',
                     'promo_code': '推广码',
@@ -320,9 +320,9 @@
                 } else {
                     this.formError = ''
                 }
-                this.initAgent = Object.assign(this.initAgent, this.member)
+                this.initAgent = Object.assign(this.initAgent, this.agent)
                 if (!this.bankFilled) {
-                    delete this.agent.bank
+                    delete this.initAgent.bank
                 }
                 if (this.agent.id) {
                     this.$http.put(api.agent + this.agent.id + '/', this.initAgent).then(response => {
