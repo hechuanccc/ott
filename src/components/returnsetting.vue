@@ -22,7 +22,9 @@ export default {
             this.myReturnsetting = this.returnsetting
         },
         myReturnsetting (newObj, old) {
-            this.$emit('myReturn', newObj)
+            if (newObj !== undefined) {
+                this.$emit('myReturn', newObj)
+            }
         }
     },
     mounted: function () {
