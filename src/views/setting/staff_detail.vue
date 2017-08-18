@@ -92,16 +92,10 @@
                 statusUpdated: false,
                 passwordSuccess: false,
                 permissions: [],
-                passwordError: ''
+                passwordError: '',
+                permissionsId: []
             }
         },
-        // route: {
-        //     data (transition) {
-        //         let id = transition.to.params.staffId
-        //         this.getStaff(id)
-        //         this.getPermissions(id)
-        //     }
-        // },
         beforeRouteEnter (to, from, next) {
             next(vm => {
                 let id = to.params.staffId
@@ -120,12 +114,21 @@
             getPermissions (id) {
                 this.$http.get(api.staff + id + '/?opt_expand=group,permissions').then((response) => {
                     this.permissions = response.data.permissions
+                    this.getSelect()
                 })
+            },
+            getSelect () {
+                let selectId = []
+                for (let list in this.permissions) {
+                    selectId.push(this.permissions[list].id)
+                }
+                this.permissionsId = selectId
             },
             toggleStatus () {
                 this.statusUpdated = false
                 this.$http.put(api.staff + this.staff.id + '/?opt_fields=status', {
-                    status: this.staff.status === 1 ? 0 : 1
+                    status: this.staff.status === 1 ? 0 : 1,
+                    permissions: this.permissionsId
                 }).then((response) => {
                     if (response.status === 200) {
                         this.staff.status = response.data.status
