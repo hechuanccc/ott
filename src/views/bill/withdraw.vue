@@ -199,6 +199,7 @@
             })
         },
         created () {
+            this.query = this.$route.query
             let results = this.$route.query.status
             if (results) {
                 this.status = results.split(',')

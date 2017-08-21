@@ -62,11 +62,6 @@
                 responseError: ''
             }
         },
-        // route: {
-        //     data (transition) {
-        //         this.getWebsite()
-        //     }
-        // },
         created () {
             this.getWebsite()
         },
