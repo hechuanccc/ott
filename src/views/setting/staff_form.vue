@@ -150,18 +150,6 @@
                 }
             }
         },
-        // route: {
-        //     data (transition) {
-        //         let id = transition.to.params.staffId
-        //         if (id) {
-        //             this.getStaff(id)
-        //             this.getStaffPermissionsList(id)
-        //         } else {
-        //             this.getPermissionsListAll()
-        //         }
-        //         this.getRole()
-        //     }
-        // },
         beforeRouteEnter (to, from, next) {
             next(vm => {
                 let id = to.params.staffId
