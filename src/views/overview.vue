@@ -120,6 +120,7 @@ export default {
         }
     },
     created () {
+        this.$root.routerLoading = true
         this.getReports()
     },
     methods: {
@@ -186,6 +187,7 @@ export default {
             this.$http.get(api.platform_report + `?mode=daily&date_0=${start}&date_1=${end}`).then(response => {
                 this.daily = response.data
             }).then(() => {
+                this.$root.routerLoading = false
                 this.generateChart('profit-chart', '损益', this.daily.map(obj => {
                     return obj.profit
                 }), '#6cc788')

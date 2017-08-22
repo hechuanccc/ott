@@ -287,6 +287,7 @@
                         status: status
                     }).then(response => {
                         transaction.status = response.data.status
+                        transaction.balance_after = response.data.balance_after
                     }, response => {
                         this.errorMsg = ''
                         for (let field in this.field_locales) {
