@@ -676,7 +676,9 @@ export default {
         bonus_6: '奖金6',
         bonus_6_amount: '奖金6金额',
         bonus_7: '奖金7',
-        bonus_7_amount: '奖金7金额'
+        bonus_7_amount: '奖金7金额',
+        winning_numbers: '开奖号码',
+        play_name: '游戏名字'
     },
     header: {
         deposit: '入款',

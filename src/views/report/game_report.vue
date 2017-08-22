@@ -184,6 +184,7 @@ export default {
     },
     beforeRouteEnter (to, from, next) {
         next(vm => {
+            vm.$root.routerLoading = true
             let query = vm.$route.query
             let userType = storage.fetch().type
             for (let x in query) {
@@ -344,6 +345,7 @@ export default {
                     } else {
                         this.columns = this.memberColumns
                     }
+                    this.$root.routerLoading = false
                 }
             })
         },
