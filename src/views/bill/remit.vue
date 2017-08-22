@@ -132,7 +132,7 @@
                           <span class="label danger" v-if="t.status===5">{{$t('status.declined')}}</span>
                           <span v-if="t.status===3">
                               <button type="button" class="btn btn-xs blue sm-btn m-b-sm f-b" @click="update(t, 1, true, $event)">{{$t('bill.audit')}}</button> <br>
-                              <button type="button" class="btn btn-xs  sm-btn f-b label " v-if="$root.permissions.includes('decline_payment')" @click="update(t, 5, true, $event)">{{$t('bill.audit_deny')}}</button>
+                              <button type="button" class="btn btn-xs  sm-btn f-b" v-if="$root.permissions.includes('decline_payment')" @click="update(t, 5, true, $event)">{{$t('bill.audit_deny')}}</button>
                           </span>
                       </td>
                   </tr>
@@ -283,7 +283,7 @@
                     }
                 }
                 if (transaction.id) {
-                    this.$http.put(api.bill + transaction.id + '/', {
+                    this.$http.put(api.bill + transaction.id + '/?opt_expand=bank,updated_by', {
                         status: status
                     }).then(response => {
                         transaction.status = response.data.status
