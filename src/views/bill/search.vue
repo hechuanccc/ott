@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-xs-2">
                         <label class="text-sm">{{$t('bill.order_id')}}</label>
-                        <input type="text" v-model="query.id" @keyup="removeSpace" class="form-control w-sm" />
+                        <input type="text" v-model="order_id" @keyup="removeSpace" class="form-control w-sm" />
                     </div>
                     <div class="col-xs-2">
                         <label class="text-sm">{{$t('common.member')}}</label>
@@ -133,6 +133,7 @@
                 created_at_1: '',
                 queryset: [],
                 billApi: api.bill,
+                order_id: '',
                 query: {
                     id: '',
                     member_q: '',
@@ -170,10 +171,12 @@
             },
             created_at_1 (newObj, old) {
                 this.query.created_at_1 = newObj
+            },
+            order_id (newObj, old) {
+                this.query.id = newObj
             }
         },
         created () {
-            this.query = this.$route.query
             this.getTransactionType()
             let transactionType = this.$route.query.transaction_type
             if (transactionType) {
@@ -198,12 +201,15 @@
                 this.query.member_level = val
             },
             queryData (queryset) {
-                this.query = Object.assign(this.query, this.filter)
+                this.query = Object.assign({}, this.filter)
                 if (this.query.created_at_0) {
                     this.created_at_0 = this.query.created_at_0
                 }
                 if (this.query.created_at_1) {
                     this.created_at_1 = this.query.created_at_1
+                }
+                if (this.query.id) {
+                    this.order_id = this.query.id
                 }
                 this.queryset = queryset
             },
@@ -225,7 +231,7 @@
                 })
             },
             removeSpace () {
-                this.query.id = this.query.id.replace(/[^\d]+/g, '')
+                this.order_id = this.order_id.replace(/[^\d]+/g, '')
             }
         },
         components: {

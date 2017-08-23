@@ -216,7 +216,6 @@
             }
         },
         created () {
-            this.query = this.$route.query
             let status = this.$route.query.status
             if (status) {
                 this.status = status.split(',')
@@ -245,7 +244,7 @@
                 this.query.member_level = val
             },
             queryData (queryset) {
-                this.query = Object.assign(this.query, this.filter)
+                this.query = Object.assign({}, this.filter)
                 if (this.query.created_at_0) {
                     this.created_at_0 = this.query.created_at_0
                 }
