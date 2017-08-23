@@ -8,7 +8,7 @@
             <div class="input-group">
                 <div class="form-control grey-100">
                     <span>{{$t('member.balance')}}:</span>
-                    <strong class="text-success balance">{{account.balance | currency '￥'}}</strong>
+                    <strong class="text-success balance">{{account.balance | currency('￥')}}</strong>
                 </div>
                 <div class="input-group-btn">
                     <button class="btn btn-sm grey-600" @click="transfer(1)" :disabled="!validWithdraw || !selectedProvider">
