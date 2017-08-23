@@ -77,9 +77,9 @@
                 <div class="loading" v-if="loading"><i class='fa fa-circle-o-notch fa-spin'></i></div>
                 <div class="col-xs-3 m-t" v-else v-for="account in accounts">
                   {{account.provider.name}}
-                  <providerform :account="account" :member="member" :getmember="getMember" :getaccounts="getAccounts" :balanceloading="balanceLoading"  :provider="account.provider.name"></providerform>
+                  <providerform :account="account" :member="member" :getmember="getMember" :getaccounts="getAccounts" :balanceloading="balanceLoading" :isactive="providerActive" @click.native="toggleProvider(account.provider.name)"></providerform>
+                  </div>
                 </div>
-              </div>
               </div>
             </div>
           </div>
