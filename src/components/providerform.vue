@@ -1,6 +1,5 @@
 <template>
-
-    <div class="m-r-lg p-a grey-100" :class="{'active': selectedProvider}" @click="toggleProvider">{{selectedProvider}}
+    <div class="m-r-lg p-a grey-100" :class="{'active': selectedProvider}">
         <span class="provider-name">{{account.provider.name}}</span>
         <div>账号: {{account.username}}</div>
         <span class="text-danger" v-if="errorMsg">{{errorMsg}}</span>
@@ -9,7 +8,7 @@
             <div class="input-group">
                 <div class="form-control grey-100">
                     <span>{{$t('member.balance')}}:</span>
-                    <strong class="text-success balance">{{account.balance | currency('￥')}}</strong>
+                    <strong class="text-success balance">{{account.balance | currency '￥'}}</strong>
                 </div>
                 <div class="input-group-btn">
                     <button class="btn btn-sm grey-600" @click="transfer(1)" :disabled="!validWithdraw || !selectedProvider">
@@ -24,7 +23,7 @@
                 <div class="input-group">
                     <input class="form-control" :placeholder="$t('common.amount')" v-model="deposit.amount">
                     <div class="input-group-btn">
-                        <button class="btn btn-sm grey-600" :disabled="false || !selectedProvider">
+                        <button class="btn btn-sm grey-600" :disabled="!validTransfer || !selectedProvider">
                             <span v-if="!depositing">{{$t('common.transfer')}}</span>
                             <span v-else><i class='fa fa-circle-o-notch fa-spin'></i></span>
                         </button>
@@ -57,21 +56,16 @@
                     'error': '',
                     'balance': ''
                 },
-                transferStatus: false,
-                isactive: false
+                transferStatus: false
             }
         },
-        props: ['account', 'member', 'getmember', 'getaccounts', 'balanceloading', 'provider'],
+        props: ['account', 'member', 'getmember', 'getaccounts', 'balanceloading', 'isactive'],
         computed: {
             validTransfer () {
                 this.errorMsg = ''
-                console.log(this.deposit.amount)
                 let amount = parseFloat(this.deposit.amount)
                 let balance = this.member.balance.balance
-                console.log(amount <= balance)
-                console.log(amount > 0)
                 let amountRange = amount > 0 && amount <= balance
-                console.log(amountRange)
                 return amountRange
             },
             validWithdraw () {
@@ -84,16 +78,10 @@
                 let provider = this.isactive
                 let accountprovider = this.account.provider.name
                 let active = accountprovider === provider
-                console.log(active)
                 return active
             }
         },
         methods: {
-            toggleProvider () {
-                this.selectedProvider = false
-                console.log(this.isactive + ' this.isactive')
-                this.isactive = this.provider
-            },
             transfer (type) {
                 // type = 1 for pull out
                 // type = 2 for deposit
