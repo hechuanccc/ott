@@ -283,7 +283,6 @@ export default {
         }
     },
     created () {
-        this.query = this.$route.query
         this.$nextTick(() => {
             this.logined = this.$route.query.logined
             this.$refs.pulling.rebase()
@@ -322,7 +321,7 @@ export default {
             this.query.return_settings = data
         },
         queryData (queryset) {
-            this.query = Object.assign(this.query, this.filter)
+            this.query = Object.assign({}, this.filter)
             if (this.query.created_at_0) {
                 this.created_at_0 = this.query.created_at_0
             }

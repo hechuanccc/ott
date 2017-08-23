@@ -199,7 +199,7 @@ export default {
             }, 100)
         },
         queryData (queryset) {
-            this.query = Object.assign(this.query, this.filter)
+            this.query = Object.assign({}, this.filter)
             if (this.query.created_at_0) {
                 this.created_at_0 = this.query.created_at_0
             }

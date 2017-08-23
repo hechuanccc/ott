@@ -104,7 +104,7 @@ export default {
             this.query.ipaddr_q = this.query.ipaddr_q.replace(/[^\d\.]+/g, '')
         },
         queryData (queryset) {
-            this.query = Object.assign(this.query, this.filter)
+            this.query = Object.assign({}, this.filter)
             this.queryset = queryset
         },
         queryParam (query) {
