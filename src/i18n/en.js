@@ -121,7 +121,7 @@ export default {
     action: {
         view_today_report: 'View today\'s report',
         update_agent: 'Update agent\'s info',
-        update_member: 'Update member\'s member',
+        update_member: 'Update member\'s info',
         view_member_record: 'View all members\' record',
         add_member: 'Add member',
         reset_password: 'Reset password',
