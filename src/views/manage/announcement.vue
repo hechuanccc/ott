@@ -74,7 +74,7 @@
                 <tbody v-if="queryset.length > 0">
                 <tr v-for="(announcement, key) in queryset">
                     <td>{{announcement.id}}</td>
-                    <td>
+                    <td class="word-break">
                        {{announcement.announcement}}
                     </td>
                     <td>
@@ -125,7 +125,7 @@ export default {
             query: {
             },
             announcement: {
-                platform: '',
+                platform: '2',
                 name: '',
                 announcement: ''
             },
@@ -139,11 +139,6 @@ export default {
             return this.$root.permissions.includes('change_banner_announcement')
         }
     },
-    // route: {
-    //     data (transition) {
-    //         this.$refs.pulling.rebase()
-    //     }
-    // },
     created () {
         this.$nextTick(() => {
             this.$refs.pulling.rebase()
@@ -222,3 +217,10 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    .word-break {
+       word-break: break-all;
+       max-width: 500px;
+    }
+</style>

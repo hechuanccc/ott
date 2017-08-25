@@ -13,19 +13,19 @@
                         <tbody>
                         <tr>
                             <th class="grey-50" width="200">{{$t('messages.title')}}</th>
-                            <td>{{message.title}}</td>
+                            <td class="word-break">{{message.title}}</td>
                         </tr>
                         <tr>
                             <th class="grey-50" width="200">{{$t('messages.transaction')}}</th>
-                            <td>{{message.transaction}}</td>
+                            <td class="word-break">{{message.transaction}}</td>
                         </tr>
                         <tr>
                             <th class="grey-50" width="200">{{$t('messages.receiver')}}</th>
-                            <td>{{message.receiver}}</td>
+                            <td class="word-break">{{message.receiver}}</td>
                         </tr>
                         <tr>
                             <th class="grey-50" width="200">{{$t('messages.text')}}</th>
-                            <td>{{message.content}}</td>
+                            <td class="word-break">{{message.content}}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -72,3 +72,10 @@
     }
 
 </script>
+
+<style scoped>
+    .word-break {
+       word-break: break-all;
+       max-width: 100%;
+    }
+</style>

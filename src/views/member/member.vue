@@ -322,6 +322,8 @@ export default {
         },
         queryData (queryset) {
             this.query = Object.assign({}, this.filter)
+            this.created_at_0 = ''
+            this.created_at_1 = ''
             if (this.query.created_at_0) {
                 this.created_at_0 = this.query.created_at_0
             }

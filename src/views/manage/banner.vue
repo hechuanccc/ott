@@ -106,11 +106,6 @@ export default {
             return this.$root.permissions.includes('change_banner_announcement')
         }
     },
-    // route: {
-    //     data (transition) {
-    //         this.$refs.pulling.rebase()
-    //     }
-    // },
     created () {
         this.$nextTick(() => {
             this.$refs.pulling.rebase()

@@ -58,7 +58,7 @@ export default {
     // do something before sub-components are ready to be compile
     // BTW, ready() hook won't do
     created () {
-        this.getPermissions()
+        this.getMy()
         // setup an event for login.vue to call when login successfully
         // this.$emit('initAuthentication', function (cb) {
         //     console.log('in emit initAuthentication')
@@ -124,7 +124,11 @@ export default {
             })
         },
         getMy () {
+            if (!this.$cookie.get('access_token')) {
+                return
+            }
             this.$http.get(api.my).then((response) => {
+                this.getPermissions()
                 this.username = response.data.username
                 this.userType = response.data.type
                 if (this.userType === 'agent') {
@@ -154,10 +158,6 @@ export default {
             })
         },
         getPermissions () {
-            if (!this.$cookie.get('access_token')) {
-                return
-            }
-            this.getMy()
             if (this.userType !== 'agent') {
                 this.$http.get(api.permissionsUser).then((response) => {
                     this.permissions = response.data

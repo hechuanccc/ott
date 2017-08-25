@@ -167,7 +167,7 @@
                         this.$router.push('/transaction/' + response.data.id)
                     }
                 }, response => {
-                    this.errorMsg = response.data.error
+                    this.errorMsg = response.data.error[0]
                 })
             }
         }

@@ -21,7 +21,7 @@
                     <td><router-link :to="'/messages/'+ message.id">{{message.title}}</router-link></td>
                     <td>{{message.receiver}}</td>
                     <td>{{message.sent_at | moment("YYYY-MM-DD HH:mm")}}</td>
-                    <td>{{message.content}}</td>
+                    <td class="word-break">{{message.content}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -63,3 +63,10 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    .word-break {
+       word-break: break-all;
+       max-width: 500px;
+    }
+</style>

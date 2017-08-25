@@ -71,9 +71,9 @@
                     if (data.refresh_token) {
                         window.document.cookie = 'refresh_token=' + data.refresh_token + ';path=/;expires=' + d.toGMTString()
                     }
-                    this.$router.push('/')
                     this.$root.userType = data.type
-                    this.$root.getPermissions()
+                    this.$root.getMy()
+                    this.$router.push('/')
                 }, (response) => {
                     this.errorMsg = ''
                     for (let field in this.field_locales) {
