@@ -56,11 +56,6 @@ export default {
             'payees': []
         }
     },
-    // route: {
-    //     data (transition) {
-    //         this.getPayees()
-    //     }
-    // },
     created () {
         this.getPayees()
     },

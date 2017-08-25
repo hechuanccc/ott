@@ -292,6 +292,7 @@ export default {
     watch: {
         '$route': 'nextTickFetch',
         created_at_0 (newObj, old) {
+            console.log(newObj + '====')
             this.query.created_at_0 = newObj
         },
         created_at_1 (newObj, old) {
@@ -322,6 +323,8 @@ export default {
         },
         queryData (queryset) {
             this.query = Object.assign({}, this.filter)
+            this.created_at_0 = ''
+            this.created_at_1 = ''
             if (this.query.created_at_0) {
                 this.created_at_0 = this.query.created_at_0
             }

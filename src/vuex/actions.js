@@ -1,5 +1,4 @@
 import $ from '../utils/util'
-console.log($.storage.fetch)
 
 export const fetchMember = (context, { successCb, errorCb }) => {
     $.fetchMember((member) => {

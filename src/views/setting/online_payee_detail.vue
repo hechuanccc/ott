@@ -63,7 +63,7 @@
                     </div>
                 </div>
 
-                <div class="row p-t">
+                <div class="row m-b p-b b-b">
                     <div class="col-xs-5">
                         <span class="text-muted">目前状态</span>
                         <div>
@@ -78,6 +78,13 @@
                             {{l.name}}
                             </router-link>
                         </div>
+                    </div>
+                </div>
+
+                <div class="row p-t" v-if="memo">
+                    <div class="col-xs-5">
+                        <span class="text-muted">备注</span>
+                        <div>{{memo}} </div>
                     </div>
                 </div>
             </div>

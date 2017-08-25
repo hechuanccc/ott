@@ -99,7 +99,7 @@ export default {
         today: 'Today',
         yesterday: 'Yesterday',
         this_week: 'This week',
-        last_week: 'Lask week',
+        last_week: 'Last week',
         this_month: 'This month',
         last_month: 'Last month',
         gamecategory: 'Game category',
@@ -119,9 +119,9 @@ export default {
         balance_after: 'Balance After'
     },
     action: {
-        view_today_report: 'View today\' report',
-        update_agent: 'Update agent\' info',
-        update_member: 'Update member\' member',
+        view_today_report: 'View today\'s report',
+        update_agent: 'Update agent\'s info',
+        update_member: 'Update member\'s member',
         view_member_record: 'View all members\' record',
         add_member: 'Add member',
         reset_password: 'Reset password',
