@@ -292,7 +292,6 @@ export default {
     watch: {
         '$route': 'nextTickFetch',
         created_at_0 (newObj, old) {
-            console.log(newObj + '====')
             this.query.created_at_0 = newObj
         },
         created_at_1 (newObj, old) {
