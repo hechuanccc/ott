@@ -73,7 +73,9 @@
                     }
                     this.$root.userType = data.type
                     this.$root.getMy()
-                    this.$router.push('/')
+                    let url = this.$route.query.next
+                    url = url ? decodeURIComponent(url.split('?')[0]) : '/'
+                    this.$router.push(url)
                 }, (response) => {
                     this.errorMsg = ''
                     for (let field in this.field_locales) {

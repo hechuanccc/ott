@@ -66,7 +66,7 @@
                                 <div class="form-group">
                                     <label  class="label-width">{{$t('common.nickname')}} </label>
                                     <div class="inline-form-control">
-                                        <input class="form-control" placeholder="例如：中国银行" v-model="payee.nickname" :required="payee.remit_type1=='1'" />
+                                        <input class="form-control" placeholder="例如：中国银行" v-model="payee.nickname" :required="payee.remit_type1=='1'" required/>
                                     </div>
                                 </div>
                                 <div class="form-group">
