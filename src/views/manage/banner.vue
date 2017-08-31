@@ -1,6 +1,5 @@
 <template>
     <form class="form m-a" v-on:submit.prevent="onSubmit" enctype="multipart/form-data">
-        <div class="alert alert-danger" v-if="responseError">{{responseError}}</div>
         <div class="row m-b" v-if="userPermission">
             <div class="col-xs-2">
                 <input type="file" class="md-btn w-sm blue add-file-btn" accept="image/*" @change="getImg">
@@ -147,8 +146,10 @@ export default {
         },
         getImg (e) {
             this.banner.image = e.target.files[0]
-            this.loading = true
-            this.onSubmit()
+            if (this.banner.image) {
+                this.loading = true
+                this.onSubmit()
+            }
         },
         toggleStatus (banner) {
             this.$http.put(this.bannerApi + banner.id + '/', {
