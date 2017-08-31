@@ -128,12 +128,12 @@ export default {
                 return
             }
             this.$http.get(api.my).then((response) => {
-                this.getPermissions()
                 this.username = response.data.username
                 this.userType = response.data.type
                 if (this.userType === 'agent') {
                     this.agentPermission()
                 }
+                this.getPermissions()
             }, (response) => {
                 if (response.status === 404) {
                     this.$router.push('/login')
