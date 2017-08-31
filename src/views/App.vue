@@ -58,7 +58,6 @@ export default {
     // do something before sub-components are ready to be compile
     // BTW, ready() hook won't do
     created () {
-        console.log(11111)
         this.getMy()
         // setup an event for login.vue to call when login successfully
         // this.$emit('initAuthentication', function (cb) {
