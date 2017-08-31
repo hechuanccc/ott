@@ -98,8 +98,10 @@
             }
         },
         created () {
-            this.getCount()
-            setInterval(this.getCount, 5000)
+            if ($.storage.fetch().type !== 'agent') {
+                this.getCount()
+                setInterval(this.getCount, 5000)
+            }
         },
         computed: {
             count: function () {
