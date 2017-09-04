@@ -56,7 +56,8 @@
                     'error': '',
                     'balance': ''
                 },
-                transferStatus: false
+                transferStatus: false,
+                loadings: this.balanceloading
             }
         },
         props: ['account', 'member', 'getmember', 'getaccounts', 'balanceloading', 'isactive'],
@@ -88,7 +89,7 @@
                 let data = type === 1 ? this.pullout : this.deposit
                 this.loading(type, true)
                 this.$http.put(api.gameaccounts + this.account.id + '/', data, {emulateJSON: true}).then(response => {
-                    this.balanceloading = true
+                    this.loadings = true
                     if (response.data.error) {
                         this.errorMsg = ''
                         for (let field in this.field_locales) {
