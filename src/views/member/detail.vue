@@ -48,7 +48,7 @@
             <div class="col-xs-2">
               <span class="text-muted">{{$t('member.balance_providers')}}</span>
               <div>
-                <strong class="text-lg text-success">{{member.sum_balance - member.balance.balance | currency('￥')}}</strong>
+                <strong class="text-lg text-success">{{gameAccounts | currency('￥')}}</strong>
               </div>
             </div>
             <div class="col-xs-2">
@@ -348,6 +348,7 @@
                         detail: []
                     }
                 },
+                gameAccounts: '',
                 accounts: [],
                 loading: true,
                 balanceLoading: true,
@@ -423,6 +424,7 @@
             getMember (id) {
                 this.$http.get(api.member + id + '/?opt_expand=bank&action').then((response) => {
                     this.member = response.data
+                    this.gameAccounts = response.data.sum_balance - response.data.balance.balance
                     this.member_id = {'account_id': response.data.id}
                 }, response => {
                     if (('' + response.status).indexOf('4') === 0) {
@@ -438,10 +440,15 @@
                 })
             },
             getAccountUpdate (id) {
-                this.$http.get(api.gameaccounts + '?update=1&member=' + id).then((response) => {
+                this.$http.get(api.gameaccounts + '?opt_expand=provider&update=1&member=' + id).then((response) => {
                     this.loading = false
                     this.balanceLoading = false
                     this.accounts = response.data
+                    let sunBalance = 0
+                    for (let index in response.data) {
+                        sunBalance += response.data[index].balance
+                    }
+                    this.gameAccounts = sunBalance
                 })
             },
             changeAudit () {
