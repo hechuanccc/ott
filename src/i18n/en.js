@@ -669,7 +669,8 @@ export default {
         bonus_7: 'Bonus 7',
         bonus_7_amount: 'Bonus 7 Amount',
         winning_numbers: 'Winning Numbers',
-        play_name: 'Play Name'
+        play_name: 'Play Name',
+        lottery_bet_type: 'Lottery Bet Type'
     },
     header: {
         deposit: 'Deposit',

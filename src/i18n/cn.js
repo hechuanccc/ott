@@ -678,7 +678,8 @@ export default {
         bonus_7: '奖金7',
         bonus_7_amount: '奖金7金额',
         winning_numbers: '开奖号码',
-        play_name: '游戏名字'
+        play_name: '游戏名字',
+        lottery_bet_type: '彩票投注类型'
     },
     header: {
         deposit: '入款',
