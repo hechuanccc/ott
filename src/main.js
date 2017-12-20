@@ -9,7 +9,7 @@ import store from './vuex/store'
 import { sync } from 'vuex-router-sync'
 import router from './router'
 import Vue2Filters from 'vue2-filters'
-
+import SweetModal from 'sweet-modal-vue/src/plugin'
 import App from './views/app'
 
 const config = require('../config')
@@ -21,6 +21,7 @@ Vue.use(VueRouter)
 Vue.use(Moment)
 Vue.use(VueI18n)
 Vue.use(VueCookie)
+Vue.use(SweetModal)
 
 // if we set xhr.withCredentials = true, all xhr request will send with credential cookies
 // for example (session_id, access_token, csrf_token), but not all the browser supports
