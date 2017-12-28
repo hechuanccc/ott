@@ -236,6 +236,7 @@
           @query-param="queryParam"
           @export-query="exportQuery"
           :api="memberApi"
+          optexpand=""
           ref="pulling">
         </pulling>
       </div>
