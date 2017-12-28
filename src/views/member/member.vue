@@ -236,6 +236,7 @@
           @query-param="queryParam"
           @export-query="exportQuery"
           :api="memberApi"
+          optexpand=""
           ref="pulling">
         </pulling>
       </div>
@@ -333,9 +334,13 @@ export default {
             this.queryset = queryset
         },
         queryParam (query) {
+            console.log('query')
+            console.log(query)
             this.filter = query
         },
         exportQuery (expor) {
+            console.log('exportQuery')
+            console.log(expor)
             this.export_query = expor
         },
         submit () {
