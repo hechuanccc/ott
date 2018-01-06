@@ -195,13 +195,6 @@
                 this.query.id = newObj
             }
         },
-        beforeRouteEnter (to, from, next) {
-            next(vm => {
-                vm.queryset = []
-                vm.$refs.pulling.rebase()
-                vm.$refs.pulling.getExportQuery()
-            })
-        },
         created () {
             let results = this.$route.query.status
             if (results) {
@@ -209,6 +202,7 @@
             }
             this.$nextTick(() => {
                 this.$refs.pulling.rebase()
+                this.$refs.pulling.getExportQuery()
             })
         },
         methods: {
