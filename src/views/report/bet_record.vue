@@ -329,12 +329,6 @@
               errorMsg: ''
           }
       },
-      beforeRouteEnter (to, from, next) {
-          next(vm => {
-              let id = to.params.betrecordId
-              vm.getBetRecord(id)
-          })
-      },
       created () {
           let results = this.$route.query.result
           if (results) {
@@ -358,11 +352,6 @@
           }
       },
       methods: {
-          getBetRecord (id) {
-              this.$http.get(api.betrecords + id + '/?opt_expand=details').then((response) => {
-                  this.betrecords = response.data
-              })
-          },
           isArray (o) {
               return Object.prototype.toString.call(o) === '[object Array]'
           },
