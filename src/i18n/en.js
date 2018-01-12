@@ -824,7 +824,8 @@ export default {
         fish_47_quantity: 'Fish 47 quantity',
         fish_48_quantity: 'Fish 48 quantity',
         fish_49_quantity: 'Fish 49 quantity',
-        fish_50_quantity: 'Fish 50 quantity'
+        fish_50_quantity: 'Fish 50 quantity',
+        match_date: 'Draw Date'
     },
     header: {
         deposit: 'Deposit',

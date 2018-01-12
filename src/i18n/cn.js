@@ -833,7 +833,8 @@ export default {
         fish_47_quantity: '鱼 47 数',
         fish_48_quantity: '鱼 48 数',
         fish_49_quantity: '鱼 49 数',
-        fish_50_quantity: '鱼 50 数'
+        fish_50_quantity: '鱼 50 数',
+        match_date: '抽签日期'
     },
     header: {
         deposit: '入款',
