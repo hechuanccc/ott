@@ -834,7 +834,10 @@ export default {
         fish_48_quantity: '鱼 48 数',
         fish_49_quantity: '鱼 49 数',
         fish_50_quantity: '鱼 50 数',
-        match_date: '抽签日期'
+        match_date: '抽签日期',
+        dragon_result: '龙的结果',
+        phoenix_cards: '凤凰卡',
+        phoenix_result: '凤凰城结果'
     },
     header: {
         deposit: '入款',
