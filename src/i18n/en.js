@@ -825,7 +825,10 @@ export default {
         fish_48_quantity: 'Fish 48 quantity',
         fish_49_quantity: 'Fish 49 quantity',
         fish_50_quantity: 'Fish 50 quantity',
-        match_date: 'Draw Date'
+        match_date: 'Draw Date',
+        dragon_result: 'Dragon Result',
+        phoenix_cards: 'Phoenix Cards',
+        phoenix_result: 'Phoenix Results'
     },
     header: {
         deposit: 'Deposit',
