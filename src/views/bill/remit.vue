@@ -108,8 +108,17 @@
                       <td>{{t.remit_info.depositor}}</td>
                       <td>{{t.remit_info.deposited_at | moment("YYYY-MM-DD HH:mm")}}</td>
                       <td>
-                        <router-link :to="'/remit_payee/' + t.remit_info.remit_payee.id" v-if="t.remit_info.remit_payee" >{{t.remit_info.remit_payee.bank.name}} - {{t.remit_info.remit_payee.payee_name}}</router-link>
-                          <span v-else> - </span>
+                        <router-link
+                            :to="'/remit_payee/' + t.remit_info.remit_payee.id"
+                            v-if="t.remit_info.remit_payee.payee_name && t.remit_info.remit_payee.bank.name"
+                            >{{t.remit_info.remit_payee.bank.name}} - {{t.remit_info.remit_payee.payee_name}}
+                        </router-link>
+                        <router-link
+                            :to="'/remit_payee/' + t.remit_info.remit_payee.id"
+                                v-else-if="t.remit_info.remit_payee.nickname"
+                            >{{ t.remit_info.remit_payee.nickname }}
+                        </router-link>
+                        <span v-else> - </span>
                       </td>
                       <td>
                         <span v-if="t.balance_before">{{t.balance_before | currency('￥')}}</span>
