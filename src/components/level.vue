@@ -48,7 +48,7 @@ export default {
         }
     },
     created () {
-        this.$http.get(api.level).then(response => {
+        this.$http.get(api.level + '?opt_fields=id,name').then(response => {
             this.levels = response.data
             if (this.default) {
                 this.level = this.default
