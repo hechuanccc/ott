@@ -373,7 +373,7 @@ export default {
         prev_password: 'Prev Password',
         new_password: 'New Password',
         repeat_password: 'Repeat Password',
-        title_website: 'Webiste'
+        title_website: 'Website'
     },
     title: {
         level_detail: 'Member level detail',
