@@ -298,7 +298,8 @@ export default {
         staff_info: 'Staff Info',
         display_name: 'Display name',
         paymenttype: 'Payment Type',
-        payment_gateway: 'Payment Gateway'
+        payment_gateway: 'Payment Gateway',
+        setting_paymenttype: 'Payment Type Setting'
     },
     provider: {
         title: 'E-Game Provider',
@@ -371,7 +372,8 @@ export default {
         link: 'Promotion address',
         prev_password: 'Prev Password',
         new_password: 'New Password',
-        repeat_password: 'Repeat Password'
+        repeat_password: 'Repeat Password',
+        title_website: 'Webiste'
     },
     title: {
         level_detail: 'Member level detail',
