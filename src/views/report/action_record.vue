@@ -201,7 +201,7 @@ export default {
             this.$refs.pulling.submit()
         },
         getProvider () {
-            this.$http.get(api.gameprovider).then(response => {
+            this.$http.get(api.gameprovider + '?opt_fields=code,name').then(response => {
                 this.providers = response.data
             })
         }

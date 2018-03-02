@@ -17,21 +17,28 @@
           <div class="alert alert-danger" v-if="passwordChanged === -1">
             修改失败：{{errorMsg}}
           </div>
+          <div class="alert alert-success" v-if="balanceUpdated === 1">
+            <span>{{$t('common.refresh_successfully')}}</span>
+          </div>
           <div class="row">
-            <div class="col-xs-4">
+            <div class="col-xs-2">
               <h2><strong>{{member.username}}</strong></h2>
               <span class="text-muted text-sm" v-if="member.created_at">于 {{ member.created_at | moment("YYYY-MM-DD HH:mm")}} {{$t('common.register')}}</span>
             </div>
-            <div class="col-xs-8 text-right">
+            <div class="col-xs-10 text-right">
               <div>
-                <router-link class="md-btn md-flat m-r-sm"  :to="'/report/actionrecord?username=' + member.username">查看操作记录</router-link>
-                <a class="md-btn md-flat m-r-sm" @click="getAccountUpdate(member.id)">刷新娱乐城余额</a>
+                <router-link class="md-btn md-flat m-r-sm"  :to="'/report/actionrecord?username=' + member.username">{{$t('action.view_action_record')}}</router-link>
+                <a class="md-btn md-flat m-r-sm" @click="getAccountUpdate(member.id)">
+                  <i v-if="balanceLoading" class="fa fa-spin fa-spinner"></i>
+                  <i v-else></i>
+                  <span> {{$t('action.refresh_balance')}} </span>
+                </a>
                 <router-link class="md-btn md-flat m-r-sm"  :to="'/report/betrecord?member=' + member.username + '&created_at_0=' + today + '&created_at_1=' + today">{{$t('action.view_today_bet_recoard')}}</router-link>
                 <template v-if="$root.permissions.includes('update_member_details')">
                   <a class="md-btn md-flat m-r-sm" v-if="$root.permissions.includes('reset_member_password')" @click="resetPassword(1, $event)">{{$t('action.reset_password')}}</a>
                   <a class="md-btn md-flat m-r-sm" v-if="$root.permissions.includes('reset_member_withdraw_password')" @click="resetPassword(2, $event)">{{$t('action.reset_withdraw_password')}}</a>
                   <router-link class="md-btn md-flat" :to="'/member/' + member.id + '/edit'">{{$t('action.update_member')}}</router-link>
-                  <a class="md-btn md-flat" @click="changeAudit">修改此会员稽核</a>
+                  <a class="md-btn md-flat" @click="changeAudit">{{$t('action.change_audit_status')}}</a>
                 </template>
               </div>
             </div>
@@ -328,6 +335,7 @@
                 showAccounts: false,
                 statusUpdated: false,
                 passwordChanged: false,
+                balanceUpdated: false,
                 newPassword: '',
                 today: '',
                 member: {
@@ -382,6 +390,11 @@
                 setTimeout(() => {
                     this.passwordChanged = 0
                 }, 8000)
+            },
+            balanceUpdated (newObj, old) {
+                setTimeout(() => {
+                    this.balanceUpdated = 0
+                }, 3000)
             }
         },
         methods: {
@@ -440,6 +453,7 @@
                 })
             },
             getAccountUpdate (id) {
+                this.balanceLoading = true
                 this.$http.get(api.gameaccounts + '?opt_expand=provider&update=1&member=' + id).then((response) => {
                     this.loading = false
                     this.balanceLoading = false
@@ -449,6 +463,7 @@
                         sunBalance += response.data[index].balance
                     }
                     this.gameAccounts = sunBalance
+                    this.balanceUpdated = 1
                 })
             },
             changeAudit () {
