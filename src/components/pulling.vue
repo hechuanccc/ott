@@ -38,6 +38,7 @@
 
 <script>
 import Vue from 'vue'
+import _ from 'lodash'
 // to perform a pulling, parent componet need to boardcast 'rebase' event
 // once the comopnent is ready, and might trigger 'rebase' everytime needed
 export default {
@@ -128,9 +129,7 @@ export default {
             if (this.countPage === 1) {
                 this.showPageGo = 1
             }
-            for (var i = 1; i <= this.countPage; i++) {
-                pageNum.push(i)
-            }
+            pageNum = _.range(1, this.countPage)
             this.pageNum = pageNum
         },
         rebase () {
@@ -147,6 +146,11 @@ export default {
             this.busy = true
             this.loading = true
             this.$http.get(this.next).then(response => {
+                this.myQueryset = []
+                // this.queryset = this.queryset.concat(response.data.results)
+                this.myQueryset = this.myQueryset.concat(response.data.results)
+                this.$emit('query-data', this.myQueryset)
+                this.loading = false
                 if (response.data.total_amount) {
                     amount = response.data.total_amount
                 }
@@ -162,11 +166,6 @@ export default {
                 this.busy = false
                 this.count = response.data.count
                 this.getPage()
-                this.myQueryset = []
-                // this.queryset = this.queryset.concat(response.data.results)
-                this.myQueryset = this.myQueryset.concat(response.data.results)
-                this.$emit('query-data', this.myQueryset)
-                this.loading = false
                 this.next = response.data.next
             }, response => {
                 if (response.status === 401) {
