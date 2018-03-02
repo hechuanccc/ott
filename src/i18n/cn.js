@@ -115,7 +115,8 @@ export default {
         errorPermission: '当前登录用户没有操作权限!',
         saved_successfully: '保存成功!',
         balance_before: '更新前额度',
-        balance_after: '更新后额度'
+        balance_after: '更新后额度',
+        refresh_successfully: '刷新成功!'
     },
     action: {
         view_today_report: '查看今日报表',
@@ -139,7 +140,10 @@ export default {
         add_promotion: '新增活动',
         view_promotions: '查看活动',
         update_promotion: '更新活动',
-        export: '输出'
+        export: '输出',
+        refresh_balance: '刷新娱乐城余额',
+        view_action_record: '查看操作记录',
+        change_audit_status: '修改此会员稽核'
     },
     status: {
         active: '启用',
