@@ -116,7 +116,8 @@ export default {
         activeremit: 'This remit payee cannot be deleted because it has active transaction.',
         saved_successfully: 'Saved successfully!',
         balance_before: 'Balance Before',
-        balance_after: 'Balance After'
+        balance_after: 'Balance After',
+        refresh_successfully: 'Balance is updated.'
     },
     action: {
         view_today_report: 'View today\'s report',
@@ -128,7 +129,7 @@ export default {
         view_history: 'View history',
         view_detailed_infos: 'View detailed infos',
         close_detailed_infos: 'Close detailed infos',
-        view_today_bet_recoard: 'View today\' bet records',
+        view_today_bet_recoard: 'View today\'s bet records',
         reset_withdraw_password: 'Reset withdraw password',
         create: 'Create',
         update: 'Update',
@@ -140,7 +141,10 @@ export default {
         add_promotion: 'Add Promotion',
         view_promotions: 'View promotions',
         update_promotion: 'Update',
-        export: 'Export'
+        export: 'Export',
+        refresh_balance: 'Refresh Balance',
+        view_action_record: 'Action Record',
+        change_audit_status: 'Change Audit Status'
     },
     status: {
         active: 'Active',
@@ -298,7 +302,8 @@ export default {
         staff_info: 'Staff Info',
         display_name: 'Display name',
         paymenttype: 'Payment Type',
-        payment_gateway: 'Payment Gateway'
+        payment_gateway: 'Payment Gateway',
+        setting_paymenttype: 'Payment Type Setting'
     },
     provider: {
         title: 'E-Game Provider',
@@ -371,7 +376,8 @@ export default {
         link: 'Promotion address',
         prev_password: 'Prev Password',
         new_password: 'New Password',
-        repeat_password: 'Repeat Password'
+        repeat_password: 'Repeat Password',
+        title_website: 'Website'
     },
     title: {
         level_detail: 'Member level detail',

@@ -107,9 +107,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-if="total_amount || total_profit || total_bet_amount" class="table-amount">
-          <td class="" colspan="5">总计</td>
-          <td>{{total_bet_amount | currency('￥')}}</td>
+        <tr v-if="total_amount || total_profit" class="table-amount">
+          <td class="" colspan="6">总计</td>
           <td colspan="2">{{total_amount | currency('￥')}}</td>
           <td colspan="2">{{total_profit | currency('￥')}}</td>
         </tr>
@@ -169,7 +168,6 @@
         @query-param="queryParam"
         @amount="totalAmount"
         @profit="totalProfit"
-        @totalBet="totalBet"
         :api="betApi"
         ref="pulling">
       </pulling>
@@ -330,20 +328,22 @@
           }
       },
       created () {
-          let results = this.$route.query.result
-          if (results) {
-              this.result = results.split(',')
-          }
+          this.getGameFilter()
           this.$nextTick(() => {
               this.$refs.pulling.rebase()
-              this.getGameFilter()
           })
       },
       watch: {
-          result: function (old, newObj) {
-              this.query.result = old
+          result: function (newObj, old) {
+              this.query.result = newObj
           },
-          '$route': 'nextTickFetch',
+          '$route': {
+              handler () {
+                  this.queryset = []
+                  this.$refs.pulling.rebase()
+              },
+              deep: true
+          },
           created_at_0 (newObj, old) {
               this.query.created_at_0 = newObj
           },
@@ -360,13 +360,6 @@
                   this.betrecords = response.data
               })
               this.$refs.alt.open()
-          },
-          nextTickFetch () {
-              let _this = this
-              this.queryset = []
-              setTimeout(() => {
-                  _this.$refs.pulling.rebase()
-              }, 100)
           },
           queryData (queryset) {
               this.query = Object.assign({}, this.filter)
@@ -387,17 +380,14 @@
           totalProfit (profit) {
               this.total_profit = profit
           },
-          totalBet (val) {
-              this.total_bet_amount = val
-          },
           submit () {
               this.$refs.pulling.submit()
           },
           getGameFilter () {
-              this.$http.get(api.gameprovider).then(response => {
+              this.$http.get(api.gameprovider + '?opt_fields=code,name').then(response => {
                   this.providers = response.data
               })
-              this.$http.get(api.gamecategory).then(response => {
+              this.$http.get(api.gamecategory + '?opt_fields=id,name').then(response => {
                   this.categories = response.data
               })
           }
@@ -408,15 +398,3 @@
       }
   }
 </script>
-<style scoped lang="scss">
-  .qr-code {
-    max-width: 120px;
-  }
-  .img-box{
-    display: inline-block;
-    margin-right: 10px;
-  }
-  .details-box img {
-    max-width: 70px;
-  }
-</style>
