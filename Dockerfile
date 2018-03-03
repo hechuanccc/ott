@@ -1,5 +1,5 @@
 # Take note that the image itself is already logged-in in the cloud CLI
-FROM unnotechlottery/otter:latest as otter
+FROM unnotechvnsr/otter:latest as otter
 
 FROM node:6.13.0
 
@@ -25,5 +25,5 @@ ARG staticHOST
 RUN chmod u+x cloud_deploy.sh
 RUN ./cloud_deploy.sh
 
-EXPOSE 8080
+EXPOSE 8888
 CMD npm run dev
