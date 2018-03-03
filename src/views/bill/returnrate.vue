@@ -16,7 +16,11 @@
                     </div>
 
                     <div class="col-xs-12 m-t" >
-                        <button class="md-btn w-sm blue" @click="generateReport">{{$t('returnrate.generate')}}</button>
+                        <button class="md-btn w-sm blue" @click="generateReport">
+                            <i v-if="generatingReport" class="fa fa-spin fa-spinner"></i>
+                            <i v-else></i>
+                            <span> {{$t('returnrate.generate')}} </span>
+                        </button>
                         <span class="text-danger m-l" v-if="returnMessage">当前周期内没有数据！</span>
                     </div>
                 </div>
@@ -84,6 +88,7 @@
                 optexpand: 'created_by',
                 errorMsg: '',
                 returnMessage: false,
+                generatingReport: false,
                 report: {
                     agent: '',
                     date_0: Vue.moment().format(format),
@@ -107,7 +112,6 @@
             'report.date_1' (newObj, old) {
                 this.report.date_1 = Vue.moment(this.report.date_1).format(format)
             }
-
         },
         created () {
             this.$nextTick(() => {
@@ -119,11 +123,14 @@
                 this.queryset = queryset
             },
             generateReport () {
+                this.generatingReport = true
                 this.$http.post(api.returnrate, this.report, {emulateJSON: true}).then((response) => {
                     this.$refs.pulling.rebase()
                     this.returnMessage = response.data.length === 0
+                    this.generatingReport = false
                 }, response => {
                     this.errorMsg = response.data.error
+                    this.generatingReport = false
                 })
             }
         },
