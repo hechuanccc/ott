@@ -5,6 +5,7 @@
                 <div class="row">
                     <div class="alert alert-success" v-if="showDeleteResponse">{{$t('common.delete_successfully')}}</div>
                     <div class="alert alert-danger" v-if="errorMsg">{{$t('common.delete_report_failed')}}</div>
+                    <div class="alert alert-danger m-l" v-if="deleting">{{$t('common.deleting_report')}}</div>
                     <div class="col-xs-4">
                         <label class="m-r">{{$t('common.date')}}</label>
                         <date-picker width='140' v-model="report.date_0"></date-picker>
@@ -99,6 +100,7 @@
                 returnMessage: false,
                 showDeleteResponse: false,
                 generatingReport: false,
+                deleting: false,
                 report: {
                     agent: '',
                     date_0: Vue.moment().format(format),
@@ -162,10 +164,13 @@
                     }
                 }
                 if (id) {
+                    this.deleting = true
                     this.$http.delete(api.returnhistory + id + '/').then((response) => {
                         this.$refs.pulling.rebase()
                         this.showDeleteResponse = true
+                        this.deleting = false
                     }, response => {
+                        this.deleting = false
                         this.errorMsg = response.data.error
                     })
                 } else {
