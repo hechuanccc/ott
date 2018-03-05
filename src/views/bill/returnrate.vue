@@ -3,6 +3,8 @@
         <div class="box" v-if="$root.permissions.includes('calculate_returnrate')">
             <div class="box-body clearfix form-inline form-input-sm">
                 <div class="row">
+                    <div class="alert alert-success" v-if="showDeleteResponse">{{$t('common.delete_successfully')}}</div>
+                    <div class="alert alert-danger" v-if="errorMsg">{{$t('common.delete_report_failed')}}</div>
                     <div class="col-xs-4">
                         <label class="m-r">{{$t('common.date')}}</label>
                         <date-picker width='140' v-model="report.date_0"></date-picker>
@@ -36,6 +38,7 @@
                         <th>{{$t('returnrate.member_count')}}</th>
                         <th>{{$t('returnrate.created_by')}}</th>
                         <th>{{$t('returnrate.total_return')}}</th>
+                        <th>{{$t('common.operate')}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,6 +52,12 @@
                         <td>{{t.member_count}}</td>
                         <td>{{t.created_by.name|| '-'}}</td>
                         <td>{{t.total_return | currency('￥')}}</td>
+                        <td>
+                            <button class="md-btn w-xs blue" @click="deleteReport(t.id, true, $event)">
+                                <i class="fa fa-trash-o"></i>
+                                <span>{{ $t('action.delete') }}</span>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -88,6 +97,7 @@
                 optexpand: 'created_by',
                 errorMsg: '',
                 returnMessage: false,
+                showDeleteResponse: false,
                 generatingReport: false,
                 report: {
                     agent: '',
@@ -101,6 +111,16 @@
                 setTimeout(() => {
                     this.returnMessage = false
                 }, 5000)
+            },
+            showDeleteResponse (newObj, old) {
+                setTimeout(() => {
+                    this.showDeleteResponse = false
+                }, 3000)
+            },
+            errorMsg (newObj, old) {
+                setTimeout(() => {
+                    this.errorMsg = false
+                }, 3000)
             },
             '$route' (to, from) {
                 this.queryset = []
@@ -132,6 +152,25 @@
                     this.errorMsg = response.data.error
                     this.generatingReport = false
                 })
+            },
+            deleteReport (id, confirm, event) {
+                if (confirm) {
+                    if (!window.confirm(this.$t('common.confirm', {
+                        action: event.target.innerText
+                    }))) {
+                        return
+                    }
+                }
+                if (id) {
+                    this.$http.delete(api.returnhistory + id + '/').then((response) => {
+                        this.$refs.pulling.rebase()
+                        this.showDeleteResponse = true
+                    }, response => {
+                        this.errorMsg = response.data.error
+                    })
+                } else {
+                    this.errorMsg = true
+                }
             }
         },
         components: {
