@@ -117,7 +117,10 @@ export default {
         saved_successfully: 'Saved successfully!',
         balance_before: 'Balance Before',
         balance_after: 'Balance After',
-        refresh_successfully: 'Balance is updated.'
+        refresh_successfully: 'Balance is updated.',
+        operate: 'Action',
+        delete_report_failed: 'Delete Failed. Data contains approved transaction.',
+        delete_successfully: 'Successfully deleted!'
     },
     action: {
         view_today_report: 'View today\'s report',
