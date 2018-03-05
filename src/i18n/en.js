@@ -120,7 +120,8 @@ export default {
         refresh_successfully: 'Balance is updated.',
         operate: 'Action',
         delete_report_failed: 'Delete Failed. Data contains approved transaction.',
-        delete_successfully: 'Successfully deleted!'
+        delete_successfully: 'Successfully deleted!',
+        deleting_report: 'Deleting the report...'
     },
     action: {
         view_today_report: 'View today\'s report',
