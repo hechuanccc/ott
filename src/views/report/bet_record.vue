@@ -163,11 +163,8 @@
       <pulling
         :queryset="queryset"
         :query="query"
-        :total_bet_amount="total_bet_amount"
         @query-data="queryData"
         @query-param="queryParam"
-        @amount="totalAmount"
-        @profit="totalProfit"
         :api="betApi"
         ref="pulling">
       </pulling>
@@ -328,9 +325,14 @@
           }
       },
       created () {
+          let results = this.$route.query.result
+          if (results) {
+              this.result = results.split(',')
+          }
           this.getGameFilter()
           this.$nextTick(() => {
               this.$refs.pulling.rebase()
+              this.getSummary()
           })
       },
       watch: {
@@ -341,6 +343,7 @@
               handler () {
                   this.queryset = []
                   this.$refs.pulling.rebase()
+                  this.getSummary()
               },
               deep: true
           },
@@ -374,12 +377,6 @@
           queryParam (query) {
               this.filter = query
           },
-          totalAmount (amount) {
-              this.total_amount = amount
-          },
-          totalProfit (profit) {
-              this.total_profit = profit
-          },
           submit () {
               this.$refs.pulling.submit()
           },
@@ -389,6 +386,18 @@
               })
               this.$http.get(api.gamecategory + '?opt_fields=id,name').then(response => {
                   this.categories = response.data
+              })
+          },
+          getSummary () {
+              this.queryKeys = []
+              for (this.queryItem in this.$route.query) {
+                  this.queryKey = this.queryItem + '=' + this.$route.query[this.queryItem]
+                  this.queryKeys.push(this.queryKey)
+              }
+              this.queryKeys = this.queryKeys.join('&')
+              this.$http.get(api.betSummary + '?' + this.queryKeys).then(response => {
+                  this.total_amount = response.data.total_amount
+                  this.total_profit = response.data.total_profit
               })
           }
       },
