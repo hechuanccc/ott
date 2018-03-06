@@ -62,15 +62,6 @@ export default {
         optexpand: {
             default: 1
         },
-        // amount: {
-        //     default: ''
-        // },
-        // profit: {
-        //     default: ''
-        // },
-        // total_bet_amount: {
-        //     default: ''
-        // },
         export_query: {
             default: false
         }
