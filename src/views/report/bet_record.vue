@@ -390,8 +390,8 @@
           },
           getSummary () {
               this.queryKeys = []
-              for (this.queryItem in this.$route.query) {
-                  this.queryKey = this.queryItem + '=' + this.$route.query[this.queryItem]
+              for (let queryItem in this.$route.query) {
+                  this.queryKey = queryItem + '=' + this.$route.query[queryItem]
                   this.queryKeys.push(this.queryKey)
               }
               this.queryKeys = this.queryKeys.join('&')
