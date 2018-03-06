@@ -65,12 +65,6 @@ export default {
         amount: {
             default: ''
         },
-        profit: {
-            default: ''
-        },
-        total_bet_amount: {
-            default: ''
-        },
         export_query: {
             default: false
         }
@@ -141,8 +135,6 @@ export default {
         // pull queryset form back-end
         pull () {
             let amount = ''
-            let profit = ''
-            let totalBet = ''
             this.busy = true
             this.loading = true
             this.$http.get(this.next).then(response => {
@@ -154,15 +146,7 @@ export default {
                 if (response.data.total_amount) {
                     amount = response.data.total_amount
                 }
-                if (response.data.total_profit) {
-                    profit = response.data.total_profit
-                }
-                if (response.data.total_bet_amount) {
-                    totalBet = response.data.total_bet_amount
-                }
                 this.$emit('amount', amount)
-                this.$emit('profit', profit)
-                this.$emit('totalBet', totalBet)
                 this.busy = false
                 this.count = response.data.count
                 this.getPage()
