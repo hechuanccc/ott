@@ -70,6 +70,7 @@ export default {
     metrics_count: prefix + 'metrics/count/',
     report_member: host + '/report/member/',
     report_deposit: host + '/report/deposit/',
-    action_record: prefix + 'tracker/actionrecord/'
+    action_record: prefix + 'tracker/actionrecord/',
+    betSummary: prefix + 'betrecord/summary'
 
 }
