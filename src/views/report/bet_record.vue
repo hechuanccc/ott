@@ -407,3 +407,15 @@
       }
   }
 </script>
+<style scoped lang="scss">
+  .qr-code {
+    max-width: 120px;
+  }
+  .img-box{
+    float: left;
+    margin-right: 10px;
+  }
+  .details-box img {
+    max-width: 70px;
+  }
+</style>
