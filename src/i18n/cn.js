@@ -116,7 +116,11 @@ export default {
         saved_successfully: '保存成功!',
         balance_before: '更新前额度',
         balance_after: '更新后额度',
-        refresh_successfully: '刷新成功!'
+        refresh_successfully: '刷新成功!',
+        operate: '操作',
+        delete_report_failed: '删除失败。 数据包含批准的交易.',
+        delete_successfully: '成功删除!',
+        deleting_report: '删除报告。 请稍候...'
     },
     action: {
         view_today_report: '查看今日报表',

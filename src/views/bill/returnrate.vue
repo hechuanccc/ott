@@ -3,6 +3,9 @@
         <div class="box" v-if="$root.permissions.includes('calculate_returnrate')">
             <div class="box-body clearfix form-inline form-input-sm">
                 <div class="row">
+                    <div class="alert alert-success" v-if="showDeleteResponse">{{$t('common.delete_successfully')}}</div>
+                    <div class="alert alert-danger" v-if="errorMsg">{{$t('common.delete_report_failed')}}</div>
+                    <div class="alert alert-danger m-l" v-if="deleting">{{$t('common.deleting_report')}}</div>
                     <div class="col-xs-4">
                         <label class="m-r">{{$t('common.date')}}</label>
                         <date-picker width='140' v-model="report.date_0"></date-picker>
@@ -16,7 +19,11 @@
                     </div>
 
                     <div class="col-xs-12 m-t" >
-                        <button class="md-btn w-sm blue" @click="generateReport">{{$t('returnrate.generate')}}</button>
+                        <button class="md-btn w-sm blue" @click="generateReport">
+                            <i v-if="generatingReport" class="fa fa-spin fa-spinner"></i>
+                            <i v-else></i>
+                            <span> {{$t('returnrate.generate')}} </span>
+                        </button>
                         <span class="text-danger m-l" v-if="returnMessage">当前周期内没有数据！</span>
                     </div>
                 </div>
@@ -32,6 +39,7 @@
                         <th>{{$t('returnrate.member_count')}}</th>
                         <th>{{$t('returnrate.created_by')}}</th>
                         <th>{{$t('returnrate.total_return')}}</th>
+                        <th>{{$t('common.operate')}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,6 +53,12 @@
                         <td>{{t.member_count}}</td>
                         <td>{{t.created_by.name|| '-'}}</td>
                         <td>{{t.total_return | currency('￥')}}</td>
+                        <td>
+                            <button class="md-btn w-xs blue" @click="deleteReport(t.id, true, $event)">
+                                <i class="fa fa-trash-o"></i>
+                                <span>{{ $t('action.delete') }}</span>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -84,6 +98,9 @@
                 optexpand: 'created_by',
                 errorMsg: '',
                 returnMessage: false,
+                showDeleteResponse: false,
+                generatingReport: false,
+                deleting: false,
                 report: {
                     agent: '',
                     date_0: Vue.moment().format(format),
@@ -97,6 +114,16 @@
                     this.returnMessage = false
                 }, 5000)
             },
+            showDeleteResponse (newObj, old) {
+                setTimeout(() => {
+                    this.showDeleteResponse = false
+                }, 3000)
+            },
+            errorMsg (newObj, old) {
+                setTimeout(() => {
+                    this.errorMsg = false
+                }, 3000)
+            },
             '$route' (to, from) {
                 this.queryset = []
                 this.$refs.pulling.rebase()
@@ -107,7 +134,6 @@
             'report.date_1' (newObj, old) {
                 this.report.date_1 = Vue.moment(this.report.date_1).format(format)
             }
-
         },
         created () {
             this.$nextTick(() => {
@@ -119,12 +145,37 @@
                 this.queryset = queryset
             },
             generateReport () {
+                this.generatingReport = true
                 this.$http.post(api.returnrate, this.report, {emulateJSON: true}).then((response) => {
                     this.$refs.pulling.rebase()
                     this.returnMessage = response.data.length === 0
+                    this.generatingReport = false
                 }, response => {
                     this.errorMsg = response.data.error
+                    this.generatingReport = false
                 })
+            },
+            deleteReport (id, confirm, event) {
+                if (confirm) {
+                    if (!window.confirm(this.$t('common.confirm', {
+                        action: event.target.innerText
+                    }))) {
+                        return
+                    }
+                }
+                if (id) {
+                    this.deleting = true
+                    this.$http.delete(api.returnhistory + id + '/').then((response) => {
+                        this.$refs.pulling.rebase()
+                        this.showDeleteResponse = true
+                        this.deleting = false
+                    }, response => {
+                        this.deleting = false
+                        this.errorMsg = response.data.error
+                    })
+                } else {
+                    this.errorMsg = true
+                }
             }
         },
         components: {

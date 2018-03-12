@@ -2,7 +2,7 @@
 
 const config = require('../config')
 const env = process.env.NODE_ENV === 'development' ? config.dev.env : config.build.env
-const host = env.HOST
+const host = env.HOST.replace(/"/g, '')
 const prefix = host + '/manage/'
 
 export default {
@@ -70,6 +70,7 @@ export default {
     metrics_count: prefix + 'metrics/count/',
     report_member: host + '/report/member/',
     report_deposit: host + '/report/deposit/',
-    action_record: prefix + 'tracker/actionrecord/'
+    action_record: prefix + 'tracker/actionrecord/',
+    betSummary: prefix + 'betrecord/summary'
 
 }
