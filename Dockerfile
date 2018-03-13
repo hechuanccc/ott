@@ -30,9 +30,12 @@ ENV CDN_ENDPOINT=${PROD_CDN_ENDPOINT}
 ENV HOST=${PROD_HOST}
 ENV staticHOST=${PROD_staticHOST}
 
+# Temporary!!!
+RUN rm -rf .git .gitignore
+
 # Cannot be made into one line as it has a possibility that it will return a 'text file busy' making the shell script unexecutable
-RUN chmod u+x cloud_deploy.sh
-RUN ./cloud_deploy.sh
+RUN chmod u+x cloud_deploy.sh && \
+    ./cloud_deploy.sh
 
 EXPOSE 8888
 CMD npm run dev
