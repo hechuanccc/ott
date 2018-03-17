@@ -20,13 +20,6 @@ ARG CDN_ENDPOINT
 ARG HOST
 ARG MAX_AGE
 ARG staticHOST
-ARG PROD_ENV_CONTAINER
-ARG PROD_CDN_ENDPOINT
-ARG PROD_HOST
-ARG PROD_staticHOST
-
-# Temporary!!!
-RUN rm -rf .git .gitignore
 
 # Cannot be made into one line as it has a possibility that it will return a 'text file busy' making the shell script unexecutable
 RUN chmod u+x cloud_deploy.sh
