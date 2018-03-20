@@ -1,5 +1,5 @@
 # Take note that the image itself is already logged-in in the cloud CLI
-FROM unnotechvnsr/otter:latest as otter
+FROM unnotechvnsr/otter:production as otter
 
 FROM node:6.13.0
 
