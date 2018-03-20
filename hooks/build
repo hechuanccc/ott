@@ -13,6 +13,10 @@ docker build --build-arg AZURE_STORAGE_ACCOUNT=$AZURE_STORAGE_ACCOUNT \
              --build-arg HOST=$HOST \
              --build-arg staticHOST=$staticHOST \
              --build-arg MAX_AGE=$MAX_AGE \
+             --build-arg PROD_ENV_CONTAINER=$PROD_ENV_CONTAINER \
+             --build-arg PROD_CDN_ENDPOINT=$PROD_CDN_ENDPOINT \
+             --build-arg PROD_HOST=$PROD_HOST \
+             --build-arg PROD_staticHOST=$PROD_staticHOST \
              -t $IMAGE_NAME .
 
 echo "------ HOOK END - BUILD -------"
