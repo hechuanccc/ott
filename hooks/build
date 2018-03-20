@@ -3,6 +3,13 @@ set -e  # to stop script when error occurs
 
 # THIS IS REQUIRED to put environment variables in DockerCloud as stated here https://forums.docker.com/t/docker-cloud-build-environment-variables-not-being-passed-to-the-auto-build/24010
 
+if [ "$DOCKER_TAG" != "latest" ]
+then
+    export DOCKERFILE="Dockerfile.$DOCKER_TAG"
+else
+    export DOCKERFILE="Dockerfile"
+fi
+
 echo "------ HOOK START - BUILD -------"
 
 docker build --build-arg AZURE_STORAGE_ACCOUNT=$AZURE_STORAGE_ACCOUNT \
@@ -13,6 +20,10 @@ docker build --build-arg AZURE_STORAGE_ACCOUNT=$AZURE_STORAGE_ACCOUNT \
              --build-arg HOST=$HOST \
              --build-arg staticHOST=$staticHOST \
              --build-arg MAX_AGE=$MAX_AGE \
-             -t $IMAGE_NAME .
+             --build-arg PROD_ENV_CONTAINER=$PROD_ENV_CONTAINER \
+             --build-arg PROD_CDN_ENDPOINT=$PROD_CDN_ENDPOINT \
+             --build-arg PROD_HOST=$PROD_HOST \
+             --build-arg PROD_staticHOST=$PROD_staticHOST \
+             -t $IMAGE_NAME . -f $DOCKERFILE
 
 echo "------ HOOK END - BUILD -------"
