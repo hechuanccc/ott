@@ -12,10 +12,11 @@
                 </select>
                 <span>条，</span>
                 <span>
-                    显示第
-                    <select class="form-control c-select" v-model="showPageGo" style="width:60px"  @change="pageGo()">
+                    跳转到第
+                    <input class="jumpPage" type="text" v-model="showPageGo" @keyup.enter="pageGo()" style="width:60px; height:32px; " >
+                    <!-- <select class="form-control c-select" v-model="showPageGo" style="width:60px"  @change="pageGo()">
                         <option v-for="num in pageNum" :value="num">{{num}}</option>
-                    </select>
+                    </select> -->
                      页
                 </span>
                 </div>

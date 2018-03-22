@@ -70,8 +70,8 @@
             <div class="col-xs-2">
               <label class="text-sm m-r">{{$t('common.gamecategory')}}</label>
               <select class="form-control c-select" v-model="query.category">
-                <option value="">{{$t('common.please_select')}}</option>
-                <option class="form-control" :value="c.id" v-for="c in categories">{{c.name}}</option>
+                <!-- <option value="">{{$t('common.please_select')}}</option>
+                <option class="form-control" :value="c.id" v-for="c in categories">{{c.name}}</option> -->
               </select>
             </div>
             <div class="col-xs-4">
