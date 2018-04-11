@@ -107,6 +107,13 @@
                 }
             })
         },
+        watch: {
+            errorMsg (newObj, old) {
+                setTimeout(() => {
+                    this.errorMsg = false
+                }, 3000)
+            }
+        },
         methods: {
             getStaff (id) {
                 this.$http.get(api.staff + id + '/?opt_expand=group').then((response) => {
