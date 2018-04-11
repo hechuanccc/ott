@@ -325,7 +325,8 @@ export default {
         permission: 'Permission',
         update_staff: 'Update Staff',
         password: 'Password',
-        role: 'Role'
+        role: 'Role',
+        delete_staff_failed: 'Delete not allowed. Existing related data.'
     },
     promotion: {
         title: 'Promotion',
