@@ -327,7 +327,8 @@ export default {
         permission: '权限',
         update_staff: '更新子账号',
         password: '密码',
-        role: '角色'
+        role: '角色',
+        delete_staff_failed: '不允许删除。 相关数据存在。'
     },
     promotion: {
         title: '优惠活动管理',

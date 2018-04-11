@@ -13,6 +13,7 @@
         <div class="alert alert-danger" v-if="passwordError">
             修改失败：{{passwordError}}
         </div>
+        <div class="alert alert-danger" v-if="errorMsg">{{$t('staff.delete_staff_failed')}}</div>
         <div class="box">
             <div class="box-header b-b">
                 <div class="row">
@@ -93,7 +94,8 @@
                 passwordSuccess: false,
                 permissions: [],
                 passwordError: '',
-                permissionsId: []
+                permissionsId: [],
+                errorMsg: ''
             }
         },
         beforeRouteEnter (to, from, next) {
@@ -164,6 +166,8 @@
                 }
                 this.$http.delete(api.staff + id + '/').then((response) => {
                     this.$router.push('/staff')
+                }, response => {
+                    this.errorMsg = response.data.error
                 })
             }
         }
