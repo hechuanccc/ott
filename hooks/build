@@ -24,6 +24,10 @@ docker build --build-arg AZURE_STORAGE_ACCOUNT=$AZURE_STORAGE_ACCOUNT \
              --build-arg PROD_CDN_ENDPOINT=$PROD_CDN_ENDPOINT \
              --build-arg PROD_HOST=$PROD_HOST \
              --build-arg PROD_staticHOST=$PROD_staticHOST \
+             --build-arg MOCKUP_ENV_CONTAINER=$MOCKUP_ENV_CONTAINER \
+             --build-arg MOCKUP_CDN_ENDPOINT=$MOCKUP_CDN_ENDPOINT \
+             --build-arg MOCKUP_HOST=$MOCKUP_HOST \
+             --build-arg MOCKUP_staticHOST=$MOCKUP_staticHOST \
              -t $IMAGE_NAME . -f $DOCKERFILE
 
 echo "------ HOOK END - BUILD -------"
