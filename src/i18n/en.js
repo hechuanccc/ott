@@ -431,7 +431,8 @@ export default {
         reject: 'Reject',
         waiting: 'Waiting',
         game: 'Game',
-        ongoing: 'Ongoing'
+        ongoing: 'Ongoing',
+        period: 'Period'
     },
     details: {
         status: 'Status',
