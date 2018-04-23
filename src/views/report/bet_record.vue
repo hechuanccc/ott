@@ -95,6 +95,7 @@
         <thead>
         <tr>
           <th>注单号</th>
+          <th>{{$t('betrecord.period')}}</th>
           <th>{{$t('common.member')}}</th>
           <th>{{$t('common.game')}}</th>
           <th>{{$t('common.provider')}}</th>
@@ -108,7 +109,7 @@
         </thead>
         <tbody>
         <tr v-if="total_amount || total_profit" class="table-amount">
-          <td class="" colspan="6">总计</td>
+          <td class="" colspan="7">总计</td>
           <td colspan="2">{{total_amount | currency('￥')}}</td>
           <td colspan="2">{{total_profit | currency('￥')}}</td>
         </tr>
@@ -116,9 +117,10 @@
           <td @click="oModal(t.id)">
             <a >{{t.betrecord_id}}</a>
           </td>
-          <!--<td>-->
-          <!--<router-link :to="'/report/betrecord/' + t.id">{{t.betrecord_id}}</router-link>-->
-          <!--</td>-->
+          <td>
+            <span v-if="t.period_id">{{t.period_id}}</span>
+            <span v-else>-</span>
+          </td>
           <td>
             <router-link :to="'/member/' + t.member.id">{{t.member.username}}</router-link>
           </td>

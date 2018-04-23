@@ -438,7 +438,8 @@ export default {
         reject: '未投注',
         waiting: '待确认',
         game: '游戏',
-        ongoing: '待确认'
+        ongoing: '待确认',
+        period: '期号'
     },
     details: {
         status: '状态',
