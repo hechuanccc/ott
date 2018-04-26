@@ -432,7 +432,8 @@ export default {
         waiting: 'Waiting',
         game: 'Game',
         ongoing: 'Ongoing',
-        period: 'Period'
+        period: 'Period',
+        bet_type: 'Bet Type'
     },
     details: {
         status: 'Status',
