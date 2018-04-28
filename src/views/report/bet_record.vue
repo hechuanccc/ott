@@ -98,6 +98,7 @@
           <th>{{$t('betrecord.period')}}</th>
           <th>{{$t('common.member')}}</th>
           <th>{{$t('common.game')}}</th>
+          <th>{{$t('betrecord.bet_type')}}</th>
           <th>{{$t('common.provider')}}</th>
           <th>{{$t('common.settledat')}}</th>
           <th>{{$t('common.betamount')}}</th>
@@ -109,7 +110,7 @@
         </thead>
         <tbody>
         <tr v-if="total_amount || total_profit" class="table-amount">
-          <td class="" colspan="7">总计</td>
+          <td class="" colspan="8">总计</td>
           <td colspan="2">{{total_amount | currency('￥')}}</td>
           <td colspan="2">{{total_profit | currency('￥')}}</td>
         </tr>
@@ -126,6 +127,14 @@
           </td>
           <td>
             {{t.game.name}}
+          </td>
+          <td>
+            <span v-if="t.details">
+                <span v-for="(betrecord, index) in t.details">
+                  {{$t(`details.${index}`)}}: {{betrecord}} <br>
+                </span>
+            </span>
+            <span v-else>-</span>
           </td>
           <td>
             {{t.provider.name}}
@@ -168,6 +177,7 @@
         @query-data="queryData"
         @query-param="queryParam"
         :api="betApi"
+        :optexpand="opt_expand"
         ref="pulling">
       </pulling>
     </div>
@@ -323,7 +333,8 @@
               total_profit: '',
               total_bet_amount: '',
               betrecords: [],
-              errorMsg: ''
+              errorMsg: '',
+              opt_expand: 'details'
           }
       },
       created () {

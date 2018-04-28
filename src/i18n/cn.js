@@ -439,7 +439,8 @@ export default {
         waiting: '待确认',
         game: '游戏',
         ongoing: '待确认',
-        period: '期号'
+        period: '期号',
+        bet_type: '玩法'
     },
     details: {
         status: '状态',
