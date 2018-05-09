@@ -57,7 +57,7 @@
                                 <div class="form-group">
                                     <label class="label-width">{{$t('bank.account')}}</label>
                                     <div class="inline-form-control">
-                                        <input type="number" class="form-control" placeholder="比如：6256768987765442" v-model="payee.account"  :required="payee.remit_type==='1'" />
+                                        <input class="form-control" placeholder="比如：6256768987765442" v-model="payee.account"  :required="payee.remit_type==='1'" />
                                     </div>
                                 </div>
                             </div>
