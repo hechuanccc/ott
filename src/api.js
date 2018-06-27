@@ -71,6 +71,6 @@ export default {
     report_member: host + '/report/member/',
     report_deposit: host + '/report/deposit/',
     action_record: prefix + 'tracker/actionrecord/',
-    betSummary: prefix + 'betrecord/summary'
-
+    betSummary: prefix + 'betrecord/summary',
+    global_preferences: prefix + 'global-preferences/'
 }

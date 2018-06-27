@@ -107,6 +107,7 @@
                                 <span class="nav-text">{{$t("nav.setting")}}</span>
                             </a>
                             <ul class="nav-sub">
+                                <li><router-link to="/global_parameters"><span class="nav-text">{{$t("nav.global_parameters")}}</span></router-link></li>
                                 <li><router-link to="/level"><span class="nav-text">{{$t("nav.setting_level")}}</span></router-link></li>
                                 <li><router-link to="/online_payee"><span class="nav-text">{{$t("nav.setting_online_payee")}}</span></router-link></li>
                                 <li><router-link to="/paymenttype"><span class="nav-text">{{$t("setting.setting_paymenttype")}}</span></router-link></li>

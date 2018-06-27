@@ -209,7 +209,8 @@ export default {
         mobilemanagement: '手机网页管理',
         online_payee_detail_edit: '线上支付商户修改',
         message: '站内信',
-        action_record: '操作记录'
+        action_record: '操作记录',
+        global_parameters: '系统参数配置'
     },
     member: {
         page_title: '查询条件',
@@ -864,6 +865,10 @@ export default {
         provider: '娱乐城',
         game_name: '游戏名称',
         action_result: '状态'
+    },
+    global_parameters: {
+        name: '参数说明',
+        value: '参数值',
+        operating: '操作'
     }
-
 }
