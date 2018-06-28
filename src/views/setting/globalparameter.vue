@@ -1,5 +1,6 @@
 <template>
 <div>
+    <div class="m-l m-r m-t alert alert-danger" v-if="error">{{error}}</div>
     <div class="box" v-if="queryset.length > 0">
         <table st-table="rowCollectionBasic" class="table table-striped b-t v-m">
             <thead>
@@ -136,19 +137,19 @@
                                 ref="modalContent"
                                 v-else
                             />
-                            <label class="form-control-label p-b-0" >
-                                {{ modal.note }}
-                            </label>
                         </div>
                     </form>
+                    <div class="m-l m-r m-t alert alert-danger" v-if="modal.error">{{modal.error}}</div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn blue w-xs" @click="updatePreference(modal)">
-                        <span v-if="!modal.loading">{{ $t('action.confirm') }}</span>
+                        <span v-if="!modal.loading">
+                        {{ $t('common.confirmreturn') }}
+                    </span>
                         <i class="fa fa-spin fa-spinner" v-else></i>
                     </button>
                     <button class="btn w-xs" @click="modal.showModal = false">
-                        {{ $t('action.cancel') }}
+                        {{ $t('common.cancelreturn') }}
                     </button>
                 </div>
             </div>
@@ -177,8 +178,9 @@ export default {
                 key: '',
                 value: '',
                 loading: false,
-                note: ''
+                error: ''
             },
+            error: '',
             loading: true
         }
     },
@@ -187,18 +189,14 @@ export default {
     },
     methods: {
         getPreference () {
-            this.$http.get(`${api.global_preferences}`).then(data => {
-                this.queryset = data
-                // this.queryset.forEach(e => {
-                //     this.typeTransform(e)
-                // })
-                this.loading = false
-            }, error => {
-                $.notify({
-                    message: '1',
-                    type: 'danger'
+            this.$http.get(`${api.global_preferences}`).then(response => {
+                this.queryset = response.data
+                this.queryset.forEach(e => {
+                    this.typeTransform(e)
                 })
-                console.log(error)
+                this.loading = false
+            }, response => {
+                this.error = Object.values(response.data.error[0]).toString()
                 this.loading = false
             })
         },
@@ -221,8 +219,8 @@ export default {
             display_name: displayName,
             key,
             value,
-            note,
-            type
+            type,
+            error
         }) {
             Object.assign(this.modal, {
                 showModal: true,
@@ -232,7 +230,7 @@ export default {
                 type,
                 index,
                 loading: false,
-                note
+                error
             })
             if (type === 1 && typeof value === 'object') {
                 this.modal.value = this.modal.value.map(e => Object.assign({}, e))
@@ -266,19 +264,16 @@ export default {
             } else {
                 result.value = value
             }
-            this.$http.patch(`${api.global_preferences}${key}/`, result).then(data => {
+            this.$http.patch(`${api.global_preferences}${key}/`, result).then(response => {
                 $.notify({
                     message: this.$t('action.update') + this.$t('status.success')
                 })
-                this.typeTransform(data)
-                Object.assign(this.queryset[index], data)
+                this.typeTransform(response.data)
+                Object.assign(this.queryset[index], response.data)
                 this.modal.showModal = false
                 this.modal.loading = false
-            }, error => {
-                $.notify({
-                    message: error,
-                    type: 'danger'
-                })
+            }, response => {
+                this.modal.error = Object.values(response.data.error[0]).toString()
                 this.modal.loading = false
             })
         }
@@ -289,4 +284,13 @@ export default {
 .align-middle td{
   vertical-align: middle;
 }
+
+.modal-body {
+  overflow-y: auto;
+  max-height: 60vh;
+}
+
+.modal-backdrop, .modal{z-index: 1}
+    .modal-dialog{z-index: 10;top: 10%}
+        .modal{display: block;}
 </style>

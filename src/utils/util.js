@@ -3,12 +3,6 @@ import VueResource from 'vue-resource'
 import urls from '../api'
 
 const STORAGE_KEY = 'data-storage'
-const typeIcon = {
-    danger: 'fa fa-close',
-    success: 'fa fa-check',
-    warning: 'fa fa-warning',
-    info: 'fa fa-info'
-}
 
 Vue.use(VueResource)
 export default class $ {
@@ -124,12 +118,14 @@ export default class $ {
         return result.join(', ')
     }
 
-    static notify ({verticalAlign = 'top', horizontalAlign = 'center', message = '', type = 'success'}) {
-        Vue.prototype.$notifications.notify({
-            message: `<i class="${typeIcon[type]}"></i> ${message}`,
-            horizontalAlign: horizontalAlign,
-            verticalAlign: verticalAlign,
-            type: type
-        })
+    static isJsonString (str) {
+        try {
+            var o = JSON.parse(str)
+            if (o && typeof o === 'object') {
+                return o
+            }
+        } catch (e) {
+            return false
+        }
     }
 }
