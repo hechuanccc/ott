@@ -117,4 +117,15 @@ export default class $ {
         }
         return result.join(', ')
     }
+
+    static isJsonString (str) {
+        try {
+            var o = JSON.parse(str)
+            if (o && typeof o === 'object') {
+                return o
+            }
+        } catch (e) {
+            return false
+        }
+    }
 }

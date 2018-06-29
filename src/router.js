@@ -903,6 +903,18 @@ export default new Router({
             agentPermission: 'true',
             title: '修改密码'
         }
+    },
+    {
+        path: '/global_parameters',
+        name: 'global_parameters',
+        component: function (resolve) {
+            require(['./views/setting/globalparameter.vue'], resolve)
+        },
+        meta: {
+            group: 'setting',
+            auth: true,
+            title: Vue.t('nav.global_parameters')
+        }
     }
     ]
 })

@@ -210,7 +210,8 @@ export default {
         mobilemanagement: 'Mobile Website Management',
         online_payee_detail_edit: 'Online Payee Detail Edit',
         message: 'message',
-        action_record: 'Action Record'
+        action_record: 'Action Record',
+        global_parameters: 'Global Parameters'
     },
     member: {
         page_title: 'Search Members',
@@ -857,5 +858,10 @@ export default {
         provider: 'Provider',
         game_name: 'Game Name',
         action_result: 'Action Result'
+    },
+    global_parameters: {
+        name: 'Parameter Name',
+        value: 'Value',
+        operating: 'Operating'
     }
 }
