@@ -265,9 +265,6 @@ export default {
                 result.value = value
             }
             this.$http.patch(`${api.global_preferences}${key}/`, result).then(response => {
-                $.notify({
-                    message: this.$t('action.update') + this.$t('status.success')
-                })
                 this.typeTransform(response.data)
                 Object.assign(this.queryset[index], response.data)
                 this.modal.showModal = false
